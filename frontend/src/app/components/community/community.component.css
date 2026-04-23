@@ -1,0 +1,158 @@
+.community-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 5%;
+}
+
+.community-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.community-header h1 {
+  font-size: 2.5rem;
+  color: #2d3436;
+}
+
+.community-header span {
+  color: #00b894;
+}
+
+.community-header p {
+  color: #636e72;
+  margin-top: 0.5rem;
+}
+
+.btn-post {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-post:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+}
+
+.post-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  margin-bottom: 3rem;
+  border: 1px solid #f1f2f6;
+}
+
+.post-form h3 {
+  margin-bottom: 1.5rem;
+  color: #2d3436;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #636e72;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1.5px solid #f1f2f6;
+  border-radius: 10px;
+  outline: none;
+}
+
+.form-group textarea {
+  height: 150px;
+}
+
+.btn-submit {
+  background: #2d3436;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.post-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  margin-bottom: 2rem;
+  border: 1px solid #f8f9fa;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: #f1fcf9;
+  color: #00b894;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.username {
+  display: block;
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #b2bec3;
+}
+
+.post-body h2 {
+  font-size: 1.4rem;
+  color: #2d3436;
+  margin-bottom: 1rem;
+}
+
+.post-body p {
+  color: #636e72;
+  line-height: 1.6;
+}
+
+.post-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f2f6;
+}
+
+.tag {
+  color: #00b894;
+  font-size: 0.85rem;
+  font-weight: 600;
+}

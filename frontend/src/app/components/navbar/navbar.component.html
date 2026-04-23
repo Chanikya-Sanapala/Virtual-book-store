@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a routerLink="/" class="logo">Leafy<span>Books</span></a>
+    
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a routerLink="/community" routerLinkActive="active">Community</a>
+      <a *ngIf="authService.isAdmin()" routerLink="/admin" routerLinkActive="active">Seller Dashboard</a>
+    </div>
+
+    <div class="nav-actions">
+      <div class="cart-icon" routerLink="/cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge" *ngIf="cartCount > 0">{{cartCount}}</span>
+      </div>
+
+      <ng-container *ngIf="!authService.isLoggedIn()">
+        <button class="btn-login" routerLink="/login">Login</button>
+        <button class="btn-register" routerLink="/register">Join Us</button>
+      </ng-container>
+
+      <ng-container *ngIf="authService.isLoggedIn()">
+        <span class="user-greet">Hi, {{authService.currentUserValue.username}}</span>
+        <button class="btn-logout" (click)="logout()">Logout</button>
+      </ng-container>
+    </div>
+  </div>
+</nav>

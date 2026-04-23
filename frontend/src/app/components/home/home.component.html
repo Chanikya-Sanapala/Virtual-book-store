@@ -1,0 +1,50 @@
+<div class="home-container">
+  <section class="hero">
+    <h1>Find Your Next <span>Great Read</span></h1>
+    <p>Explore thousands of books from community-verified sellers.</p>
+    
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search by title, author, or keyword...">
+    </div>
+  </section>
+
+  <div class="main-content">
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul>
+        <li [class.active]="selectedCategory === ''" (click)="filterByCategory('')">All Books</li>
+        <li *ngFor="let cat of categories" 
+            [class.active]="selectedCategory === cat" 
+            (click)="filterByCategory(cat)">
+          {{cat}}
+        </li>
+      </ul>
+    </aside>
+
+    <div class="book-grid">
+      <div class="book-card" *ngFor="let book of books">
+        <div class="book-image">
+          <img [src]="book.imageUrl || 'https://via.placeholder.com/200x300?text=No+Cover'" alt="{{book.title}}">
+          <div class="overlay">
+            <button (click)="addToCart(book)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="book-info">
+          <span class="category">{{book.category}}</span>
+          <h3>{{book.title}}</h3>
+          <p class="author">by {{book.author}}</p>
+          <div class="footer">
+            <span class="price">${{book.price}}</span>
+            <span class="stock" [class.out]="book.stock <= 0">{{book.stock > 0 ? 'In Stock' : 'Out of Stock'}}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="no-results" *ngIf="books.length === 0">
+        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" alt="No books found">
+        <p>We couldn't find any books matching your search.</p>
+      </div>
+    </div>
+  </div>
+</div>

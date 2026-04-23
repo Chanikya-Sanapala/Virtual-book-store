@@ -1,0 +1,164 @@
+.admin-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 5%;
+}
+
+.header {
+  margin-bottom: 3rem;
+}
+
+.header h2 {
+  font-size: 2.2rem;
+  color: #2d3436;
+}
+
+.header p {
+  color: #636e72;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.book-form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.book-form h3 {
+  margin-bottom: 2rem;
+  color: #2d3436;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #636e72;
+  margin-bottom: 0.5rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1.5px solid #f1f2f6;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+.btn-submit {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.btn-cancel {
+  background: #f1f2f6;
+  color: #636e72;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.book-list {
+  background: white;
+  padding: 2rem;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid #f1f2f6;
+  color: #b2bec3;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+td {
+  padding: 1.2rem 1rem;
+  border-bottom: 1px solid #f1f2f6;
+  color: #2d3436;
+  font-size: 0.95rem;
+}
+
+.book-title {
+  font-weight: 700;
+}
+
+.stock-badge {
+  padding: 4px 10px;
+  background: #f1fcf9;
+  color: #00b894;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.stock-badge.low {
+  background: #fff5f5;
+  color: #ff7675;
+}
+
+.low-stock-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions button {
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit { background: #e3f2fd; color: #1976d2; }
+.delete { background: #fff5f5; color: #ff7675; }

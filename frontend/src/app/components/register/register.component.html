@@ -1,0 +1,47 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2>Join the Community</h2>
+    <p>Create an account to start exploring and sharing.</p>
+
+    <form (ngSubmit)="onSubmit()" #f="ngForm" novalidate *ngIf="!isSuccessful">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" [(ngModel)]="form.username" required minlength="3" #username="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" [(ngModel)]="form.email" required email #email="ngModel">
+      </div>
+      
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel">
+      </div>
+
+      <!-- User role is assigned by default -->
+
+      <button type="submit" class="btn-primary">Create Account</button>
+
+      <div class="error-msg" *ngIf="isSignUpFailed">
+        {{errorMessage || 'Signup failed. Please try again.'}}
+      </div>
+    </form>
+
+    <div class="success-msg" *ngIf="isSuccessful">
+      Your registration was successful! Redirecting to login...
+    </div>
+
+    <div class="divider" *ngIf="!isSuccessful">
+      <span>Or continue with</span>
+    </div>
+
+    <div class="google-btn-container" *ngIf="!isSuccessful">
+      <div id="google-btn"></div>
+    </div>
+
+    <div class="auth-footer" *ngIf="!isSuccessful">
+      Already have an account? <a routerLink="/login">Sign In</a>
+    </div>
+  </div>
+</div>

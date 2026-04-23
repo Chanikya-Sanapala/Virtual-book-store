@@ -1,0 +1,51 @@
+<div class="community-container">
+  <div class="community-header">
+    <div class="text">
+      <h1>Reader's <span>Community</span></h1>
+      <p>Share your thoughts, book reviews, and reading tips with fellow bookworms.</p>
+    </div>
+    <button class="btn-post" (click)="showForm = !showForm" *ngIf="authService.isLoggedIn()">
+      {{showForm ? 'Close Form' : 'Share a Post'}}
+    </button>
+  </div>
+
+  <div class="post-form" *ngIf="showForm">
+    <h3>New Community Post</h3>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" [(ngModel)]="newPost.title" required placeholder="e.g., My thoughts on 'Atomic Habits'">
+      </div>
+      <div class="form-group">
+        <label>Content</label>
+        <textarea name="content" [(ngModel)]="newPost.content" required placeholder="Write your insights here..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Publish Post</button>
+    </form>
+  </div>
+
+  <div class="posts-feed">
+    <div class="post-card" *ngFor="let post of posts">
+      <div class="post-header">
+        <div class="user-info">
+          <div class="avatar">{{post.username?.charAt(0)}}</div>
+          <div>
+            <span class="username">{{post.username}}</span>
+            <span class="date">{{post.createdAt | date:'mediumDate'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="post-body">
+        <h2>{{post.title}}</h2>
+        <p>{{post.content}}</p>
+      </div>
+      <div class="post-footer">
+        <span class="tag">#ReadingInsights</span>
+      </div>
+    </div>
+
+    <div class="no-posts" *ngIf="posts.length === 0">
+      <p>No posts yet. Be the first to share something!</p>
+    </div>
+  </div>
+</div>

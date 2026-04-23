@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Notification Toast (Moved to bottom for better layering) -->
+<div class="notification-container" *ngIf="notificationService.notification$ | async as n" [ngClass]="n.type">
+  <i class="fas" [ngClass]="{'fa-check-circle': n.type === 'success', 'fa-exclamation-circle': n.type === 'error'}"></i>
+  <span>{{ n.message }}</span>
+</div>
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>LeafyBooks</h3>
+      <p>Your sanctuary for stories and community insights.</p>
+    </div>
+    <div class="footer-links">
+      <a routerLink="/">Browse</a>
+      <a routerLink="/community">Community</a>
+      <a routerLink="/cart">Cart</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 LeafyBooks Virtual Store. All rights reserved.
+  </div>
+</footer>

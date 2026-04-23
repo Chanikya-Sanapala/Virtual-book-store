@@ -1,0 +1,94 @@
+<div class="admin-container">
+  <div class="header">
+    <h2>Seller Inventory Management</h2>
+    <p>Manage your listings, update prices, and track stock.</p>
+  </div>
+
+  <div class="admin-layout">
+    <div class="book-form">
+      <h3>{{isEditing ? 'Edit Book' : 'Add New Book'}}</h3>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" [(ngModel)]="newBook.title" required>
+          </div>
+          <div class="form-group">
+            <label>Author</label>
+            <input type="text" name="author" [(ngModel)]="newBook.author" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="description" [(ngModel)]="newBook.description"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category</label>
+            <select name="category" [(ngModel)]="newBook.category">
+              <option value="Fiction">Fiction</option>
+              <option value="Non-Fiction">Non-Fiction</option>
+              <option value="Science">Science</option>
+              <option value="Technology">Technology</option>
+              <option value="Biography">Biography</option>
+              <option value="Self-Help">Self-Help</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Price ($)</label>
+            <input type="number" name="price" [(ngModel)]="newBook.price" required>
+          </div>
+          <div class="form-group">
+            <label>Stock</label>
+            <input type="number" name="stock" [(ngModel)]="newBook.stock" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Image URL</label>
+          <input type="text" name="imageUrl" [(ngModel)]="newBook.imageUrl">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-submit">{{isEditing ? 'Update Listing' : 'Add to Catalog'}}</button>
+          <button type="button" class="btn-cancel" *ngIf="isEditing" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="book-list">
+      <h3>Your Active Listings</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let book of books">
+              <td class="book-title">{{book.title}}</td>
+              <td>{{book.category}}</td>
+              <td>${{book.price}}</td>
+              <td>
+                <span class="stock-badge" [class.low]="book.stock < 5">
+                  {{book.stock}} <span *ngIf="book.stock < 5" class="low-stock-text">(Only few available)</span>
+                </span>
+              </td>
+              <td class="actions">
+                <button class="edit" (click)="editBook(book)"><i class="fas fa-edit"></i></button>
+                <button class="delete" (click)="deleteBook(book.id!)"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+main {
+    min-height: 80vh;
+}
+
+.notification-container {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    padding: 1.2rem 2rem;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 999999; /* Max priority */
+    animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 8px solid #00b894;
+    font-weight: 600;
+}
+
+.notification-container.success { border-left-color: #00b894; color: #00b894; }
+.notification-container.error { border-left-color: #ff7675; color: #ff7675; }
+.notification-container.info { border-left-color: #0984e3; color: #0984e3; }
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

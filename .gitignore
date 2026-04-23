@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.angular/
+target/
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+*.log
