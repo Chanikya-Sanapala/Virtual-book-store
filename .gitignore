@@ -8,3 +8,5 @@ target/
 .idea/
 *.iml
 *.log
+application-local.properties
+.env
