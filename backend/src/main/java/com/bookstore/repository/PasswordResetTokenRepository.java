@@ -1,10 +1,10 @@
 package com.bookstore.repository;
 
 import com.bookstore.model.PasswordResetToken;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
-public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, String> {
+public interface PasswordResetTokenRepository extends MongoRepository<PasswordResetToken, String> {
     Optional<PasswordResetToken> findByToken(String token);
     void deleteByEmail(String email);
 }

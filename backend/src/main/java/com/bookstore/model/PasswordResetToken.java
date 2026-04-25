@@ -1,20 +1,15 @@
 package com.bookstore.model;
 
 import lombok.Data;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 @Data
-@Entity
-@Table(name = "password_reset_tokens")
+@Document(collection = "password_reset_tokens")
 public class PasswordResetToken {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String token;
     private String email;

@@ -20,8 +20,8 @@ LeafyBooks is a modern, full-stack Virtual Book Store web application. It provid
 *   **Java 17**
 *   **Spring Boot (3.2.5)** - Core framework for the REST API.
 *   **Spring Security & JWT** - For securing endpoints and managing user sessions.
-*   **Spring Data JPA (Hibernate)** - ORM for database interactions.
-*   **MySQL** - Relational database for storing users, books, orders, etc.
+*   **Spring Data MongoDB** - For database interactions.
+*   **MongoDB** - NoSQL database for storing users, books, orders, etc.
 *   **Spring Boot Mail** - For sending automated emails (SMTP).
 *   **Google API Client** - For verifying Google OAuth tokens.
 *   **Lombok** - To reduce boilerplate code (Getters, Setters, Constructors).
@@ -47,15 +47,10 @@ You need to have the following installed:
 *   **Angular CLI** (`npm install -g @angular/cli`)
 *   **Java Development Kit (JDK) 17**
 *   **Maven**
-*   **MySQL Server** (running locally on port 3306)
-
-### 1. Database Setup (MySQL)
-1. Ensure your local MySQL server is running.
-2. The application will automatically create a database named `bookstore` and generate all necessary tables on startup.
-3. If your MySQL root password is not blank, open `backend/src/main/resources/application.properties` and update:
-   ```properties
-   spring.datasource.password=YOUR_MYSQL_PASSWORD
-   ```
+### 1. Database Setup (MongoDB)
+1. The application uses a MongoDB Atlas cluster.
+2. The connection string is already configured in `backend/src/main/resources/application.properties`.
+3. Ensure your IP address is whitelisted in the MongoDB Atlas dashboard.
 
 ### 2. Backend Setup
 Navigate to the `backend` directory and run the Spring Boot application:
@@ -81,8 +76,7 @@ npm start
 
 **Backend (`pom.xml`):**
 *   `spring-boot-starter-web`
-*   `spring-boot-starter-data-jpa`
-*   `mysql-connector-j`
+*   `spring-boot-starter-data-mongodb`
 *   `spring-boot-starter-security`
 *   `spring-boot-starter-validation`
 *   `spring-boot-starter-mail`
