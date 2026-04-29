@@ -6,10 +6,10 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run the application
-FROM openjdk:17-jdk-slim
+# Using Eclipse Temurin - the modern, reliable Java standard
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 
-# Use environment variables for sensitive data
 ENTRYPOINT ["java", "-jar", "app.jar"]
