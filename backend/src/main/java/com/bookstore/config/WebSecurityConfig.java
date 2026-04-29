@@ -3,6 +3,7 @@ package com.bookstore.config;
 import com.bookstore.security.AuthTokenFilter;
 import com.bookstore.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -76,13 +77,16 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+    @Value("${app.frontend.url:https://virtual-book-store-eight.vercel.app}")
+    private String frontendUrl;
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Trust your specific Vercel frontend URL
+        // Trust the frontend URL from environment or fallback to the one we just deployed
         configuration.setAllowedOrigins(List.of(
             "http://localhost:4200", 
-            "https://virtual-book-store-eight.vercel.app"
+            frontendUrl
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
