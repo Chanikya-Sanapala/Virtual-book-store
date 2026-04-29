@@ -2,27 +2,77 @@
   <div class="nav-container">
     <a routerLink="/" class="logo">Leafy<span>Books</span></a>
     
-    <div class="nav-links">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-      <a routerLink="/community" routerLinkActive="active">Community</a>
-      <a *ngIf="authService.isAdmin()" routerLink="/admin" routerLinkActive="active">Seller Dashboard</a>
+    <div class="nav-links" [class.mobile-active]="isMenuOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Home</a>
+      
+      <!-- Categories Dropdown -->
+      <div class="nav-item-dropdown" (mouseenter)="isCategoriesOpen = true" (mouseleave)="isCategoriesOpen = false">
+        <a class="nav-link dropdown-trigger" (click)="toggleCategories()">
+          Categories <i class="fas fa-chevron-down" [class.rotate]="isCategoriesOpen"></i>
+        </a>
+        <div class="dropdown-menu" [class.show]="isCategoriesOpen">
+          <a (click)="selectCategory('')" [class.active]="(selectedCategory$ | async) === ''">All Books</a>
+          <a *ngFor="let cat of categories$ | async" 
+             (click)="selectCategory(cat)"
+             [class.active]="(selectedCategory$ | async) === cat">
+            {{cat}}
+          </a>
+        </div>
+      </div>
+
+      <a routerLink="/community" routerLinkActive="active" (click)="closeMenu()">Community</a>
+      <a *ngIf="authService.isLoggedIn()" routerLink="/history" routerLinkActive="active" (click)="closeMenu()">My History</a>
+      <a *ngIf="authService.isAdmin()" routerLink="/admin" routerLinkActive="active" (click)="closeMenu()">Seller Dashboard</a>
+      
+      <div class="mobile-only-actions" *ngIf="!authService.isLoggedIn()">
+        <button class="btn-login" routerLink="/login" (click)="closeMenu()">Login</button>
+        <button class="btn-register" routerLink="/register" (click)="closeMenu()">Join Us</button>
+      </div>
+      <div class="mobile-only-actions" *ngIf="authService.isLoggedIn()">
+        <button class="btn-logout" (click)="logout(); closeMenu()">Logout</button>
+      </div>
     </div>
 
     <div class="nav-actions">
+      <!-- Search Trigger -->
+      <div class="search-trigger" (click)="toggleSearch()" [class.active]="isSearchOpen">
+        <i class="fas fa-search"></i>
+      </div>
+
       <div class="cart-icon" routerLink="/cart">
         <i class="fas fa-shopping-cart"></i>
         <span class="badge" *ngIf="cartCount > 0">{{cartCount}}</span>
       </div>
 
-      <ng-container *ngIf="!authService.isLoggedIn()">
+      <div class="desktop-actions" *ngIf="!authService.isLoggedIn()">
         <button class="btn-login" routerLink="/login">Login</button>
         <button class="btn-register" routerLink="/register">Join Us</button>
-      </ng-container>
+      </div>
 
-      <ng-container *ngIf="authService.isLoggedIn()">
+      <div class="desktop-actions" *ngIf="authService.isLoggedIn()">
         <span class="user-greet">Hi, {{authService.currentUserValue.username}}</span>
         <button class="btn-logout" (click)="logout()">Logout</button>
-      </ng-container>
+      </div>
+
+      <div class="menu-trigger" (click)="toggleMenu()">
+        <i class="fas" [class.fa-bars]="!isMenuOpen" [class.fa-times]="isMenuOpen"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Popup Overlay -->
+  <div class="search-popup" [class.active]="isSearchOpen">
+    <div class="search-popup-content">
+      <div class="search-input-box">
+        <i class="fas fa-search"></i>
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery" 
+          (input)="onSearchChange()" 
+          placeholder="Search books..."
+        >
+        <i class="fas fa-times" (click)="toggleSearch(); searchQuery = ''; onSearchChange()"></i>
+      </div>
     </div>
   </div>
 </nav>

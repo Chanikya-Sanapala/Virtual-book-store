@@ -1,0 +1,56 @@
+<div class="chatbot-container" [class.open]="isOpen">
+  <!-- Chat Button (Floating Bubble) -->
+  <button class="chat-trigger" (click)="toggleChat()">
+    <img *ngIf="!isOpen" src="https://user-images.githubusercontent.com/74038190/221352989-518609ab-b4d1-459e-929f-a08cd2bd9b3c.gif" alt="AI Bot" class="bot-gif-trigger">
+    <i *ngIf="isOpen" class="fas fa-times"></i>
+    <span class="pulse" *ngIf="!isOpen"></span>
+  </button>
+
+  <!-- Chat Window -->
+  <div class="chat-window">
+    <div class="chat-header">
+      <div class="bot-info">
+        <div class="bot-avatar">
+          <img src="https://user-images.githubusercontent.com/74038190/221352989-518609ab-b4d1-459e-929f-a08cd2bd9b3c.gif" alt="Bot Avatar" class="bot-gif-avatar">
+        </div>
+        <div class="bot-details">
+          <h3>Leafy AI</h3>
+          <span>Online Assistant</span>
+        </div>
+      </div>
+      <button class="close-btn" (click)="toggleChat()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="chat-messages" #scrollMe>
+      <div *ngFor="let msg of messages" class="message-wrapper" [class.user]="msg.sender === 'user'">
+        <div class="message-bubble">
+          <p>{{msg.text}}</p>
+          <span class="time">{{msg.timestamp | date:'shortTime'}}</span>
+        </div>
+      </div>
+      
+      <!-- Typing Indicator -->
+      <div class="message-wrapper" *ngIf="isLoading">
+        <div class="message-bubble typing">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input 
+        type="text" 
+        [(ngModel)]="userInput" 
+        (keyup.enter)="sendMessage()" 
+        placeholder="Ask me anything about books..."
+      >
+      <button (click)="sendMessage()" [disabled]="!userInput.trim() || isLoading">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>

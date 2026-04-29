@@ -59,11 +59,13 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/books", "/api/books/", "/api/books/**").permitAll()
+                                .requestMatchers("/api/books/import").permitAll() // Explicitly permit import
+                                .requestMatchers("/api/files/download/**").permitAll()
                                 .requestMatchers("/api/community", "/api/community/", "/api/community/**").permitAll()
+                                .requestMatchers("/api/ai/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception.accessDeniedHandler((request, response, accessDeniedException) -> {
-                    System.err.println("ACCESS DENIED: " + request.getRequestURI() + " - " + accessDeniedException.getMessage());
                     response.setStatus(403);
                     response.getWriter().write("Access Denied: " + accessDeniedException.getMessage());
                 }));

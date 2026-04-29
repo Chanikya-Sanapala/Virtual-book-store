@@ -24,9 +24,12 @@ public class CommunityController {
 
     @PostMapping
     public CommunityPost createPost(@RequestBody CommunityPost post) {
-        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setUserId(userDetails.getId());
-        post.setUsername(userDetails.getUsername());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetailsImpl) {
+            UserDetailsImpl userDetails = (UserDetailsImpl) principal;
+            post.setUserId(userDetails.getId());
+            post.setUsername(userDetails.getUsername());
+        }
         post.setCreatedAt(new Date());
         return communityPostRepository.save(post);
     }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommunityService } from '../../services/community.service';
 import { AuthService } from '../../services/auth.service';
 import { CommunityPost } from '../../models/interfaces';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-community',
@@ -14,7 +15,11 @@ export class CommunityComponent implements OnInit {
   newPost: CommunityPost = { title: '', content: '' };
   showForm = false;
 
-  constructor(private communityService: CommunityService, public authService: AuthService) { }
+  constructor(
+    private communityService: CommunityService, 
+    public authService: AuthService,
+    private notificationService: NotificationService
+  ) { }
 
   ngOnInit(): void {
     this.loadPosts();
@@ -27,10 +32,16 @@ export class CommunityComponent implements OnInit {
   }
 
   onSubmit() {
-    this.communityService.createPost(this.newPost).subscribe(() => {
-      this.loadPosts();
-      this.newPost = { title: '', content: '' };
-      this.showForm = false;
+    this.communityService.createPost(this.newPost).subscribe({
+      next: () => {
+        this.loadPosts();
+        this.newPost = { title: '', content: '' };
+        this.showForm = false;
+        this.notificationService.show('Post shared with the community!');
+      },
+      error: (err) => {
+        this.notificationService.show('Failed to share post.', 'error');
+      }
     });
   }
 }

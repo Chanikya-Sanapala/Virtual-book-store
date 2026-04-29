@@ -4,6 +4,23 @@
     <p>Manage your listings, update prices, and track stock.</p>
   </div>
 
+  <div class="bulk-actions" [class.processing]="isImporting">
+    <div class="import-card">
+      <div class="import-info">
+        <h3><i class="fas fa-file-csv"></i> Bulk Import</h3>
+        <p>Upload a CSV with ISBNs to automatically fetch book details.</p>
+      </div>
+      <div class="import-controls">
+        <input type="file" #csvInput (change)="onCsvFileSelected($event)" accept=".csv" style="display: none">
+        <button class="btn-import" (click)="csvInput.click()" [disabled]="isImporting">
+          <i class="fas" [class.fa-upload]="!isImporting" [class.fa-spinner]="isImporting" [class.fa-spin]="isImporting"></i>
+          {{isImporting ? 'Importing Books...' : 'Select CSV File'}}
+        </button>
+        <span class="import-status" *ngIf="importStatus">{{importStatus}}</span>
+      </div>
+    </div>
+  </div>
+
   <div class="admin-layout">
     <div class="book-form">
       <h3>{{isEditing ? 'Edit Book' : 'Add New Book'}}</h3>
@@ -28,12 +45,7 @@
           <div class="form-group">
             <label>Category</label>
             <select name="category" [(ngModel)]="newBook.category">
-              <option value="Fiction">Fiction</option>
-              <option value="Non-Fiction">Non-Fiction</option>
-              <option value="Science">Science</option>
-              <option value="Technology">Technology</option>
-              <option value="Biography">Biography</option>
-              <option value="Self-Help">Self-Help</option>
+              <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
             </select>
           </div>
           <div class="form-group">
@@ -46,22 +58,55 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label>Image URL</label>
-          <input type="text" name="imageUrl" [(ngModel)]="newBook.imageUrl">
+        <div class="form-group image-upload-group">
+          <label>Book Cover</label>
+          <div class="upload-options">
+            <div class="upload-field">
+              <span>Upload Image</span>
+              <input type="file" (change)="onFileSelected($event)" accept="image/*">
+            </div>
+            <span class="divider">OR</span>
+            <input type="text" name="imageUrl" [(ngModel)]="newBook.imageUrl" placeholder="Paste Image URL here">
+          </div>
+          
+          <div class="image-preview" *ngIf="imagePreview || newBook.imageUrl">
+            <img [src]="imagePreview || newBook.imageUrl" alt="Preview">
+            <div class="upload-overlay" *ngIf="isUploading">
+              <div class="spinner"></div>
+            </div>
+          </div>
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn-submit">{{isEditing ? 'Update Listing' : 'Add to Catalog'}}</button>
-          <button type="button" class="btn-cancel" *ngIf="isEditing" (click)="cancelEdit()">Cancel</button>
+          <button type="submit" class="btn-submit" [disabled]="isLoading">
+            <span *ngIf="!isLoading">{{isEditing ? 'Update Listing' : 'Add to Catalog'}}</span>
+            <span *ngIf="isLoading">Processing...</span>
+          </button>
+          <button type="button" class="btn-cancel" *ngIf="isEditing" (click)="cancelEdit()" [disabled]="isLoading">Cancel</button>
         </div>
       </form>
     </div>
 
     <div class="book-list">
-      <h3>Your Active Listings</h3>
+      <div class="list-header">
+        <h3>Your Active Listings</h3>
+        <div class="category-filter">
+          <button [class.active]="selectedCategory === ''" (click)="filterByCategory('')">All</button>
+          <button *ngFor="let cat of categories" 
+                  [class.active]="selectedCategory === cat" 
+                  (click)="filterByCategory(cat)">
+            {{cat}}
+          </button>
+        </div>
+      </div>
       <div class="table-wrapper">
-        <table>
+        <div class="error-message" *ngIf="errorMessage">
+          <i class="fas fa-exclamation-circle"></i>
+          <span>{{errorMessage}}</span>
+          <button (click)="loadBooks()">Retry</button>
+        </div>
+
+        <table *ngIf="!errorMessage">
           <thead>
             <tr>
               <th>Title</th>
@@ -71,7 +116,7 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngIf="!isLoading">
             <tr *ngFor="let book of books">
               <td class="book-title">{{book.title}}</td>
               <td>{{book.category}}</td>
@@ -88,6 +133,15 @@
             </tr>
           </tbody>
         </table>
+        
+        <div class="loading-overlay" *ngIf="isLoading">
+          <div class="spinner"></div>
+          <p>Fetching your listings...</p>
+        </div>
+
+        <div class="no-books" *ngIf="!isLoading && !errorMessage && books.length === 0">
+          <p>No books found in your inventory.</p>
+        </div>
       </div>
     </div>
   </div>

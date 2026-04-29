@@ -1,0 +1,371 @@
+.payment-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #f0f4f8;
+  padding: 120px 2rem 4rem;
+}
+
+.payment-card-wrapper {
+  width: 100%;
+  max-width: 500px;
+  width: 95%;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 30px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Checkout Steps */
+.checkout-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  padding: 0 10%;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b2bec3;
+  transition: all 0.3s;
+}
+
+.step i {
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  background: #f1f2f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step.active {
+  color: #05c46b;
+}
+
+.step.active i {
+  background: rgba(5, 196, 107, 0.1);
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: #f1f2f6;
+  margin: 0 15px;
+  position: relative;
+  top: -10px;
+}
+
+.step-line.active {
+  background: #05c46b;
+}
+
+.address-textarea {
+  width: 100%;
+  height: 120px;
+  padding: 1rem;
+  border: 1px solid #dfe6e9;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.address-textarea:focus {
+  border-color: #05c46b;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(5, 196, 107, 0.1);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #636e72;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #05c46b;
+}
+
+.animate-slide {
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.order-id {
+  margin-top: 1rem;
+  font-family: monospace;
+  color: #636e72;
+  font-size: 0.9rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.header p {
+  color: #636e72;
+}
+
+.header p span {
+  font-weight: 800;
+  color: #2e7d32;
+}
+
+/* Visual Credit Card - Glassmorphism */
+.credit-card {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, #1e272e 0%, #485460 100%);
+  border-radius: 20px;
+  padding: 1.8rem;
+  color: white;
+  position: relative;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.credit-card::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.credit-card.processing {
+  filter: blur(2px) grayscale(0.5);
+  transform: scale(0.98);
+}
+
+.chip {
+  width: 45px;
+  height: 35px;
+  background: linear-gradient(135deg, #ffd32a 0%, #ffa801 100%);
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.logo {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.4rem;
+  opacity: 0.8;
+}
+
+.number {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.details label {
+  display: block;
+  font-size: 0.6rem;
+  opacity: 0.6;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.details .name, .details .date {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Form */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.payment-form.dimmed {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #636e72;
+  display: flex;
+  align-items: center;
+}
+
+.form-group label i {
+  margin-right: 8px;
+  color: #05c46b;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem 1rem;
+  border: 1px solid #dfe6e9;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #2e7d32;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.btn-pay {
+  background: #05c46b;
+  color: white;
+  padding: 1.1rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s;
+  box-shadow: 0 10px 20px rgba(5, 196, 107, 0.2);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-pay:hover:not(:disabled) {
+  background: #1b5e20;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(46, 125, 50, 0.2);
+}
+
+.btn-pay:disabled {
+  background: #b2bec3;
+  cursor: not-allowed;
+}
+
+/* Success Screen */
+.success-screen {
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.success-screen h2 {
+  font-size: 2rem;
+  color: #2e7d32;
+  margin-top: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Checkmark Animation */
+.checkmark-circle {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 2rem;
+}
+
+.checkmark-circle .background {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #2e7d32;
+  position: absolute;
+}
+
+.checkmark-circle .checkmark {
+  border-radius: 5px;
+}
+
+.checkmark-circle .checkmark.draw:after {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: checkmark;
+  transform: scaleX(-1) rotate(135deg);
+}
+
+.checkmark-circle .checkmark:after {
+  opacity: 1;
+  height: 50px;
+  width: 25px;
+  transform-origin: left top;
+  border-right: 5px solid white;
+  border-top: 5px solid white;
+  content: "";
+  left: 25px;
+  top: 50px;
+  position: absolute;
+}
+
+@keyframes checkmark {
+  0% { height: 0; width: 0; opacity: 1; }
+  20% { height: 0; width: 25px; opacity: 1; }
+  40% { height: 50px; width: 25px; opacity: 1; }
+  100% { height: 50px; width: 25px; opacity: 1; }
+}

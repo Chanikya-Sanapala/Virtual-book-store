@@ -16,6 +16,12 @@
   gap: 2rem;
 }
 
+@media (max-width: 992px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 .cart-item {
   display: flex;
   justify-content: space-between;
@@ -40,6 +46,18 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+@media (max-width: 600px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .item-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .item-actions .price {

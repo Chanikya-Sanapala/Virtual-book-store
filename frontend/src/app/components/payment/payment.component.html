@@ -1,0 +1,104 @@
+<div class="payment-container">
+  <div class="payment-card-wrapper" *ngIf="!isSuccess">
+    <!-- Step Indicator -->
+    <div class="checkout-steps">
+      <div class="step" [class.active]="currentStep === 1">
+        <i class="fas fa-truck"></i> Shipping
+      </div>
+      <div class="step-line" [class.active]="currentStep === 2"></div>
+      <div class="step" [class.active]="currentStep === 2">
+        <i class="fas fa-credit-card"></i> Payment
+      </div>
+    </div>
+
+    <!-- Step 1: Shipping Address -->
+    <div class="shipping-section animate-slide" *ngIf="currentStep === 1">
+      <div class="header">
+        <h2>Delivery Address</h2>
+        <p>Where should we send your books?</p>
+      </div>
+      <div class="payment-form">
+        <div class="form-group">
+          <label><i class="fas fa-map-marker-alt"></i> Full Address</label>
+          <textarea [(ngModel)]="shippingAddress" name="shippingAddress" 
+                    placeholder="Street, City, State, ZIP Code" 
+                    class="address-textarea"></textarea>
+        </div>
+        <button class="btn-pay" (click)="nextStep()" [disabled]="!shippingAddress.trim()">
+          Continue to Payment <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Payment Details -->
+    <div class="payment-section animate-slide" *ngIf="currentStep === 2">
+      <div class="header">
+        <div class="back-link" (click)="currentStep = 1">
+          <i class="fas fa-chevron-left"></i> Edit Address
+        </div>
+        <h2>Secure Payment</h2>
+        <p>Amount to pay: <span>${{totalAmount}}</span></p>
+      </div>
+
+      <!-- Visual Credit Card -->
+      <div class="credit-card" [class.processing]="isProcessing">
+        <div class="chip"></div>
+        <div class="logo">VISA</div>
+        <div class="number">{{cardNumber || '#### #### #### ####'}}</div>
+        <div class="details">
+          <div class="holder">
+            <label>CARD HOLDER</label>
+            <div class="name">{{cardName || 'YOUR NAME'}}</div>
+          </div>
+          <div class="expires">
+            <label>EXPIRES</label>
+            <div class="date">{{expiryDate || 'MM/YY'}}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Form -->
+      <form class="payment-form" (submit)="$event.preventDefault(); processPayment()" [class.dimmed]="isProcessing">
+        <div class="form-group">
+          <label><i class="fas fa-credit-card"></i> Card Number</label>
+          <input type="text" [(ngModel)]="cardNumber" name="cardNumber" 
+                 (input)="formatCardNumber()" maxlength="19" placeholder="0000 0000 0000 0000" [disabled]="isProcessing">
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Card Holder Name</label>
+          <input type="text" [(ngModel)]="cardName" name="cardName" placeholder="e.g. John Doe" [disabled]="isProcessing">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label><i class="fas fa-calendar-alt"></i> Expiry Date</label>
+            <input type="text" [(ngModel)]="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5" [disabled]="isProcessing">
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-lock"></i> CVV</label>
+            <input type="password" [(ngModel)]="cvv" name="cvv" placeholder="***" maxlength="3" [disabled]="isProcessing">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-pay" [disabled]="isProcessing">
+          <span *ngIf="!isProcessing">Pay Now ${{totalAmount}}</span>
+          <span *ngIf="isProcessing">
+            <i class="fas fa-spinner fa-spin"></i> Verifying...
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Animation -->
+  <div class="success-screen" *ngIf="isSuccess">
+    <div class="checkmark-circle">
+      <div class="background"></div>
+      <div class="checkmark draw"></div>
+    </div>
+    <h2>Payment Successful!</h2>
+    <p>Preparing your virtual library...</p>
+    <div class="order-id" *ngIf="lastOrderId">Order ID: #{{lastOrderId.substring(0,8)}}</div>
+  </div>
+</div>

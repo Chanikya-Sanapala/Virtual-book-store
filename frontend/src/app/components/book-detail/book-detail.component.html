@@ -1,0 +1,187 @@
+<div class="product-page-container">
+  <!-- Loading State -->
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Opening your book...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-container" *ngIf="!isLoading && errorMessage">
+    <i class="fas fa-book-dead"></i>
+    <h2>Oops!</h2>
+    <p>{{errorMessage}}</p>
+    <button class="btn-back" routerLink="/">Back to Library</button>
+  </div>
+
+  <!-- Product Details -->
+  <div class="product-layout" *ngIf="!isLoading && book">
+    <!-- Left Column: Images -->
+    <div class="product-gallery">
+      <div class="main-image">
+        <img [src]="book.imageUrl || 'https://via.placeholder.com/400x600?text=No+Cover'" [alt]="book.title">
+      </div>
+      <div class="thumbnail-list">
+        <div class="thumb active">
+          <img [src]="book.imageUrl || 'https://via.placeholder.com/100x150?text=No+Cover'" alt="View 1">
+        </div>
+        <div class="thumb" *ngFor="let i of [1,2,3]">
+          <img [src]="book.imageUrl || 'https://via.placeholder.com/100x150?text=Sample+Page'" alt="Sample">
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Column: Info -->
+    <div class="product-info">
+      <nav class="breadcrumb">
+        <a routerLink="/">Home</a> / <span>{{book.category}}</span>
+      </nav>
+
+      <h1 class="product-title">{{book.title}}</h1>
+      <p class="product-author">by <span class="author-name">{{book.author}}</span> <i class="fas fa-check-circle verified-icon"></i></p>
+      
+      <div class="rating-summary">
+        <div class="stars">
+          <i class="fas fa-star" *ngFor="let s of [1,2,3,4]"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <span class="rating-count">452 ratings</span>
+      </div>
+
+      <hr class="divider">
+
+      <div class="price-section">
+        <span class="currency">$</span>
+        <span class="amount">{{book.price}}</span>
+        <span class="price-type">New</span>
+      </div>
+
+      <div class="description-section">
+        <h3>Description</h3>
+        <p [class.collapsed]="activeTab !== 'description'">
+          {{book.description || 'No description available for this masterpiece yet.'}}
+        </p>
+      </div>
+
+      <div class="features">
+        <div class="feature-item">
+          <i class="fas fa-truck"></i>
+          <span>Free Delivery</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-undo"></i>
+          <span>7 Days Return</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-shield-alt"></i>
+          <span>Quality Checked</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Actions Card -->
+    <div class="product-actions">
+      <div class="action-card">
+        <div class="action-price">${{book.price}}</div>
+        <p class="delivery-status">Delivery <span class="bold">Tomorrow, May 1</span></p>
+        
+        <div class="stock-status" [class.out]="book.stock <= 0">
+          {{book.stock > 0 ? 'In Stock' : 'Currently Unavailable'}}
+        </div>
+
+        <div class="quantity-selector" *ngIf="book.stock > 0">
+          <label>Qty:</label>
+          <div class="qty-controls">
+            <button (click)="updateQuantity(-1)" [disabled]="quantity <= 1">-</button>
+            <span>{{quantity}}</span>
+            <button (click)="updateQuantity(1)" [disabled]="quantity >= book.stock">+</button>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn-add-cart" (click)="addToCart()" [disabled]="book.stock <= 0">
+            <i class="fas fa-cart-plus"></i> Add to Cart
+          </button>
+          <button class="btn-buy-now" (click)="buyNow()" [disabled]="book.stock <= 0">
+            Buy Now
+          </button>
+        </div>
+
+        <div class="seller-info">
+          <p>Ships from <span class="bold">LeafyBooks</span></p>
+          <p>Sold by <span class="bold">Verified Seller</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Section: Tabs -->
+  <div class="product-bottom" *ngIf="!isLoading && book">
+    <div class="tabs-header">
+      <button [class.active]="activeTab === 'description'" (click)="activeTab = 'description'">Product Description</button>
+      <button [class.active]="activeTab === 'specs'" (click)="activeTab = 'specs'">Specifications</button>
+      <button [class.active]="activeTab === 'reviews'" (click)="activeTab = 'reviews'">Customer Reviews</button>
+    </div>
+
+    <div class="tab-content">
+      <!-- Specs Tab -->
+      <div class="specs-grid" *ngIf="activeTab === 'specs'">
+        <div class="spec-row" *ngFor="let spec of specifications">
+          <span class="spec-label">{{spec.label}}</span>
+          <span class="spec-value">{{spec.value}}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">ISBN</span>
+          <span class="spec-value">{{book.isbn || '9781234567890'}}</span>
+        </div>
+      </div>
+
+      <!-- Reviews Tab -->
+      <div class="reviews-section" *ngIf="activeTab === 'reviews'">
+        <!-- Review Form -->
+        <div class="add-review-card">
+          <h3>Write a Customer Review</h3>
+          <div class="rating-input">
+            <span class="label">Your Rating:</span>
+            <div class="star-picker">
+              <i class="fas fa-star" *ngFor="let s of [1,2,3,4,5]" 
+                 [class.active]="newReviewRating >= s"
+                 (click)="newReviewRating = s"></i>
+            </div>
+          </div>
+          <div class="comment-input">
+            <textarea [(ngModel)]="newReviewComment" placeholder="What did you like or dislike? What should other readers know?"></textarea>
+          </div>
+          <button class="btn-submit-review" (click)="submitReview()" [disabled]="isSubmittingReview || !newReviewComment.trim()">
+            {{ isSubmittingReview ? 'Submitting...' : 'Submit Review' }}
+          </button>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Reviews List -->
+        <div class="reviews-list">
+          <div class="no-reviews" *ngIf="realReviews.length === 0">
+            <p>No customer reviews yet. Be the first to share your thoughts!</p>
+          </div>
+
+          <div class="review-item" *ngFor="let review of realReviews">
+            <div class="review-user">
+              <i class="fas fa-user-circle"></i>
+              <span>{{review.username}}</span>
+            </div>
+            <div class="review-stars">
+              <i class="fas fa-star" *ngFor="let s of getStarArray(review.rating)" [class.active]="s === 1"></i>
+              <span class="review-date">{{review.createdAt | date:'mediumDate'}}</span>
+            </div>
+            <p class="review-comment">{{review.comment}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Tab (Extended) -->
+      <div class="extended-description" *ngIf="activeTab === 'description'">
+        <p>{{book.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>

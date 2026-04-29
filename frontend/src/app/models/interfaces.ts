@@ -15,6 +15,8 @@ export interface Book {
   price: number;
   stock: number;
   imageUrl: string;
+  sellerId?: string;
+  isbn?: string;
 }
 
 export interface Order {
@@ -38,5 +40,15 @@ export interface CommunityPost {
   username?: string;
   title: string;
   content: string;
+  createdAt?: Date;
+}
+
+export interface Review {
+  id?: string;
+  bookId: string;
+  userId: string;
+  username: string;
+  rating: number;
+  comment: string;
   createdAt?: Date;
 }

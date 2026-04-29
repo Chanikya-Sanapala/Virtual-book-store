@@ -19,7 +19,8 @@ public class Order {
     private String userId;
     private List<OrderItem> items;
     private double totalAmount;
-    private String status; // PENDING, COMPLETED, CANCELLED
+    private String status; // PENDING, PROCESSING, SHIPPED, DELIVERED, CANCELLED
+    private String shippingAddress;
     private Date orderDate;
 
     @Data

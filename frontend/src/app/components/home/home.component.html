@@ -1,50 +1,71 @@
 <div class="home-container">
   <section class="hero">
-    <h1>Find Your Next <span>Great Read</span></h1>
-    <p>Explore thousands of books from community-verified sellers.</p>
-    
-    <div class="search-bar">
-      <i class="fas fa-search"></i>
-      <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search by title, author, or keyword...">
+    <div class="hero-animation">
+      <img src="https://cdn.dribbble.com/userupload/19961056/file/original-4f02f33787a5c7bdebd051aac6bf856c.gif" alt="Bookhero Animation">
+    </div>
+
+    <div class="hero-text">
+      <h2 class="brand-title">L E A F Y B O O K S</h2>
+      <h1 class="main-title">Your Virtual Library <span>Is Now Open</span></h1>
     </div>
   </section>
 
   <div class="main-content">
-    <aside class="sidebar">
-      <h3>Categories</h3>
-      <ul>
-        <li [class.active]="selectedCategory === ''" (click)="filterByCategory('')">All Books</li>
-        <li *ngFor="let cat of categories" 
-            [class.active]="selectedCategory === cat" 
-            (click)="filterByCategory(cat)">
-          {{cat}}
-        </li>
-      </ul>
-    </aside>
-
-    <div class="book-grid">
-      <div class="book-card" *ngFor="let book of books">
-        <div class="book-image">
-          <img [src]="book.imageUrl || 'https://via.placeholder.com/200x300?text=No+Cover'" alt="{{book.title}}">
-          <div class="overlay">
-            <button (click)="addToCart(book)">Add to Cart</button>
-          </div>
-        </div>
-        <div class="book-info">
-          <span class="category">{{book.category}}</span>
-          <h3>{{book.title}}</h3>
-          <p class="author">by {{book.author}}</p>
-          <div class="footer">
-            <span class="price">${{book.price}}</span>
-            <span class="stock" [class.out]="book.stock <= 0">{{book.stock > 0 ? 'In Stock' : 'Out of Stock'}}</span>
-          </div>
+    <div class="category-header mobile-only">
+      <div class="category-nav">
+        <div class="category-scroll">
+          <button [class.active]="selectedCategory === ''" (click)="filterByCategory('')">
+            <i class="fas fa-th-large"></i> All Books
+          </button>
+          <button *ngFor="let cat of categories" 
+                  [class.active]="selectedCategory === cat" 
+                  (click)="filterByCategory(cat)">
+            {{cat}}
+          </button>
         </div>
       </div>
+    </div>
+
+    <div class="book-grid">
+      <!-- Loading State -->
+      <div class="loading-state" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p>Curating your library...</p>
+      </div>
+
+      <!-- Error State -->
+      <div class="error-state" *ngIf="!isLoading && errorMessage">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>{{errorMessage}}</p>
+        <button (click)="loadBooks()">Try Again</button>
+      </div>
+
+      <ng-container *ngIf="!isLoading && !errorMessage">
+        <div class="book-card" *ngFor="let book of books">
+          <div class="book-image" [routerLink]="['/book', book.id]">
+            <img [src]="book.imageUrl || 'https://via.placeholder.com/200x300?text=No+Cover'" alt="{{book.title}}">
+            <div class="overlay">
+              <button (click)="$event.stopPropagation(); addToCart(book)">Add to Cart</button>
+            </div>
+          </div>
+          <div class="book-info" [routerLink]="['/book', book.id]">
+            <span class="category">{{book.category}}</span>
+            <h3>{{book.title}}</h3>
+            <p class="author">by {{book.author}}</p>
+            <div class="footer">
+              <span class="price">${{book.price}}</span>
+              <span class="stock" [class.out]="book.stock <= 0">{{book.stock > 0 ? 'In Stock' : 'Out of Stock'}}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
       
-      <div class="no-results" *ngIf="books.length === 0">
+      <div class="no-results" *ngIf="!isLoading && !errorMessage && books.length === 0">
         <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" alt="No books found">
         <p>We couldn't find any books matching your search.</p>
       </div>
     </div>
   </div>
 </div>
+
+<app-ai-chatbot></app-ai-chatbot>

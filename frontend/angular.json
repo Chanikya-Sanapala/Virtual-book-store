@@ -84,6 +84,7 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
+            "proxyConfig": "proxy.conf.json",
             "headers": {
               "Cross-Origin-Opener-Policy": "same-origin-allow-popups"
             }

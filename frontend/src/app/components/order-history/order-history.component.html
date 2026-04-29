@@ -1,0 +1,78 @@
+<div class="history-container">
+  <div class="header">
+    <h1>Your Reading History</h1>
+    <p>Track your previous purchases and book journeys.</p>
+  </div>
+
+  <div class="orders-grid">
+    <div class="loading-state" *ngIf="isLoading">
+      <div class="spinner"></div>
+      <p>Retrieving your archives...</p>
+    </div>
+
+    <ng-container *ngIf="!isLoading">
+      <div class="order-card" *ngFor="let order of orders">
+        <div class="order-header">
+          <div class="order-info">
+            <span class="order-id">Order #{{order.id.substring(order.id.length - 8)}}</span>
+            <span class="order-date">{{order.orderDate | date:'mediumDate'}}</span>
+          </div>
+          <div class="order-status" [ngClass]="getStatusClass(order.status)">
+            {{order.status}}
+          </div>
+        </div>
+
+        <!-- Tracking Progress Bar -->
+        <div class="tracking-container">
+          <div class="tracking-bar">
+            <div class="progress" [style.width]="getTrackingProgress(order.status) + '%'"></div>
+            <div class="track-step" [class.completed]="isStepCompleted(order.status, 'PENDING')">
+              <i class="fas fa-box"></i>
+              <span>Placed</span>
+            </div>
+            <div class="track-step" [class.completed]="isStepCompleted(order.status, 'PROCESSING')">
+              <i class="fas fa-cog fa-spin" *ngIf="order.status === 'PROCESSING'"></i>
+              <i class="fas fa-check" *ngIf="isStepCompleted(order.status, 'PROCESSING') && order.status !== 'PROCESSING'"></i>
+              <span>Processing</span>
+            </div>
+            <div class="track-step" [class.completed]="isStepCompleted(order.status, 'SHIPPED')">
+              <i class="fas fa-truck"></i>
+              <span>Shipped</span>
+            </div>
+            <div class="track-step" [class.completed]="isStepCompleted(order.status, 'DELIVERED')">
+              <i class="fas fa-home"></i>
+              <span>Delivered</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="shipping-info" *ngIf="order.shippingAddress">
+          <i class="fas fa-map-marker-alt"></i> 
+          <span>Delivering to: {{order.shippingAddress}}</span>
+        </div>
+
+        <div class="order-items">
+          <div class="item" *ngFor="let item of order.items">
+            <div class="item-details">
+              <span class="item-title">{{item.title}}</span>
+              <span class="item-meta">Qty: {{item.quantity}}</span>
+            </div>
+            <span class="item-price">${{item.price * item.quantity | number:'1.2-2'}}</span>
+          </div>
+        </div>
+
+        <div class="order-footer">
+          <span class="total-label">Total Amount</span>
+          <span class="total-price">${{order.totalAmount | number:'1.2-2'}}</span>
+        </div>
+      </div>
+
+      <div class="no-orders" *ngIf="orders.length === 0">
+        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076432.png" alt="No orders">
+        <h3>Your library is waiting...</h3>
+        <p>You haven't placed any orders yet. Start your journey today!</p>
+        <button routerLink="/">Explore Books</button>
+      </div>
+    </ng-container>
+  </div>
+</div>

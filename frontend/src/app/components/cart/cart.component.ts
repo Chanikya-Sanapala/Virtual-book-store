@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { OrderService } from '../../services/order.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { timeout, catchError, of } from 'rxjs';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,11 +15,13 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
   items: any[] = [];
   total = 0;
+  isProcessing = false;
 
   constructor(
     private cartService: CartService, 
-    private http: HttpClient, 
+    private orderService: OrderService,
     private authService: AuthService,
+    private notificationService: NotificationService,
     private router: Router
   ) { }
 
@@ -38,21 +42,12 @@ export class CartComponent implements OnInit {
       return;
     }
 
-    const token = this.authService.currentUserValue.token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
+    if (this.items.length === 0) {
+      this.notificationService.show('Your cart is empty.', 'error');
+      return;
+    }
 
-    const order = {
-      items: this.items,
-      totalAmount: this.total
-    };
-
-    this.http.post('http://localhost:8080/api/orders', order, { headers }).subscribe(() => {
-      alert('Order placed successfully!');
-      this.cartService.clearCart();
-      this.router.navigate(['/']);
-    });
+    // Instead of placing order directly, navigate to payment gateway
+    this.router.navigate(['/payment']);
   }
 }

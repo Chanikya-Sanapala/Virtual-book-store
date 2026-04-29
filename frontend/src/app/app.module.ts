@@ -14,6 +14,10 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { CommunityComponent } from './components/community/community.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { AiChatbotComponent } from './components/ai-chatbot/ai-chatbot.component';
+import { BookDetailComponent } from './components/book-detail/book-detail.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     AdminDashboardComponent,
     CommunityComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    OrderHistoryComponent,
+    AiChatbotComponent,
+    BookDetailComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

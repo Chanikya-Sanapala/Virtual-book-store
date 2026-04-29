@@ -30,17 +30,22 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         try {
             String path = request.getRequestURI();
-            if (path.startsWith("/api/auth/")) {
+            String method = request.getMethod();
+
+            // Bypass authentication logic for public endpoints to prevent hangs during auth lookup
+            if (path.startsWith("/api/auth/") || 
+               (path.startsWith("/api/books") && "GET".equalsIgnoreCase(method)) ||
+               (path.startsWith("/api/community") && "GET".equalsIgnoreCase(method))) {
                 filterChain.doFilter(request, response);
                 return;
             }
+
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
-                logger.info("JWT User identified: {}", username);
+                logger.debug("JWT User identified: {}", username);
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                logger.info("Loaded UserDetails for: {} with authorities: {}", username, userDetails.getAuthorities());
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
