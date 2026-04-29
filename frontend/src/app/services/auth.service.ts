@@ -1,10 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { User } from '../models/interfaces';
+import { environment } from '../../environments/environment';
 
-const AUTH_API = '/api/auth/';
+const AUTH_API = environment.apiUrl + '/auth/';
 
 @Injectable({
   providedIn: 'root'

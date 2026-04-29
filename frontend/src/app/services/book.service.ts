@@ -1,12 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { Book } from '../models/interfaces';
-import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment';
 
-// Using absolute URL temporarily to diagnose proxy issues
-const BASE_API = 'http://localhost:8080/api';
+const BASE_API = environment.apiUrl;
 const BOOK_API = BASE_API + '/books';
 
 @Injectable({
