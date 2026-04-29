@@ -1,3 +1,9 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Book } from '../models/interfaces';
+import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 
 const BASE_API = environment.apiUrl;
