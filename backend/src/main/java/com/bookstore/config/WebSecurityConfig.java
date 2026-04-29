@@ -79,9 +79,11 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Allow all origins for initial deployment. 
-        // You can restrict this later to your specific Vercel URL for better security.
-        configuration.setAllowedOriginPatterns(List.of("*"));
+        // Trust your specific Vercel frontend URL
+        configuration.setAllowedOrigins(List.of(
+            "http://localhost:4200", 
+            "https://virtual-book-store-eight.vercel.app"
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
