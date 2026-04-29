@@ -83,10 +83,11 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Trust the frontend URL from environment or fallback to the one we just deployed
+        // Trust your specific Vercel frontend URLs
         configuration.setAllowedOrigins(List.of(
             "http://localhost:4200", 
-            frontendUrl
+            "https://virtual-book-store-eight.vercel.app",
+            "https://virtual-book-store-ruby.vercel.app"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
