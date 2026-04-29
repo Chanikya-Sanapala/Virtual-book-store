@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       });
       google.accounts.id.renderButton(
         document.getElementById('google-btn'),
-        { theme: 'outline', size: 'large', text: 'continue_with' }
+        { theme: 'outline', size: 'large', text: 'continue_with', width: 386 }
       );
     }
   }

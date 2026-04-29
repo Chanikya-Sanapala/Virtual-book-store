@@ -84,6 +84,35 @@
   text-decoration: none;
 }
 
+.divider {
+  margin: 1rem 0;
+  color: #636e72;
+  font-size: 0.9rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #f1f2f6;
+  margin: 0 1rem;
+}
+
+.google-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+#google-btn {
+  width: 100%;
+}
+
 .error-msg {
   background: #fff5f5;
   color: #ff7675;
