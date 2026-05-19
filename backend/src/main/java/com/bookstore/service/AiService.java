@@ -32,12 +32,11 @@ public class AiService {
         }
 
         try {
-            // Fetch all books for context
-            List<Book> books = bookRepository.findAll();
+            // Fetch recent books for context
+            List<Book> books = bookRepository.findTop20ByOrderByIdDesc();
             String bookContext = books.stream()
-                    .map(b -> String.format("- %s by %s (Category: %s, Description: %s)", 
-                        b.getTitle(), b.getAuthor(), b.getCategory(), b.getDescription()))
-                    .limit(20)
+                    .map(b -> String.format("- %s by %s (%s)", 
+                        b.getTitle(), b.getAuthor(), b.getCategory()))
                     .collect(Collectors.joining("\n"));
 
             String systemInstruction = "You are 'Leafy', a friendly AI assistant for LeafyBooks bookstore. " +

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { CartService } from '../../services/cart.service';
 import { SearchService } from '../../services/search.service';
@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private bookService: BookService, 
     private cartService: CartService,
     private searchService: SearchService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadCategories();
     
     // 2. Load books immediately on startup
-    this.loadBooks();
+    this.fetchBooks();
 
     // 3. Then listen for search changes with a delay
     this.searchSub = this.searchService.searchQuery$.pipe(
@@ -116,7 +117,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       // We still fetch in background to keep it fresh, but don't show spinner
     } else {
       this.isLoading = true;
-      this.books = []; 
+      // Don't clear books if we are just refreshing, to avoid flickering
+      if (this.books.length === 0) {
+        this.books = [];
+      }
     }
 
     this.errorMessage = '';
@@ -136,11 +140,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       }),
       finalize(() => {
         this.isLoading = false;
+        this.cdr.detectChanges(); // Force view update
       })
     ).subscribe({
       next: (data) => {
         if (this.selectedCategory === category) {
           this.books = data;
+          this.cdr.detectChanges(); // Force view update
         }
       }
     });
@@ -148,5 +154,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   addToCart(book: Book) {
     this.cartService.addToCart(book);
+  }
+
+  handleImageError(event: any) {
+    const fallbackImage = 'https://placehold.co/200x300/e2e8f0/64748b?text=Cover+Not+Found';
+    if (event.target.src !== fallbackImage) {
+      event.target.src = fallbackImage;
+    }
+  }
+
+  trackByBookId(index: number, book: Book): string {
+    return book.id;
   }
 }

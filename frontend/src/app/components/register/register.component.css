@@ -1,123 +1,164 @@
 .auth-wrapper {
   min-height: calc(100vh - 80px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+  overflow: hidden;
+}
+
+.animation-side {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8fbfd;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
-.auth-card {
-  background: white;
-  padding: 1.2rem 2rem;
-  border-radius: 25px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.03);
-  width: 90%;
-  max-width: 450px;
-  text-align: center;
-}
-
-.auth-card h2 {
-  font-size: 2rem;
-  color: #2d3436;
-  margin-bottom: 0.5rem;
-}
-
-.auth-card p {
-  color: #636e72;
-  margin-bottom: 1.2rem;
-}
-
-.form-group {
-  text-align: left;
-  margin-bottom: 0.8rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #2d3436;
-  margin-bottom: 0.5rem;
-}
-
-.form-group input {
+.character-container {
   width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1.5px solid #f1f2f6;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-group input:focus {
-  border-color: #00b894;
+.main-character {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+}
+
+.form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  background: #ffffff;
+}
+
+.signup-card {
+  background: #fbfbfc;
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.card-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+}
+
+.visme-styled-group {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.visme-styled-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 0.6rem;
+  letter-spacing: 1px;
+}
+
+.visme-styled-group input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #ffffff;
+  transition: all 0.3s;
+}
+
+.visme-styled-group input:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
   outline: none;
 }
 
-.btn-primary {
+.visme-btn {
   width: 100%;
-  background: #00b894;
+  background: #000000;
   color: white;
   border: none;
-  padding: 1rem;
-  border-radius: 12px;
+  padding: 1.2rem;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   margin-top: 1rem;
-  transition: transform 0.2s, box-shadow 0.3s;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.btn-primary:hover {
+.visme-btn:hover {
+  background: #333;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 184, 148, 0.3);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.auth-footer {
-  margin-top: 1rem;
-  color: #636e72;
-}
-
-.auth-footer a {
-  color: #00b894;
+.divider-visme {
+  margin: 2rem 0;
+  color: #999;
+  font-size: 0.8rem;
   font-weight: 700;
-  text-decoration: none;
-}
-
-.divider {
-  margin: 1rem 0;
-  color: #636e72;
-  font-size: 0.9rem;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-.divider::before, .divider::after {
+.divider-visme::before, .divider-visme::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: #f1f2f6;
+  background: #e0e0e0;
   margin: 0 1rem;
 }
 
 .google-btn-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
-  width: 100%;
+  margin-bottom: 2rem;
 }
 
-#google-btn {
-  width: 100%;
-}
-
-.error-msg {
-  background: #fff5f5;
-  color: #ff7675;
-  padding: 0.8rem;
-  border-radius: 8px;
-  margin-top: 1rem;
+.auth-footer-visme {
   font-size: 0.9rem;
+  color: #666;
+}
+
+.auth-footer-visme a {
+  color: #000;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  .auth-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .animation-side {
+    display: none;
+  }
+  .form-side {
+    padding: 1.5rem;
+  }
+  .signup-card {
+    padding: 2rem 1.5rem;
+  }
 }

@@ -42,6 +42,21 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         { theme: 'outline', size: 'large', text: 'continue_with', width: 386 }
       );
     }
+    
+    this.loadVismeScript();
+  }
+
+  loadVismeScript() {
+    // Check if script already exists to avoid duplicates
+    const existingScript = document.querySelector('script[src*="vismeforms-embed.js"]');
+    if (existingScript) {
+      existingScript.remove(); // Re-add to trigger re-execution
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://static-bundles.visme.co/forms/vismeforms-embed.js';
+    script.async = true;
+    document.body.appendChild(script);
   }
 
   handleCredentialResponse(response: any) {

@@ -41,9 +41,12 @@
       </div>
 
       <ng-container *ngIf="!isLoading && !errorMessage">
-        <div class="book-card" *ngFor="let book of books">
+        <div class="book-card" *ngFor="let book of books; trackBy: trackByBookId">
           <div class="book-image" [routerLink]="['/book', book.id]">
-            <img [src]="book.imageUrl || 'https://via.placeholder.com/200x300?text=No+Cover'" alt="{{book.title}}">
+            <img [src]="book.imageUrl || 'https://placehold.co/200x300/e2e8f0/64748b?text=No+Cover'" 
+                 alt="{{book.title}}"
+                 loading="lazy"
+                 (error)="handleImageError($event)">
             <div class="overlay">
               <button (click)="$event.stopPropagation(); addToCart(book)">Add to Cart</button>
             </div>

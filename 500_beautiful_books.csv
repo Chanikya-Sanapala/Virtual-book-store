@@ -1,0 +1,501 @@
+isbn,title,author,category,description,image,price,stock
+2623485702504,Pride and Prejudice,Jane Austen,Fiction,A fantastic book by Jane Austen.,https://covers.openlibrary.org/b/id/14348537-L.jpg,15.75,19
+1038567085569,Alice's Adventures in Wonderland,Lewis Carroll,Fiction,A fantastic book by Lewis Carroll.,https://covers.openlibrary.org/b/id/10527843-L.jpg,26.76,9
+3568491852524,A Christmas Carol,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/12875748-L.jpg,23.87,32
+6835411763039,The Picture of Dorian Gray,Oscar Wilde,Fiction,A fantastic book by Oscar Wilde.,https://covers.openlibrary.org/b/id/14314858-L.jpg,18.65,20
+2141346729604,Wuthering Heights,Emily Brontë,Fiction,A fantastic book by Emily Brontë.,https://covers.openlibrary.org/b/id/12818862-L.jpg,25.67,11
+7360700914501,Adventures of Huckleberry Finn,Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/8157718-L.jpg,16.16,13
+6750110515434,Robinson Crusoe,Daniel Defoe,Fiction,A fantastic book by Daniel Defoe.,https://covers.openlibrary.org/b/id/368541-L.jpg,21.8,22
+6774658442977,The Scarlet Letter,Nathaniel Hawthorne,Fiction,A fantastic book by Nathaniel Hawthorne.,https://covers.openlibrary.org/b/id/5654516-L.jpg,22.95,47
+8274848319940,Hamlet,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8281954-L.jpg,16.06,41
+9560370058385,Emma,Jane Austen,Fiction,A fantastic book by Jane Austen.,https://covers.openlibrary.org/b/id/9278312-L.jpg,22.87,8
+2047022182298,Oliver Twist,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/13300802-L.jpg,19.1,26
+3201216140209,Frankenstein or The Modern Prometheus,Mary Shelley,Fiction,A fantastic book by Mary Shelley.,https://covers.openlibrary.org/b/id/12356249-L.jpg,16.02,9
+6011136959730,Sense and Sensibility,Jane Austen,Fiction,A fantastic book by Jane Austen.,https://covers.openlibrary.org/b/id/9278292-L.jpg,12.57,16
+3963427161090,A Tale of Two Cities,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/13301713-L.jpg,17.83,38
+5030698418692,The Wonderful Wizard of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/552443-L.jpg,18.71,41
+2182937856894,Treasure Island,Robert Louis Stevenson,Fiction,A fantastic book by Robert Louis Stevenson.,https://covers.openlibrary.org/b/id/13859660-L.jpg,26.13,41
+6211423755050,Little Women,Louisa May Alcott,Fiction,A fantastic book by Louisa May Alcott.,https://covers.openlibrary.org/b/id/8775559-L.jpg,22.97,24
+8582289541615,Macbeth,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/872432-L.jpg,18.75,7
+7108783467987,Gulliver's Travels,Jonathan Swift,Fiction,A fantastic book by Jonathan Swift.,https://covers.openlibrary.org/b/id/12717083-L.jpg,23.99,17
+7164852077345,The Call of the Wild,Jack London,Fiction,A fantastic book by Jack London.,https://covers.openlibrary.org/b/id/12393037-L.jpg,25.6,31
+9901061048659,King Lear,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7420452-L.jpg,18.77,14
+2595332899163,The Secret Garden,Frances Hodgson Burnett,Fiction,A fantastic book by Frances Hodgson Burnett.,https://covers.openlibrary.org/b/id/12622062-L.jpg,28.25,18
+6851661845497,Don Quijote de la Mancha,Miguel de Cervantes Saavedra,Fiction,A fantastic book by Miguel de Cervantes Saavedra.,https://covers.openlibrary.org/b/id/14428305-L.jpg,14.43,38
+4080189379872,Madame Bovary,Gustave Flaubert,Fiction,A fantastic book by Gustave Flaubert.,https://covers.openlibrary.org/b/id/12993424-L.jpg,27.55,37
+1023733272713,The Art of War,孙武 (Sun Tzu),Fiction,A fantastic book by 孙武 (Sun Tzu).,https://covers.openlibrary.org/b/id/4849549-L.jpg,27.05,42
+6781553847313,A Midsummer Night's Dream,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7205924-L.jpg,17.89,20
+5906610579221,Great Expectations,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/13322313-L.jpg,14.16,13
+3531531466388,A Study in Scarlet,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/13405534-L.jpg,22.3,46
+4648539963223,The Prince,Niccolò Machiavelli,Fiction,A fantastic book by Niccolò Machiavelli.,https://covers.openlibrary.org/b/id/12726168-L.jpg,26.28,20
+4423581283858,Through the Looking-Glass,Lewis Carroll,Fiction,A fantastic book by Lewis Carroll.,https://covers.openlibrary.org/b/id/11272464-L.jpg,25.07,25
+3822992949840,The Wind in the Willows,Kenneth Grahame,Fiction,A fantastic book by Kenneth Grahame.,https://covers.openlibrary.org/b/id/13335427-L.jpg,18.54,33
+5054931610182,La Divina Commedia,Dante Alighieri,Fiction,A fantastic book by Dante Alighieri.,https://covers.openlibrary.org/b/id/11621024-L.jpg,13.63,20
+8372889984147,Анна Каренина,Лев Толстой,Fiction,A fantastic book by Лев Толстой.,https://covers.openlibrary.org/b/id/2560652-L.jpg,13.31,25
+1662355474129,The Hound of the Baskervilles,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/8063264-L.jpg,25.17,9
+1284998108888,Anne of Green Gables,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14641084-L.jpg,28.61,18
+6309191981560,Persuasion,Jane Austen,Fiction,A fantastic book by Jane Austen.,https://covers.openlibrary.org/b/id/12824691-L.jpg,29.06,26
+4997791141186,Julius Caesar,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7901303-L.jpg,21.75,32
+7830938168688,The Great Gatsby,F. Scott Fitzgerald,Fiction,A fantastic book by F. Scott Fitzgerald.,https://covers.openlibrary.org/b/id/10590366-L.jpg,11.98,27
+5297206438047,Преступление и наказание,Фёдор Михайлович Достоевский,Fiction,A fantastic book by Фёдор Михайлович Достоевский.,https://covers.openlibrary.org/b/id/9411873-L.jpg,28.25,47
+6798488438151,Jane Eyre,Charlotte Brontë,Fiction,A fantastic book by Charlotte Brontë.,https://covers.openlibrary.org/b/id/8235363-L.jpg,25.85,15
+2174152034537,The Time Machine,H. G. Wells,Fiction,A fantastic book by H. G. Wells.,https://covers.openlibrary.org/b/id/9009316-L.jpg,20.03,49
+3333355340898,Walden,Henry David Thoreau,Fiction,A fantastic book by Henry David Thoreau.,https://covers.openlibrary.org/b/id/11248037-L.jpg,26.29,7
+9348563307290,Three Men in a Boat (to say nothing of the dog),Jerome Klapka Jérôme,Fiction,A fantastic book by Jerome Klapka Jérôme.,https://covers.openlibrary.org/b/id/8243006-L.jpg,17.78,15
+8411139988901,The Adventures of Sherlock Holmes [12 stories],Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/6717853-L.jpg,20.7,40
+9772561896417,Moby Dick,Herman Melville,Fiction,A fantastic book by Herman Melville.,https://covers.openlibrary.org/b/id/10544254-L.jpg,27.97,25
+9571786892259,Moll Flanders,Daniel Defoe,Fiction,A fantastic book by Daniel Defoe.,https://covers.openlibrary.org/b/id/12997559-L.jpg,22.25,49
+4551221825871,Mansfield Park,Jane Austen,Fiction,A fantastic book by Jane Austen.,https://covers.openlibrary.org/b/id/14618737-L.jpg,15.53,10
+6136405721222,The Man Who Was Thursday,Gilbert Keith Chesterton,Fiction,A fantastic book by Gilbert Keith Chesterton.,https://covers.openlibrary.org/b/id/8242857-L.jpg,14.93,27
+5964514587441,Les Trois Mousquetaires,Alexandre Dumas,Fiction,A fantastic book by Alexandre Dumas.,https://covers.openlibrary.org/b/id/11929973-L.jpg,25.78,46
+9753336054079,King Solomon's Mines,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/8665393-L.jpg,22.24,46
+7131373357497,The Mysterious Affair at Styles,Agatha Christie,Fiction,A fantastic book by Agatha Christie.,https://covers.openlibrary.org/b/id/13699667-L.jpg,13.5,18
+2714663828826,Ἰλιάς,Όμηρος,Fiction,A fantastic book by Όμηρος.,https://covers.openlibrary.org/b/id/7083790-L.jpg,25.71,36
+4623261040412,Candide,Voltaire,Fiction,A fantastic book by Voltaire.,https://covers.openlibrary.org/b/id/12736044-L.jpg,20.43,19
+9507514070123,Ὀδύσσεια,Όμηρος,Fiction,A fantastic book by Όμηρος.,https://covers.openlibrary.org/b/id/9045853-L.jpg,23.62,8
+6771685852133,Hard Times,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/8236916-L.jpg,10.74,48
+4172566630324,The Legend of Sleepy Hollow,Washington Irving,Fiction,A fantastic book by Washington Irving.,https://covers.openlibrary.org/b/id/8243083-L.jpg,10.77,27
+6839330028850,Northanger Abbey,Jane Austen,Fiction,A fantastic book by Jane Austen.,https://covers.openlibrary.org/b/id/12567961-L.jpg,12.77,38
+4201252795171,Ethan Frome,Edith Wharton,Fiction,A fantastic book by Edith Wharton.,https://covers.openlibrary.org/b/id/8303480-L.jpg,11.65,15
+4133553524819,Dubliners,James Joyce,Fiction,A fantastic book by James Joyce.,https://covers.openlibrary.org/b/id/8216412-L.jpg,14.95,20
+2165796984780,Troilus and Cressida,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8789523-L.jpg,29.6,13
+2402640563111,Captains Courageous,Rudyard Kipling,Fiction,A fantastic book by Rudyard Kipling.,https://covers.openlibrary.org/b/id/12819857-L.jpg,28.84,41
+3184784290599,The Railway Children,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/13241123-L.jpg,25.87,21
+5463919564905,Romeo and Juliet,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8257991-L.jpg,18.33,8
+5863455440311,The Moonstone,Wilkie Collins,Fiction,A fantastic book by Wilkie Collins.,https://covers.openlibrary.org/b/id/8237041-L.jpg,24.5,22
+6075769404282,The Sign of Four,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/9247987-L.jpg,11.54,32
+2486219826264,Metamorphosis,Franz Kafka,Fiction,A fantastic book by Franz Kafka.,https://covers.openlibrary.org/b/id/12820198-L.jpg,19.84,24
+1373855410176,Five Children and It,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/28174-L.jpg,26.95,9
+5258069932518,Antony and Cleopatra,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8222096-L.jpg,13.56,7
+9041069171650,Kim,Rudyard Kipling,Fiction,A fantastic book by Rudyard Kipling.,https://covers.openlibrary.org/b/id/1053011-L.jpg,22.45,44
+1087411130925,The Thirty-Nine Steps,John Buchan,Fiction,A fantastic book by John Buchan.,https://covers.openlibrary.org/b/id/93020-L.jpg,25.07,22
+7305327045907,The Adventures of Tom Sawyer,Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/12043351-L.jpg,20.47,38
+9026681237999,The Last of the Mohicans,James Fenimore Cooper,Fiction,A fantastic book by James Fenimore Cooper.,https://covers.openlibrary.org/b/id/8236937-L.jpg,10.97,13
+8164760679543,The Innocence of Father Brown (Father Brown Mystery),Gilbert Keith Chesterton,Fiction,A fantastic book by Gilbert Keith Chesterton.,https://covers.openlibrary.org/b/id/94081-L.jpg,22.93,42
+2735895209271,David Copperfield,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/1048892-L.jpg,12.87,29
+9924090819424,King Richard II,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/9069548-L.jpg,15.92,34
+7641794351931,Записки изъ подполья,Фёдор Михайлович Достоевский,Fiction,A fantastic book by Фёдор Михайлович Достоевский.,https://covers.openlibrary.org/b/id/10445973-L.jpg,20.29,46
+3632367522900,My Ántonia,Willa Cather,Fiction,A fantastic book by Willa Cather.,https://covers.openlibrary.org/b/id/8369013-L.jpg,22.11,44
+3870646043081,The Old Curiosity Shop,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/13119794-L.jpg,15.34,17
+3039465600782,Anne's House of Dreams,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14640440-L.jpg,24.66,48
+3290654792722,All's Well That Ends Well,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7338455-L.jpg,23.9,36
+2611870073486,The Merchant of Venice,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7182819-L.jpg,22.81,48
+5853308058425,Anne of Avonlea,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14638062-L.jpg,27.73,44
+6856273574709,Othello,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7165018-L.jpg,29.01,7
+7125603261216,The Tempest,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8155661-L.jpg,11.52,44
+1516603280804,The Secret Adversary,Agatha Christie,Fiction,A fantastic book by Agatha Christie.,https://covers.openlibrary.org/b/id/14590159-L.jpg,20.68,19
+8059753373013,πολιτεία,Πλάτων,Fiction,A fantastic book by Πλάτων.,https://covers.openlibrary.org/b/id/14418448-L.jpg,15.48,50
+7340891499309,A Connecticut Yankee in King Arthur's Court,Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/9168732-L.jpg,26.89,19
+6121855796216,Der Proceß,Franz Kafka,Fiction,A fantastic book by Franz Kafka.,https://covers.openlibrary.org/b/id/997423-L.jpg,10.43,15
+7023554662530,Anne of the Island,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14639028-L.jpg,13.1,6
+1474061897347,Coriolanus,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8222112-L.jpg,11.29,5
+9455339117482,The Cricket on the Hearth,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/9284868-L.jpg,19.12,21
+9787032131852,Two Gentlemen of Verona,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8791306-L.jpg,28.39,24
+7390924520071,A Portrait of the Artist as a Young Man,James Joyce,Fiction,A fantastic book by James Joyce.,https://covers.openlibrary.org/b/id/9328410-L.jpg,10.23,22
+9420394375485,The Mill on the Floss,George Eliot,Fiction,A fantastic book by George Eliot.,https://covers.openlibrary.org/b/id/8236884-L.jpg,27.44,33
+7640515436555,Richard III,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/9020720-L.jpg,10.13,13
+2478924703423,The Valley of Fear,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/8350377-L.jpg,24.23,25
+4502604934039,The Prince and the Pauper,Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/8221267-L.jpg,11.76,23
+4482820921695,Leaves of Grass,Walt Whitman,Fiction,A fantastic book by Walt Whitman.,https://covers.openlibrary.org/b/id/9000447-L.jpg,19.41,49
+8759748334856,"Henry IV, Part 1",William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/116833-L.jpg,14.91,8
+6022275325654,The Princess and the Goblin,George MacDonald,Fiction,A fantastic book by George MacDonald.,https://covers.openlibrary.org/b/id/14363454-L.jpg,27.59,31
+8631748309697,Tess of the d'Urbervilles,Thomas Hardy,Fiction,A fantastic book by Thomas Hardy.,https://covers.openlibrary.org/b/id/13109386-L.jpg,21.1,50
+4544678094884,The Lost World,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/8231444-L.jpg,21.19,10
+4874629724754,Dracula,Bram Stoker,Fiction,A fantastic book by Bram Stoker.,https://covers.openlibrary.org/b/id/12216503-L.jpg,16.66,12
+8078376269311,Le Comte de Monte Cristo,Alexandre Dumas,Fiction,A fantastic book by Alexandre Dumas.,https://covers.openlibrary.org/b/id/14566393-L.jpg,16.17,10
+9832762124537,The Marvelous Land of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/12648656-L.jpg,23.43,49
+8321749205202,The Canterbury Tales,Geoffrey Chaucer,Fiction,A fantastic book by Geoffrey Chaucer.,https://covers.openlibrary.org/b/id/5767180-L.jpg,13.55,46
+5112631681412,Brave New World,Aldous Huxley,Fiction,A fantastic book by Aldous Huxley.,https://covers.openlibrary.org/b/id/8231823-L.jpg,10.15,45
+6158973171813,The Yellow Wallpaper,Charlotte Perkins Gilman,Fiction,A fantastic book by Charlotte Perkins Gilman.,https://covers.openlibrary.org/b/id/652029-L.jpg,24.02,34
+4043398182506,Aeneis,Publius Vergilius Maro,Fiction,A fantastic book by Publius Vergilius Maro.,https://covers.openlibrary.org/b/id/5273998-L.jpg,16.29,36
+5949212078701,The Comedy of Errors,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/5561040-L.jpg,26.84,15
+3611886916229,Riders of the Purple Sage,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/872066-L.jpg,16.53,34
+8137657347014,The Book of Dragons,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/4342323-L.jpg,10.66,48
+1266432259285,Decamerone,Giovanni Boccaccio,Fiction,A fantastic book by Giovanni Boccaccio.,https://covers.openlibrary.org/b/id/6073528-L.jpg,16.0,30
+7740895996336,The House of Mirth,Edith Wharton,Fiction,A fantastic book by Edith Wharton.,https://covers.openlibrary.org/b/id/9329539-L.jpg,16.61,10
+4070984452321,A Room with a View,E. M. Forster,Fiction,A fantastic book by E. M. Forster.,https://covers.openlibrary.org/b/id/1748132-L.jpg,22.28,14
+1152179721264,Le petit prince,Antoine de Saint-Exupéry,Fiction,A fantastic book by Antoine de Saint-Exupéry.,https://covers.openlibrary.org/b/id/10708272-L.jpg,19.12,25
+2900697995982,Uncle Tom's Cabin,Harriet Beecher Stowe,Fiction,A fantastic book by Harriet Beecher Stowe.,https://covers.openlibrary.org/b/id/12728198-L.jpg,14.74,45
+3892470782958,"Twelfth Night, or What You Will",William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/9119932-L.jpg,11.53,24
+7239780276722,The Pilgrim's Progress,John Bunyan,Fiction,A fantastic book by John Bunyan.,https://covers.openlibrary.org/b/id/8229224-L.jpg,24.62,41
+2728234171966,The Autobiography of Benjamin Franklin,Benjamin Franklin,Fiction,A fantastic book by Benjamin Franklin.,https://covers.openlibrary.org/b/id/5647361-L.jpg,24.18,26
+2628097809628,The Mayor of Casterbridge,Thomas Hardy,Fiction,A fantastic book by Thomas Hardy.,https://covers.openlibrary.org/b/id/1260617-L.jpg,22.0,8
+8317697359767,The Jungle,Upton Sinclair,Fiction,A fantastic book by Upton Sinclair.,https://covers.openlibrary.org/b/id/8231790-L.jpg,24.09,36
+8645549286418,Rainbow Valley,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14641168-L.jpg,16.08,28
+3764495604287,As a man thinketh,James Allen,Fiction,A fantastic book by James Allen.,https://covers.openlibrary.org/b/id/6268048-L.jpg,28.43,36
+4972005017901,The Jewel of Seven Stars,Bram Stoker,Fiction,A fantastic book by Bram Stoker.,https://covers.openlibrary.org/b/id/2760301-L.jpg,21.25,16
+5317683549198,The Story of the Treasure Seekers,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/13241364-L.jpg,24.7,29
+7889037122505,The Woman in White,Wilkie Collins,Fiction,A fantastic book by Wilkie Collins.,https://covers.openlibrary.org/b/id/4684227-L.jpg,19.99,26
+5120073486782,Animal Farm,George Orwell,Fiction,A fantastic book by George Orwell.,https://covers.openlibrary.org/b/id/11261770-L.jpg,17.59,27
+4239947069875,Tao te Ching,老子,Fiction,A fantastic book by 老子.,https://covers.openlibrary.org/b/id/662232-L.jpg,19.42,38
+3561940523623,The Battle of Life,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/9285597-L.jpg,21.48,18
+5841425513489,Sonnets,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8222090-L.jpg,21.19,24
+4224629419304,The Man Who Knew Too Much,Gilbert Keith Chesterton,Fiction,A fantastic book by Gilbert Keith Chesterton.,https://covers.openlibrary.org/b/id/12897858-L.jpg,28.89,50
+9249675645086,War and Peace,Лев Толстой,Fiction,A fantastic book by Лев Толстой.,https://covers.openlibrary.org/b/id/12621906-L.jpg,25.51,28
+5218198042927,The Red Badge of Courage,Stephen Crane,Fiction,A fantastic book by Stephen Crane.,https://covers.openlibrary.org/b/id/8236915-L.jpg,10.48,15
+1364518889932,Du côté de chez Swann,Marcel Proust,Fiction,A fantastic book by Marcel Proust.,https://covers.openlibrary.org/b/id/11967344-L.jpg,15.47,25
+7137916257807,The Emerald City of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/1473556-L.jpg,21.11,14
+9378160011834,Faust,Johann Wolfgang von Goethe,Fiction,A fantastic book by Johann Wolfgang von Goethe.,https://covers.openlibrary.org/b/id/6499459-L.jpg,15.18,6
+1222179374989,Silas Marner,George Eliot,Fiction,A fantastic book by George Eliot.,https://covers.openlibrary.org/b/id/9286405-L.jpg,22.88,13
+3353288068555,Herland,Charlotte Perkins Gilman,Fiction,A fantastic book by Charlotte Perkins Gilman.,https://covers.openlibrary.org/b/id/448130-L.jpg,24.17,27
+3182301267214,The Prisoner of Zenda,Anthony Hope,Fiction,A fantastic book by Anthony Hope.,https://covers.openlibrary.org/b/id/105814-L.jpg,19.35,29
+8042429101348,Dorothy and the Wizard in Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/12648659-L.jpg,11.79,25
+9179195904652,Agnes Grey,Anne Brontë,Fiction,A fantastic book by Anne Brontë.,https://covers.openlibrary.org/b/id/8242924-L.jpg,12.17,37
+2494919713240,O Pioneers!,Willa Cather,Fiction,A fantastic book by Willa Cather.,https://covers.openlibrary.org/b/id/8242999-L.jpg,15.1,40
+4889372798908,Ulysses,James Joyce,Fiction,A fantastic book by James Joyce.,https://covers.openlibrary.org/b/id/13136548-L.jpg,23.28,5
+9623185420239,The Second Jungle Book,Rudyard Kipling,Fiction,A fantastic book by Rudyard Kipling.,https://covers.openlibrary.org/b/id/2140514-L.jpg,27.6,22
+6813962432396,Goldsmith's The vicar of Wakefield,Oliver Goldsmith,Fiction,A fantastic book by Oliver Goldsmith.,https://covers.openlibrary.org/b/id/6720851-L.jpg,21.59,47
+7874009477336,Lady Susan,Jane Austen,Fiction,A fantastic book by Jane Austen.,https://covers.openlibrary.org/b/id/12641526-L.jpg,19.77,11
+6734050988698,The mystery of Edwin Drood,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/8243336-L.jpg,18.7,11
+8406724016431,Jo's Boys,Louisa May Alcott,Fiction,A fantastic book by Louisa May Alcott.,https://covers.openlibrary.org/b/id/13166184-L.jpg,21.16,12
+5521735785405,The Iron Heel,Jack London,Fiction,A fantastic book by Jack London.,https://covers.openlibrary.org/b/id/8243314-L.jpg,16.22,37
+1387628204087,Eight cousins,Louisa May Alcott,Fiction,A fantastic book by Louisa May Alcott.,https://covers.openlibrary.org/b/id/8143360-L.jpg,13.64,46
+4460030307026,The Lost Princess of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/854819-L.jpg,29.69,13
+8678928163000,The Scarlet Pimpernel,Emma Orczy,Fiction,A fantastic book by Emma Orczy.,https://covers.openlibrary.org/b/id/479102-L.jpg,27.99,39
+6885796023477,Flatland,Edwin Abbott Abbott,Fiction,A fantastic book by Edwin Abbott Abbott.,https://covers.openlibrary.org/b/id/10069547-L.jpg,26.66,29
+5717849277548,His Last Bow [8 stories],Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/8243267-L.jpg,11.47,47
+2067057167500,The Castle of Otranto,Horace Walpole,Fiction,A fantastic book by Horace Walpole.,https://covers.openlibrary.org/b/id/6468730-L.jpg,17.6,11
+2941655198600,The Story of the Amulet,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/13241470-L.jpg,26.31,12
+4688694701321,Carmilla,Sheridan Le Fanu,Fiction,A fantastic book by Sheridan Le Fanu.,https://covers.openlibrary.org/b/id/973851-L.jpg,23.83,22
+5906240151763,The Blithedale Romance,Nathaniel Hawthorne,Fiction,A fantastic book by Nathaniel Hawthorne.,https://covers.openlibrary.org/b/id/8245179-L.jpg,10.07,36
+7771289698725,Women in Love,D. H. Lawrence,Fiction,A fantastic book by D. H. Lawrence.,https://covers.openlibrary.org/b/id/13140934-L.jpg,21.62,8
+2945731720002,The Turn of the Screw,Henry James,Fiction,A fantastic book by Henry James.,https://covers.openlibrary.org/b/id/181493-L.jpg,23.07,16
+1364174637586,The Invisible Man,H. G. Wells,Fiction,A fantastic book by H. G. Wells.,https://covers.openlibrary.org/b/id/6419199-L.jpg,11.14,8
+4150519910905,The Complete Life and Adventures of Santa Claus,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/1979059-L.jpg,28.09,29
+2145917068730,King Henry VIII,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7897086-L.jpg,29.97,21
+7673988345668,Ab urbe condita,Titus Livius,Fiction,A fantastic book by Titus Livius.,https://covers.openlibrary.org/b/id/6657951-L.jpg,10.76,43
+5999134173140,The Tenant of Wildfell Hall,Anne Brontë,Fiction,A fantastic book by Anne Brontë.,https://covers.openlibrary.org/b/id/1023552-L.jpg,25.56,49
+9907747541490,Lorna Doone,R. D. Blackmore,Fiction,A fantastic book by R. D. Blackmore.,https://covers.openlibrary.org/b/id/11673413-L.jpg,18.15,32
+5983124190036,La chartreuse de Parme,Stendhal,Fiction,A fantastic book by Stendhal.,https://covers.openlibrary.org/b/id/104382-L.jpg,23.71,40
+4027238034159,Pollyanna,Eleanor Hodgman Porter,Fiction,A fantastic book by Eleanor Hodgman Porter.,https://covers.openlibrary.org/b/id/902113-L.jpg,10.51,16
+8378198121729,Heart of Darkness,Joseph Conrad,Fiction,A fantastic book by Joseph Conrad.,https://covers.openlibrary.org/b/id/12307847-L.jpg,14.59,6
+4717838574228,Also sprach Zarathustra,Friedrich Nietzsche,Fiction,A fantastic book by Friedrich Nietzsche.,https://covers.openlibrary.org/b/id/1017466-L.jpg,10.58,39
+9204088730630,The Return of Sherlock Holmes,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/9246467-L.jpg,10.41,12
+6526539149002,Alice's Adventures in Wonderland / Through the Looking Glass,Lewis Carroll,Fiction,A fantastic book by Lewis Carroll.,https://covers.openlibrary.org/b/id/8595966-L.jpg,12.84,14
+3910915431169,Adam Bede,George Eliot,Fiction,A fantastic book by George Eliot.,https://covers.openlibrary.org/b/id/6379692-L.jpg,13.49,16
+6334083364741,The Pickwick Papers,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/13130696-L.jpg,15.67,42
+9430649873951,Shirley,Charlotte Brontë,Fiction,A fantastic book by Charlotte Brontë.,https://covers.openlibrary.org/b/id/11024634-L.jpg,24.92,38
+4940744872352,The Jungle Book,Rudyard Kipling,Fiction,A fantastic book by Rudyard Kipling.,https://covers.openlibrary.org/b/id/3344204-L.jpg,10.09,31
+2165892468652,Nineteen Eighty-Four,George Orwell,Fiction,A fantastic book by George Orwell.,https://covers.openlibrary.org/b/id/9267242-L.jpg,21.39,46
+7010080881318,The Road to Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/8243922-L.jpg,16.79,7
+7493299234688,The Murders in the Rue Morgue,Edgar Allan Poe,Fiction,A fantastic book by Edgar Allan Poe.,https://covers.openlibrary.org/b/id/11774455-L.jpg,11.17,37
+7909158803265,The Riddle of the Sands,Erskine Childers,Fiction,A fantastic book by Erskine Childers.,https://covers.openlibrary.org/b/id/2293974-L.jpg,17.36,21
+1704387610473,Memoirs of Sherlock Holmes [11 stories],Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/9246429-L.jpg,25.76,11
+5128953286598,The Sea Fairies,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/1814237-L.jpg,16.29,10
+6092250457763,Les Misérables,Victor Hugo,Fiction,A fantastic book by Victor Hugo.,https://covers.openlibrary.org/b/id/12721865-L.jpg,19.87,45
+1607718791974,Greenmantle,John Buchan,Fiction,A fantastic book by John Buchan.,https://covers.openlibrary.org/b/id/93023-L.jpg,19.05,21
+1171879672390,The Club of Queer Trades,Gilbert Keith Chesterton,Fiction,A fantastic book by Gilbert Keith Chesterton.,https://covers.openlibrary.org/b/id/8242288-L.jpg,15.97,40
+8519188261736,To the Lighthouse,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/8231846-L.jpg,13.2,26
+5086155850661,Moonfleet,John Meade Falkner,Fiction,A fantastic book by John Meade Falkner.,https://covers.openlibrary.org/b/id/1118027-L.jpg,10.75,44
+9766053928794,"Villette, a novel",Charlotte Brontë,Fiction,A fantastic book by Charlotte Brontë.,https://covers.openlibrary.org/b/id/5737854-L.jpg,17.63,25
+4401341777404,Little men,Louisa May Alcott,Fiction,A fantastic book by Louisa May Alcott.,https://covers.openlibrary.org/b/id/8043576-L.jpg,24.46,48
+4625441406355,Lady Chatterley's Lover,D. H. Lawrence,Fiction,A fantastic book by D. H. Lawrence.,https://covers.openlibrary.org/b/id/12983362-L.jpg,20.95,45
+7654920264942,Baum's American Fairy Tales,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/709869-L.jpg,18.52,24
+6487280590148,The Happy Prince and other tales,Oscar Wilde,Fiction,A fantastic book by Oscar Wilde.,https://covers.openlibrary.org/b/id/10608467-L.jpg,10.46,46
+5724144793593,She,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/295537-L.jpg,27.3,7
+9514350226697,The deerslayer,James Fenimore Cooper,Fiction,A fantastic book by James Fenimore Cooper.,https://covers.openlibrary.org/b/id/8237593-L.jpg,16.34,45
+5209437067600,The Scarecrow of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/431586-L.jpg,11.54,16
+9134726525675,Allan Quatermain,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/830243-L.jpg,20.55,49
+8274682229616,Howards End,E. M. Forster,Fiction,A fantastic book by E. M. Forster.,https://covers.openlibrary.org/b/id/8235207-L.jpg,24.08,12
+9114771372049,The Magic of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/5071176-L.jpg,21.69,35
+7794016325699,The Beautiful and Damned,F. Scott Fitzgerald,Fiction,A fantastic book by F. Scott Fitzgerald.,https://covers.openlibrary.org/b/id/7152019-L.jpg,20.92,28
+9805464057165,This Side of Paradise,F. Scott Fitzgerald,Fiction,A fantastic book by F. Scott Fitzgerald.,https://covers.openlibrary.org/b/id/8243609-L.jpg,28.95,35
+7877353034105,Winter's Tale,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7405847-L.jpg,18.47,50
+6915611307483,Metamorphoses,Ovid,Fiction,A fantastic book by Ovid.,https://covers.openlibrary.org/b/id/7212118-L.jpg,18.41,13
+6632653466554,Pericles,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7165070-L.jpg,19.28,14
+4515485417153,Tik-Tok of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/8243277-L.jpg,17.45,13
+1021671251580,Rinkitink in Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/765814-L.jpg,20.54,11
+9250211007010,The Princess and Curdie,George MacDonald,Fiction,A fantastic book by George MacDonald.,https://covers.openlibrary.org/b/id/14357835-L.jpg,21.57,9
+7982374725587,Ivanhoe,Sir Walter Scott,Fiction,A fantastic book by Sir Walter Scott.,https://covers.openlibrary.org/b/id/314235-L.jpg,11.93,18
+7630286982509,Lilith,George MacDonald,Fiction,A fantastic book by George MacDonald.,https://covers.openlibrary.org/b/id/14364546-L.jpg,23.04,13
+8280607292097,"Henry IV, Part 2",William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7339581-L.jpg,16.8,41
+2320191818457,The King in Yellow,Robert W. Chambers,Fiction,A fantastic book by Robert W. Chambers.,https://covers.openlibrary.org/b/id/4752788-L.jpg,27.37,26
+9946251426341,The Enchanted Castle,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/6644514-L.jpg,17.92,41
+1120049061302,Mrs. Dalloway,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/6397580-L.jpg,27.41,47
+6170760136655,The Book of Tea,Okakura Kakuzō,Fiction,A fantastic book by Okakura Kakuzō.,https://covers.openlibrary.org/b/id/8245415-L.jpg,10.65,15
+2632648071045,Cranford,Elizabeth Cleghorn Gaskell,Fiction,A fantastic book by Elizabeth Cleghorn Gaskell.,https://covers.openlibrary.org/b/id/5188445-L.jpg,20.53,41
+2789517936483,The Coral Island,Robert Michael Ballantyne,Fiction,A fantastic book by Robert Michael Ballantyne.,https://covers.openlibrary.org/b/id/8242206-L.jpg,19.68,20
+3728762884580,A history of New York,Washington Irving,Fiction,A fantastic book by Washington Irving.,https://covers.openlibrary.org/b/id/1991009-L.jpg,29.89,6
+5840408408888,Phantastes,George MacDonald,Fiction,A fantastic book by George MacDonald.,https://covers.openlibrary.org/b/id/14358814-L.jpg,22.71,14
+4940461993202,The House of Seven Gables Readalong,Nathaniel Hawthorne,Fiction,A fantastic book by Nathaniel Hawthorne.,https://covers.openlibrary.org/b/id/10956643-L.jpg,16.81,41
+6070021956114,L’étranger,Albert Camus,Fiction,A fantastic book by Albert Camus.,https://covers.openlibrary.org/b/id/13151269-L.jpg,23.53,45
+4743041884198,Barchester Towers,Anthony Trollope,Fiction,A fantastic book by Anthony Trollope.,https://covers.openlibrary.org/b/id/1468666-L.jpg,14.09,14
+1978709967869,As You Like It,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7338874-L.jpg,22.34,16
+3213989580413,The Wisdom of Father Brown,Gilbert Keith Chesterton,Fiction,A fantastic book by Gilbert Keith Chesterton.,https://covers.openlibrary.org/b/id/2598178-L.jpg,18.63,48
+5081267986151,Voyage Out,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/12621766-L.jpg,12.68,12
+9044593958406,Ayesha,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/12640128-L.jpg,23.98,46
+7323673392356,Sister Carrie,Theodore Dreiser,Fiction,A fantastic book by Theodore Dreiser.,https://covers.openlibrary.org/b/id/9330145-L.jpg,14.92,38
+2229488029868,The White Company,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/8244602-L.jpg,11.13,42
+2164427123682,The Hobbit,J.R.R. Tolkien,Fiction,A fantastic book by J.R.R. Tolkien.,https://covers.openlibrary.org/b/id/14627509-L.jpg,29.31,37
+9738060536066,The Tin Woodman of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/755973-L.jpg,21.08,10
+9236586622166,The  man who would be king,Rudyard Kipling,Fiction,A fantastic book by Rudyard Kipling.,https://covers.openlibrary.org/b/id/6021425-L.jpg,29.04,19
+2325181356732,The Alhambra,Washington Irving,Fiction,A fantastic book by Washington Irving.,https://covers.openlibrary.org/b/id/8237030-L.jpg,20.65,49
+2722178809898,The War of the Worlds,H. G. Wells,Fiction,A fantastic book by H. G. Wells.,https://covers.openlibrary.org/b/id/36314-L.jpg,16.56,26
+4219901296419,A Princess of Mars,Edgar Rice Burroughs,Fiction,A fantastic book by Edgar Rice Burroughs.,https://covers.openlibrary.org/b/id/207226-L.jpg,24.61,45
+1733854370008,The Importance of Being Earnest,Oscar Wilde,Fiction,A fantastic book by Oscar Wilde.,https://covers.openlibrary.org/b/id/1260453-L.jpg,24.24,41
+5260018364722,The Napoleon of Notting Hill,Gilbert Keith Chesterton,Fiction,A fantastic book by Gilbert Keith Chesterton.,https://covers.openlibrary.org/b/id/6980094-L.jpg,24.81,34
+7596684428451,Glinda of Oz,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/758814-L.jpg,16.4,48
+2499853389285,Quo Vadis? Powieść z czasów Nerona,Henryk Sienkiewicz,Fiction,A fantastic book by Henryk Sienkiewicz.,https://covers.openlibrary.org/b/id/833096-L.jpg,12.9,14
+4417090542714,Orlando,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/3240273-L.jpg,11.23,33
+7791595008836,Babbitt,Sinclair Lewis,Fiction,A fantastic book by Sinclair Lewis.,https://covers.openlibrary.org/b/id/6376827-L.jpg,22.74,5
+4607749554770,La dame aux camélias [novel],Alexandre Dumas fils,Fiction,A fantastic book by Alexandre Dumas fils.,https://covers.openlibrary.org/b/id/14565226-L.jpg,21.57,11
+7185597824891,Confessions,Augustine of Hippo,Fiction,A fantastic book by Augustine of Hippo.,https://covers.openlibrary.org/b/id/9022521-L.jpg,10.69,14
+3702043948088,Flower Fables,Louisa May Alcott,Fiction,A fantastic book by Louisa May Alcott.,https://covers.openlibrary.org/b/id/755980-L.jpg,17.52,45
+9763005486079,The Heritage of the Desert,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/12046355-L.jpg,24.24,40
+1080161697066,Inferno,Dante Alighieri,Fiction,A fantastic book by Dante Alighieri.,https://covers.openlibrary.org/b/id/6387077-L.jpg,16.05,49
+8117672706723,Emily of New Moon,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14638065-L.jpg,15.41,42
+6961436367200,The Magic City,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/1673063-L.jpg,29.14,46
+8333138960087,Peter Pan,J. M. Barrie,Fiction,A fantastic book by J. M. Barrie.,https://covers.openlibrary.org/b/id/8237052-L.jpg,20.58,46
+2069460347062,The Chimes,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/9284863-L.jpg,21.7,38
+5683527149176,La père Goriot,Honoré de Balzac,Fiction,A fantastic book by Honoré de Balzac.,https://covers.openlibrary.org/b/id/8237944-L.jpg,10.36,49
+1054948819187,The Phoenix and the Carpet,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/902122-L.jpg,24.46,44
+3603001626901,Mr. Standfast,John Buchan,Fiction,A fantastic book by John Buchan.,https://covers.openlibrary.org/b/id/6962564-L.jpg,28.28,25
+3161411619443,Идиот,Фёдор Михайлович Достоевский,Fiction,A fantastic book by Фёдор Михайлович Достоевский.,https://covers.openlibrary.org/b/id/11226648-L.jpg,15.7,50
+8037195005136,The History of Tom Jones,Henry Fielding,Fiction,A fantastic book by Henry Fielding.,https://covers.openlibrary.org/b/id/12968864-L.jpg,11.7,35
+7762558329405,Idle Thoughts of an Idle Fellow,Jerome Klapka Jérôme,Fiction,A fantastic book by Jerome Klapka Jérôme.,https://covers.openlibrary.org/b/id/8243128-L.jpg,15.95,14
+8159028951315,Metamorphoses,Lucius Apuleius,Fiction,A fantastic book by Lucius Apuleius.,https://covers.openlibrary.org/b/id/6596872-L.jpg,15.52,13
+7369694416167,The Portrait of a Lady,Henry James,Fiction,A fantastic book by Henry James.,https://covers.openlibrary.org/b/id/3352367-L.jpg,12.13,19
+5776759564298,The Great God Pan,Arthur Machen,Fiction,A fantastic book by Arthur Machen.,https://covers.openlibrary.org/b/id/921610-L.jpg,13.89,37
+1782919359593,Le avventure di Pinocchio,Carlo Collodi,Fiction,A fantastic book by Carlo Collodi.,https://covers.openlibrary.org/b/id/8597022-L.jpg,14.55,6
+7394764595329,The Last Man,Mary Shelley,Fiction,A fantastic book by Mary Shelley.,https://covers.openlibrary.org/b/id/882662-L.jpg,26.13,16
+8421656694841,The Pathfinder,James Fenimore Cooper,Fiction,A fantastic book by James Fenimore Cooper.,https://covers.openlibrary.org/b/id/8980913-L.jpg,24.74,6
+8923924080122,Le Tour du Monde en Quatre-Vingts Jours,Jules Verne,Fiction,A fantastic book by Jules Verne.,https://covers.openlibrary.org/b/id/6976035-L.jpg,12.19,15
+1713791852428,"The Norsemen in the West, or, America before Columbus",Robert Michael Ballantyne,Fiction,A fantastic book by Robert Michael Ballantyne.,https://covers.openlibrary.org/b/id/1803304-L.jpg,23.37,15
+7342674542888,"Under the Greenwood Tree or, The Mellstock quire",Thomas Hardy,Fiction,A fantastic book by Thomas Hardy.,https://covers.openlibrary.org/b/id/902186-L.jpg,12.82,8
+4734034709822,Jude the Obscure,Thomas Hardy,Fiction,A fantastic book by Thomas Hardy.,https://covers.openlibrary.org/b/id/12973053-L.jpg,28.64,7
+1756144973096,De la démocratie en Amérique,Alexis de Tocqueville,Fiction,A fantastic book by Alexis de Tocqueville.,https://covers.openlibrary.org/b/id/45979-L.jpg,19.38,36
+5645851990724,The Golden Age,Kenneth Grahame,Fiction,A fantastic book by Kenneth Grahame.,https://covers.openlibrary.org/b/id/6330294-L.jpg,18.21,16
+5955441523042,The Man of the Forest,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/8863288-L.jpg,25.84,21
+4149484500390,The warlord of Mars #3,Edgar Rice Burroughs,Fiction,A fantastic book by Edgar Rice Burroughs.,https://covers.openlibrary.org/b/id/207141-L.jpg,24.79,49
+2166384286844,Tanglewood Tales,Nathaniel Hawthorne,Fiction,A fantastic book by Nathaniel Hawthorne.,https://covers.openlibrary.org/b/id/8243662-L.jpg,12.95,48
+8407334469242,Bleak House,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/9279273-L.jpg,23.42,37
+1528811692203,Basil,Wilkie Collins,Fiction,A fantastic book by Wilkie Collins.,https://covers.openlibrary.org/b/id/12968342-L.jpg,24.04,35
+2291764935903,Princesse de Clèves,Madame de La Fayette,Fiction,A fantastic book by Madame de La Fayette.,https://covers.openlibrary.org/b/id/119470-L.jpg,12.39,17
+5496998487540,The Mysterious Rider,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/2011171-L.jpg,29.47,30
+6123922583475,Игрокъ,Фёдор Михайлович Достоевский,Fiction,A fantastic book by Фёдор Михайлович Достоевский.,https://covers.openlibrary.org/b/id/3293339-L.jpg,21.29,41
+9700936804355,The Souls of Black Folk,W. E. B. Du Bois,Fiction,A fantastic book by W. E. B. Du Bois.,https://covers.openlibrary.org/b/id/6564090-L.jpg,17.0,26
+9124563282457,The Song of the Lark,Willa Cather,Fiction,A fantastic book by Willa Cather.,https://covers.openlibrary.org/b/id/6728038-L.jpg,18.61,15
+7817324934399,Roughing It,Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/9165528-L.jpg,22.68,36
+6420295400782,Of Human Bondage,William Somerset Maugham,Fiction,A fantastic book by William Somerset Maugham.,https://covers.openlibrary.org/b/id/5277723-L.jpg,13.43,24
+8451048401190,Mosses from an Old Manse,Nathaniel Hawthorne,Fiction,A fantastic book by Nathaniel Hawthorne.,https://covers.openlibrary.org/b/id/9263396-L.jpg,22.19,10
+6661133619454,Burning Daylight,Jack London,Fiction,A fantastic book by Jack London.,https://covers.openlibrary.org/b/id/8245391-L.jpg,19.49,33
+3622449589923,Timon of Athens,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7329261-L.jpg,21.95,23
+1186821288770,Le rouge et le noir,Stendhal,Fiction,A fantastic book by Stendhal.,https://covers.openlibrary.org/b/id/8231413-L.jpg,11.04,33
+5967055606451,Much Ado About Nothing,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8290853-L.jpg,13.07,24
+1476045748316,La tulipe noire,Alexandre Dumas,Fiction,A fantastic book by Alexandre Dumas.,https://covers.openlibrary.org/b/id/14565101-L.jpg,25.47,50
+2327137933065,The Prairie,James Fenimore Cooper,Fiction,A fantastic book by James Fenimore Cooper.,https://covers.openlibrary.org/b/id/5578106-L.jpg,17.84,12
+8556199058492,Harry Potter and the Philosopher's Stone,J. K. Rowling,Fiction,A fantastic book by J. K. Rowling.,https://covers.openlibrary.org/b/id/15155833-L.jpg,16.01,24
+5493016778272,The moon and sixpence,William Somerset Maugham,Fiction,A fantastic book by William Somerset Maugham.,https://covers.openlibrary.org/b/id/314604-L.jpg,10.16,45
+2399246059532,The Woodlanders,Thomas Hardy,Fiction,A fantastic book by Thomas Hardy.,https://covers.openlibrary.org/b/id/8243078-L.jpg,22.51,28
+1437056389482,The Narrative of Arthur Gordon Pym,Edgar Allan Poe,Fiction,A fantastic book by Edgar Allan Poe.,https://covers.openlibrary.org/b/id/7160877-L.jpg,23.96,24
+9503311285200,The Life and Adventures of Nicholas Nickleby,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/9283905-L.jpg,18.6,28
+2653128348433,Love Insurance,Earl Derr Biggers,Fiction,A fantastic book by Earl Derr Biggers.,https://covers.openlibrary.org/b/id/5830190-L.jpg,27.66,14
+1701285035721,The Night Before Christmas,Clement Clarke Moore,Fiction,A fantastic book by Clement Clarke Moore.,https://covers.openlibrary.org/b/id/8236410-L.jpg,15.02,31
+3886757499078,White Fang,Jack London,Fiction,A fantastic book by Jack London.,https://covers.openlibrary.org/b/id/8236920-L.jpg,19.95,43
+2347944857151,The Longest Journey,E. M. Forster,Fiction,A fantastic book by E. M. Forster.,https://covers.openlibrary.org/b/id/2955358-L.jpg,12.68,27
+9319645282515,Incidents in the Life of a Slave Girl,Harriet A. Jacobs,Fiction,A fantastic book by Harriet A. Jacobs.,https://covers.openlibrary.org/b/id/411542-L.jpg,21.41,23
+1485611511015,The Law and the Lady,Wilkie Collins,Fiction,A fantastic book by Wilkie Collins.,https://covers.openlibrary.org/b/id/6396941-L.jpg,21.09,50
+5688892440408,The Insidious Dr. Fu Manchu,Sax Rohmer,Fiction,A fantastic book by Sax Rohmer.,https://covers.openlibrary.org/b/id/6627741-L.jpg,15.82,29
+2120450701448,Vingt mille lieues sous les mers,Jules Verne,Fiction,A fantastic book by Jules Verne.,https://covers.openlibrary.org/b/id/6573517-L.jpg,20.72,16
+1088394530437,Where Angels Fear to Tread,E. M. Forster,Fiction,A fantastic book by E. M. Forster.,https://covers.openlibrary.org/b/id/107982-L.jpg,11.42,11
+1779831392751,कामसूत्र,Vatsyāyana,Fiction,A fantastic book by Vatsyāyana.,https://covers.openlibrary.org/b/id/8003766-L.jpg,22.06,13
+9616329536744,Chronicles of Avonlea,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14635990-L.jpg,26.02,28
+3519512693618,Rob Roy,Sir Walter Scott,Fiction,A fantastic book by Sir Walter Scott.,https://covers.openlibrary.org/b/id/8240340-L.jpg,23.51,20
+6728491843640,The Rainbow Trail,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/6555618-L.jpg,16.3,43
+5725778439555,"Waverley; or, 'Tis sixty years since ...",Sir Walter Scott,Fiction,A fantastic book by Sir Walter Scott.,https://covers.openlibrary.org/b/id/2838526-L.jpg,11.58,48
+5907157807773,The pioneers,James Fenimore Cooper,Fiction,A fantastic book by James Fenimore Cooper.,https://covers.openlibrary.org/b/id/9000512-L.jpg,13.01,10
+8765788487428,"Esther Waters, a novel",George Moore,Fiction,A fantastic book by George Moore.,https://covers.openlibrary.org/b/id/5986854-L.jpg,16.41,43
+9573874735982,The Golden Bough,James George Frazer,Fiction,A fantastic book by James George Frazer.,https://covers.openlibrary.org/b/id/8876695-L.jpg,15.84,25
+3871248091483,The Strange Case of Dr. Jekyll and Mr. Hyde,Robert Louis Stevenson,Fiction,A fantastic book by Robert Louis Stevenson.,https://covers.openlibrary.org/b/id/295773-L.jpg,21.32,37
+4006637628138,Le Morte d'Arthur,Thomas Malory,Fiction,A fantastic book by Thomas Malory.,https://covers.openlibrary.org/b/id/8231834-L.jpg,21.99,44
+9952103517026,Hedda Gabler,Henrik Ibsen,Fiction,A fantastic book by Henrik Ibsen.,https://covers.openlibrary.org/b/id/12481427-L.jpg,24.32,11
+9168676954932,The uncommercial traveller,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/9284872-L.jpg,27.03,5
+3434713967807,Twice-Told Tales,Nathaniel Hawthorne,Fiction,A fantastic book by Nathaniel Hawthorne.,https://covers.openlibrary.org/b/id/10223473-L.jpg,13.27,21
+1146120998820,Two years before the mast,Richard Henry Dana,Fiction,A fantastic book by Richard Henry Dana.,https://covers.openlibrary.org/b/id/8245243-L.jpg,24.59,10
+2594746298465,Burya,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/12117797-L.jpg,18.8,25
+7380201081558,Tender Buttons,Gertrude Stein,Fiction,A fantastic book by Gertrude Stein.,https://covers.openlibrary.org/b/id/756373-L.jpg,18.5,30
+8411057428882,The Spirit of the Border,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/603551-L.jpg,19.56,14
+3985621834096,One of Ours,Willa Cather,Fiction,A fantastic book by Willa Cather.,https://covers.openlibrary.org/b/id/12667866-L.jpg,14.23,17
+1943060465973,Cleopatra,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/1748730-L.jpg,17.96,11
+3016169876233,An Old-Fashioned Girl,Louisa May Alcott,Fiction,A fantastic book by Louisa May Alcott.,https://covers.openlibrary.org/b/id/8244533-L.jpg,15.94,37
+1349970354852,The Rainbow,D. H. Lawrence,Fiction,A fantastic book by D. H. Lawrence.,https://covers.openlibrary.org/b/id/13028918-L.jpg,28.41,46
+4882111183098,The Lone Star Ranger,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/4813849-L.jpg,21.34,16
+3081921967233,A Lost Lady,Willa Cather,Fiction,A fantastic book by Willa Cather.,https://covers.openlibrary.org/b/id/1513199-L.jpg,19.79,38
+4508869621389,Trent's Last Case,E. C. Bentley,Fiction,A fantastic book by E. C. Bentley.,https://covers.openlibrary.org/b/id/118583-L.jpg,26.62,24
+7248597950413,"Le vicomte de Bragelonne, ou, dix ans plus tard",Alexandre Dumas,Fiction,A fantastic book by Alexandre Dumas.,https://covers.openlibrary.org/b/id/14564690-L.jpg,24.93,10
+4132764834068,The Good Soldier,Ford Madox Ford,Fiction,A fantastic book by Ford Madox Ford.,https://covers.openlibrary.org/b/id/908543-L.jpg,24.03,8
+6540404146475,The Financier,Theodore Dreiser,Fiction,A fantastic book by Theodore Dreiser.,https://covers.openlibrary.org/b/id/8293120-L.jpg,23.28,8
+1500019021922,The Magic World,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/2970137-L.jpg,19.88,20
+4655601055521,Barnaby Rudge,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/9283961-L.jpg,11.25,12
+6470982255863,Kidnapped,Robert Louis Stevenson,Fiction,A fantastic book by Robert Louis Stevenson.,https://covers.openlibrary.org/b/id/8267822-L.jpg,26.98,42
+2098694984178,The Titan,Theodore Dreiser,Fiction,A fantastic book by Theodore Dreiser.,https://covers.openlibrary.org/b/id/9330147-L.jpg,14.83,32
+5582170672222,"The sketch-book of Geoffrey Crayon, Esq",Washington Irving,Fiction,A fantastic book by Washington Irving.,https://covers.openlibrary.org/b/id/7162030-L.jpg,29.59,42
+1015161205334,"The Federalist, or, The New Constitution",Alexander Hamilton,Fiction,A fantastic book by Alexander Hamilton.,https://covers.openlibrary.org/b/id/14850185-L.jpg,10.8,37
+9426875622566,The Awakening,Kate Chopin,Fiction,A fantastic book by Kate Chopin.,https://covers.openlibrary.org/b/id/8750241-L.jpg,11.48,13
+3301803069450,Desert Gold,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/1759268-L.jpg,25.73,19
+8122611586244,"News from nowhere, or, An epoch of rest, being some chapters from a utopian romance",William Morris,Fiction,A fantastic book by William Morris.,https://covers.openlibrary.org/b/id/338173-L.jpg,23.81,13
+7946070825904,The Poison Belt,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/5788361-L.jpg,29.36,32
+4429131463469,Fables,Jean de La Fontaine,Fiction,A fantastic book by Jean de La Fontaine.,https://covers.openlibrary.org/b/id/976209-L.jpg,27.38,50
+8443696981671,Lord Jim,Joseph Conrad,Fiction,A fantastic book by Joseph Conrad.,https://covers.openlibrary.org/b/id/8236295-L.jpg,14.51,24
+3286108351947,Falkner,Mary Shelley,Fiction,A fantastic book by Mary Shelley.,https://covers.openlibrary.org/b/id/1979512-L.jpg,24.46,8
+7461723728867,Death Comes for the Archbishop,Willa Cather,Fiction,A fantastic book by Willa Cather.,https://covers.openlibrary.org/b/id/6833506-L.jpg,26.91,34
+2474390900295,She and Allan,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/1930790-L.jpg,23.89,31
+2450675538949,Prester John,John Buchan,Fiction,A fantastic book by John Buchan.,https://covers.openlibrary.org/b/id/5981967-L.jpg,26.56,40
+2589531115033,À rebours,Joris-Karl Huysmans,Fiction,A fantastic book by Joris-Karl Huysmans.,https://covers.openlibrary.org/b/id/13170209-L.jpg,18.84,50
+2572451135322,Erewhon,Samuel Butler,Fiction,A fantastic book by Samuel Butler.,https://covers.openlibrary.org/b/id/825789-L.jpg,10.15,8
+1668872952631,The Warden,Anthony Trollope,Fiction,A fantastic book by Anthony Trollope.,https://covers.openlibrary.org/b/id/8238730-L.jpg,17.99,24
+3305929957698,Riceyman Steps,Arnold Bennett,Fiction,A fantastic book by Arnold Bennett.,https://covers.openlibrary.org/b/id/696629-L.jpg,11.65,16
+9524753592388,The Secret Agent,Joseph Conrad,Fiction,A fantastic book by Joseph Conrad.,https://covers.openlibrary.org/b/id/8239401-L.jpg,15.1,43
+4683649630085,Child of Storm,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/2928810-L.jpg,25.13,43
+2188751272498,The American Claimant,Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/8221285-L.jpg,21.49,20
+6333658344222,Tom Sawyer Abroad,Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/9162125-L.jpg,24.68,30
+8548849584511,An Arabian tale,William Beckford,Fiction,A fantastic book by William Beckford.,https://covers.openlibrary.org/b/id/2997425-L.jpg,17.42,33
+6717624172459,Tono-Bungay,H. G. Wells,Fiction,A fantastic book by H. G. Wells.,https://covers.openlibrary.org/b/id/897404-L.jpg,15.96,21
+8015246447650,Little Lord Fauntleroy,Frances Hodgson Burnett,Fiction,A fantastic book by Frances Hodgson Burnett.,https://covers.openlibrary.org/b/id/29376-L.jpg,29.28,20
+7149204615850,Sons and Lovers,D. H. Lawrence,Fiction,A fantastic book by D. H. Lawrence.,https://covers.openlibrary.org/b/id/8246175-L.jpg,23.23,7
+6607343400153,King John,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7340949-L.jpg,11.38,19
+4486638970551,Le Côté de Guermantes,Marcel Proust,Fiction,A fantastic book by Marcel Proust.,https://covers.openlibrary.org/b/id/12588755-L.jpg,10.07,23
+1282964885226,Love's Labour's Lost,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/9020738-L.jpg,14.41,47
+6746046141122,Middlemarch,George Eliot,Fiction,A fantastic book by George Eliot.,https://covers.openlibrary.org/b/id/252882-L.jpg,21.94,36
+7297789070675,The Elusive Pimpernel (Scarlet Pimpernel),Emma Orczy,Fiction,A fantastic book by Emma Orczy.,https://covers.openlibrary.org/b/id/502823-L.jpg,23.07,33
+4020152504046,The Dragon and the Raven,G. A. Henty,Fiction,A fantastic book by G. A. Henty.,https://covers.openlibrary.org/b/id/13154732-L.jpg,28.07,45
+4676366712143,Godfrey of Bulloigne,Torquato Tasso,Fiction,A fantastic book by Torquato Tasso.,https://covers.openlibrary.org/b/id/5954727-L.jpg,12.8,27
+2931871226106,Dombey and Son,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/9283920-L.jpg,15.92,28
+5790549281702,Puck of Pook's Hill,Rudyard Kipling,Fiction,A fantastic book by Rudyard Kipling.,https://covers.openlibrary.org/b/id/8242296-L.jpg,20.43,43
+8811630273529,The Grapes of Wrath,John Steinbeck,Fiction,A fantastic book by John Steinbeck.,https://covers.openlibrary.org/b/id/12715902-L.jpg,15.78,21
+7293309961125,The ghost,Arnold Bennett,Fiction,A fantastic book by Arnold Bennett.,https://covers.openlibrary.org/b/id/5877895-L.jpg,12.22,26
+6853284725292,Whose Body?,Dorothy L. Sayers,Fiction,A fantastic book by Dorothy L. Sayers.,https://covers.openlibrary.org/b/id/8311819-L.jpg,14.04,35
+5762999104756,The history of the great plague in London in the year 1665,Daniel Defoe,Fiction,A fantastic book by Daniel Defoe.,https://covers.openlibrary.org/b/id/5935009-L.jpg,11.29,46
+6844908048648,Our Mutual Friend,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/13136200-L.jpg,21.65,41
+8690065985916,Measure for Measure,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7339281-L.jpg,13.65,23
+7015950443695,Framley Parsonage,Anthony Trollope,Fiction,A fantastic book by Anthony Trollope.,https://covers.openlibrary.org/b/id/8288051-L.jpg,22.43,42
+7858857382277,Emily climbs,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14638110-L.jpg,22.5,12
+9969723183408,King Henry VI. Part 2,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/9118899-L.jpg,22.3,17
+1618569800245,The Gods of Mars,Edgar Rice Burroughs,Fiction,A fantastic book by Edgar Rice Burroughs.,https://covers.openlibrary.org/b/id/207132-L.jpg,10.37,11
+6241143577224,The Exploits of Brigadier Gerard,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/9925139-L.jpg,17.91,13
+3694512923221,The Chessmen of Mars,Edgar Rice Burroughs,Fiction,A fantastic book by Edgar Rice Burroughs.,https://covers.openlibrary.org/b/id/1930755-L.jpg,15.85,39
+1002651366312,Riders Of The Silence,Frederick Faust,Fiction,A fantastic book by Frederick Faust.,https://covers.openlibrary.org/b/id/11706336-L.jpg,14.74,48
+7044571584609,The Magician,William Somerset Maugham,Fiction,A fantastic book by William Somerset Maugham.,https://covers.openlibrary.org/b/id/2789948-L.jpg,20.75,41
+3881400737467,Братья Карамазовы,Фёдор Михайлович Достоевский,Fiction,A fantastic book by Фёдор Михайлович Достоевский.,https://covers.openlibrary.org/b/id/8272336-L.jpg,24.87,41
+2420270349337,Three Men on the Bummel,Jerome Klapka Jérôme,Fiction,A fantastic book by Jerome Klapka Jérôme.,https://covers.openlibrary.org/b/id/5706716-L.jpg,13.86,36
+1694213752790,Tender is the Night,F. Scott Fitzgerald,Fiction,A fantastic book by F. Scott Fitzgerald.,https://covers.openlibrary.org/b/id/6984433-L.jpg,24.48,33
+3648564454627,The Devil's Dictionary,Ambrose Bierce,Fiction,A fantastic book by Ambrose Bierce.,https://covers.openlibrary.org/b/id/12671319-L.jpg,17.38,18
+2250669825162,Rodney Stone,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/2893764-L.jpg,20.99,6
+4363524019899,The Machine Stops,E. M. Forster,Fiction,A fantastic book by E. M. Forster.,https://covers.openlibrary.org/b/id/7793883-L.jpg,19.86,33
+9236284265431,Jennie Gerhardt,Theodore Dreiser,Fiction,A fantastic book by Theodore Dreiser.,https://covers.openlibrary.org/b/id/8293201-L.jpg,28.19,16
+7948545320034,Anne of Windy Poplars,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14640411-L.jpg,26.56,25
+9779179767104,Jacob's Room,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/2894970-L.jpg,24.7,21
+5739520068825,Cyrano de Bergerac,Edmond Rostand,Fiction,A fantastic book by Edmond Rostand.,https://covers.openlibrary.org/b/id/8236320-L.jpg,27.04,18
+5931860781083,Satyricon,Petronius,Fiction,A fantastic book by Petronius.,https://covers.openlibrary.org/b/id/6060585-L.jpg,27.41,40
+5832335242617,Allan's Wife,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/7005545-L.jpg,21.82,8
+3485639529610,The Old Man and the Sea,Ernest Hemingway,Fiction,A fantastic book by Ernest Hemingway.,https://covers.openlibrary.org/b/id/463307-L.jpg,28.99,32
+1539460003232,A strange disappearance,Anna Katharine Green,Fiction,A fantastic book by Anna Katharine Green.,https://covers.openlibrary.org/b/id/12657405-L.jpg,27.66,42
+6929763676716,A Little Princess,Frances Hodgson Burnett,Fiction,A fantastic book by Frances Hodgson Burnett.,https://covers.openlibrary.org/b/id/2328315-L.jpg,24.79,20
+9136765772457,Little Dorrit,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/13113263-L.jpg,25.98,23
+6168290742335,Harry Potter and the Chamber of Secrets,J. K. Rowling,Fiction,A fantastic book by J. K. Rowling.,https://covers.openlibrary.org/b/id/15158664-L.jpg,18.0,33
+5141137029186,Dream days,Kenneth Grahame,Fiction,A fantastic book by Kenneth Grahame.,https://covers.openlibrary.org/b/id/5915025-L.jpg,14.12,8
+7305310774427,The Black Robe,Wilkie Collins,Fiction,A fantastic book by Wilkie Collins.,https://covers.openlibrary.org/b/id/1759983-L.jpg,10.59,50
+8265204737093,A Room of One's Own,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/6559057-L.jpg,29.64,49
+7024989395948,Plain tales from the hills,Rudyard Kipling,Fiction,A fantastic book by Rudyard Kipling.,https://covers.openlibrary.org/b/id/8245216-L.jpg,27.92,10
+6128171785630,The border legion,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/5618293-L.jpg,20.33,47
+8595571484518,With her in Ourland,Charlotte Perkins Gilman,Fiction,A fantastic book by Charlotte Perkins Gilman.,https://covers.openlibrary.org/b/id/186113-L.jpg,15.86,49
+4766305505717,Children of the Frost,Jack London,Fiction,A fantastic book by Jack London.,https://covers.openlibrary.org/b/id/9383224-L.jpg,14.41,9
+5035431509891,The Age of Innocence,Edith Wharton,Fiction,A fantastic book by Edith Wharton.,https://covers.openlibrary.org/b/id/11196262-L.jpg,19.38,21
+4468819814895,Crome yellow,Aldous Huxley,Fiction,A fantastic book by Aldous Huxley.,https://covers.openlibrary.org/b/id/5920672-L.jpg,24.57,41
+6698084061227,The Age of Fable,Thomas Bulfinch,Fiction,A fantastic book by Thomas Bulfinch.,https://covers.openlibrary.org/b/id/419378-L.jpg,11.22,5
+8687905490085,Daddy-Long-Legs,Jean Webster,Fiction,A fantastic book by Jean Webster.,https://covers.openlibrary.org/b/id/8266414-L.jpg,27.39,37
+6797992526736,Allan and the Holy Flower,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/5831631-L.jpg,11.55,8
+7588448780150,Pollyanna Grows Up,Eleanor Hodgman Porter,Fiction,A fantastic book by Eleanor Hodgman Porter.,https://covers.openlibrary.org/b/id/5831438-L.jpg,23.73,32
+9579713219667,The Fellowship of the Ring,J.R.R. Tolkien,Fiction,A fantastic book by J.R.R. Tolkien.,https://covers.openlibrary.org/b/id/14627060-L.jpg,28.89,13
+2522856318292,The Island of Dr. Moreau,H. G. Wells,Fiction,A fantastic book by H. G. Wells.,https://covers.openlibrary.org/b/id/968312-L.jpg,15.99,16
+8799488491136,A Voyage to Arcturus,David Lindsay,Fiction,A fantastic book by David Lindsay.,https://covers.openlibrary.org/b/id/2890702-L.jpg,28.1,46
+9153121006559,The blue castle,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14640067-L.jpg,25.57,45
+3580576142180,The Call of the Canyon,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/1726764-L.jpg,20.02,11
+9629917865781,She Stoops To Conquer,Oliver Goldsmith,Fiction,A fantastic book by Oliver Goldsmith.,https://covers.openlibrary.org/b/id/251839-L.jpg,28.13,24
+4448549370817,Huntingtower,John Buchan,Fiction,A fantastic book by John Buchan.,https://covers.openlibrary.org/b/id/1979431-L.jpg,22.8,29
+8803735060410,The Great Shadow,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/9987945-L.jpg,12.8,31
+3263877216113,Of Mice and Men,John Steinbeck,Fiction,A fantastic book by John Steinbeck.,https://covers.openlibrary.org/b/id/14319003-L.jpg,22.09,37
+5725249597648,McTeague,Frank Norris,Fiction,A fantastic book by Frank Norris.,https://covers.openlibrary.org/b/id/5731285-L.jpg,14.56,21
+5871576874757,Φαίδων,Πλάτων,Fiction,A fantastic book by Πλάτων.,https://covers.openlibrary.org/b/id/14400104-L.jpg,18.74,10
+5998169848372,Il Paradiso,Dante Alighieri,Fiction,A fantastic book by Dante Alighieri.,https://covers.openlibrary.org/b/id/6549496-L.jpg,23.12,10
+8109054999175,The Pit,Frank Norris,Fiction,A fantastic book by Frank Norris.,https://covers.openlibrary.org/b/id/8244629-L.jpg,28.2,28
+1565144063765,The People of the Mist,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/8228482-L.jpg,19.67,45
+6958052754033,The Evil Shepherd,Edward Phillips Oppenheim,Fiction,A fantastic book by Edward Phillips Oppenheim.,https://covers.openlibrary.org/b/id/12648419-L.jpg,29.48,36
+3485302869449,Martin Chuzzlewit,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/13112817-L.jpg,12.0,28
+9438206631607,Gullivar of Mars,Edwin Lester Linden Arnold,Fiction,A fantastic book by Edwin Lester Linden Arnold.,https://covers.openlibrary.org/b/id/573770-L.jpg,17.16,20
+5180174076246,The Merry Wives of Windsor,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7165252-L.jpg,28.28,12
+8339827791914,Cymbeline,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/8997203-L.jpg,11.75,21
+2203729020242,The Street of Seven Stars,Mary Roberts Rinehart,Fiction,A fantastic book by Mary Roberts Rinehart.,https://covers.openlibrary.org/b/id/5664897-L.jpg,14.27,34
+1140782062335,The Enchanted Island of Yew,L. Frank Baum,Fiction,A fantastic book by L. Frank Baum.,https://covers.openlibrary.org/b/id/1755697-L.jpg,21.52,47
+2458276228578,What Katy Did,Susan Coolidge,Fiction,A fantastic book by Susan Coolidge.,https://covers.openlibrary.org/b/id/2324467-L.jpg,22.45,9
+6371041318410,The Case-Book of Sherlock Holmes,Arthur Conan Doyle,Fiction,A fantastic book by Arthur Conan Doyle.,https://covers.openlibrary.org/b/id/8350410-L.jpg,14.1,36
+8855965046208,Manon Lescaut,Abbé Prévost,Fiction,A fantastic book by Abbé Prévost.,https://covers.openlibrary.org/b/id/8236918-L.jpg,12.3,46
+3243165853798,Wildfire,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/5076689-L.jpg,15.39,16
+2614545921264,The Young Buglers,G. A. Henty,Fiction,A fantastic book by G. A. Henty.,https://covers.openlibrary.org/b/id/5705606-L.jpg,27.21,21
+6402097561411,The Wouldbegoods,Edith Nesbit,Fiction,A fantastic book by Edith Nesbit.,https://covers.openlibrary.org/b/id/8243273-L.jpg,25.43,27
+7032382585158,Memoirs of Fanny Hill,John Cleland,Fiction,A fantastic book by John Cleland.,https://covers.openlibrary.org/b/id/12947584-L.jpg,15.82,34
+8501995166156,The Sea-Wolf,Jack London,Fiction,A fantastic book by Jack London.,https://covers.openlibrary.org/b/id/8236975-L.jpg,21.47,43
+2338052247995,The Haunted Hotel,Wilkie Collins,Fiction,A fantastic book by Wilkie Collins.,https://covers.openlibrary.org/b/id/2890291-L.jpg,22.89,16
+2122336714455,"The Private Memoirs and Confessions of A Justified Sinner (With A Detail of Curious Traditionary Facts, And Other Evidence, By The Editor)",James Hogg,Fiction,A fantastic book by James Hogg.,https://covers.openlibrary.org/b/id/2898574-L.jpg,21.0,46
+6755065307950,Helen of Troy,Andrew Lang,Fiction,A fantastic book by Andrew Lang.,https://covers.openlibrary.org/b/id/5556502-L.jpg,15.19,43
+2650062896923,History,Herodotus,Fiction,A fantastic book by Herodotus.,https://covers.openlibrary.org/b/id/9829028-L.jpg,13.49,39
+6170758247604,Rights of Man,Thomas Paine,Fiction,A fantastic book by Thomas Paine.,https://covers.openlibrary.org/b/id/12726959-L.jpg,15.67,39
+1394501197502,Nada the Lily,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/3064908-L.jpg,19.81,17
+6543481539053,David Balfour,Robert Louis Stevenson,Fiction,A fantastic book by Robert Louis Stevenson.,https://covers.openlibrary.org/b/id/8244483-L.jpg,21.17,41
+9780669244206,After London,Richard Jefferies,Fiction,A fantastic book by Richard Jefferies.,https://covers.openlibrary.org/b/id/2841895-L.jpg,16.84,39
+1646771919153,La Peste,Albert Camus,Fiction,A fantastic book by Albert Camus.,https://covers.openlibrary.org/b/id/13151272-L.jpg,19.12,11
+9955947145067,Harry Potter and the Prisoner of Azkaban,J. K. Rowling,Fiction,A fantastic book by J. K. Rowling.,https://covers.openlibrary.org/b/id/10580435-L.jpg,24.45,33
+7342656544926,Le roman du masque de fer,Alexandre Dumas,Fiction,A fantastic book by Alexandre Dumas.,https://covers.openlibrary.org/b/id/2132494-L.jpg,29.97,44
+3041006586361,The Two Towers,J.R.R. Tolkien,Fiction,A fantastic book by J.R.R. Tolkien.,https://covers.openlibrary.org/b/id/14627564-L.jpg,11.67,34
+7894147536870,Les lettres de mon moulin,Alphonse Daudet,Fiction,A fantastic book by Alphonse Daudet.,https://covers.openlibrary.org/b/id/968553-L.jpg,29.55,33
+3359021527417,"Tom Sawyer, Detective",Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/8923621-L.jpg,25.69,20
+5357257296813,The Ancient Allen,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/2009278-L.jpg,15.2,20
+9641285991400,The Last Days of Pompeii,"Edward Bulwer Lytton, Baron Lytton",Fiction,"A fantastic book by Edward Bulwer Lytton, Baron Lytton.",https://covers.openlibrary.org/b/id/8247711-L.jpg,25.92,7
+3054852519883,The Return of the King,J.R.R. Tolkien,Fiction,A fantastic book by J.R.R. Tolkien.,https://covers.openlibrary.org/b/id/14627062-L.jpg,12.64,49
+3753628166389,MAIN STREET,Sinclair Lewis,Fiction,A fantastic book by Sinclair Lewis.,https://covers.openlibrary.org/b/id/8244638-L.jpg,28.94,7
+9219907024692,To the Last Man,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/6174965-L.jpg,22.24,47
+9533842735734,Murder on the Links,Agatha Christie,Fiction,A fantastic book by Agatha Christie.,https://covers.openlibrary.org/b/id/14582832-L.jpg,27.37,18
+8176482873976,Manalive,Gilbert Keith Chesterton,Fiction,A fantastic book by Gilbert Keith Chesterton.,https://covers.openlibrary.org/b/id/2751278-L.jpg,20.14,32
+1382783256272,The Royal Book of Oz,Ruth Plumly Thompson,Fiction,A fantastic book by Ruth Plumly Thompson.,https://covers.openlibrary.org/b/id/709865-L.jpg,13.75,46
+1569014684803,I Will Repay,Emma Orczy,Fiction,A fantastic book by Emma Orczy.,https://covers.openlibrary.org/b/id/2928858-L.jpg,15.15,5
+6376815771896,The dog Crusoe,Robert Michael Ballantyne,Fiction,A fantastic book by Robert Michael Ballantyne.,https://covers.openlibrary.org/b/id/1754764-L.jpg,17.76,31
+5463198853739,Poema de mio Cid,Anonymous,Fiction,A fantastic book by Anonymous.,https://covers.openlibrary.org/b/id/4910995-L.jpg,23.56,22
+2277970162404,King Henry VI. Part 3,William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/7182904-L.jpg,12.17,43
+2712981697228,Vingt ans apres̀,Alexandre Dumas,Fiction,A fantastic book by Alexandre Dumas.,https://covers.openlibrary.org/b/id/14564526-L.jpg,22.7,17
+2736742466841,"Maria; or, The Wrongs of Woman",Mary Wollstonecraft,Fiction,A fantastic book by Mary Wollstonecraft.,https://covers.openlibrary.org/b/id/314559-L.jpg,25.35,6
+7489854182184,The Desert of Wheat,Zane Grey,Fiction,A fantastic book by Zane Grey.,https://covers.openlibrary.org/b/id/6006833-L.jpg,22.98,30
+8375034426954,Notre Dame de Paris,Victor Hugo,Fiction,A fantastic book by Victor Hugo.,https://covers.openlibrary.org/b/id/2626880-L.jpg,16.28,26
+6275880891683,Between the Acts,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/115990-L.jpg,21.39,33
+2328565660046,The  light that failed,Rudyard Kipling,Fiction,A fantastic book by Rudyard Kipling.,https://covers.openlibrary.org/b/id/8245186-L.jpg,22.77,33
+3381002469126,The Coming Race,"Edward Bulwer Lytton, Baron Lytton",Fiction,"A fantastic book by Edward Bulwer Lytton, Baron Lytton.",https://covers.openlibrary.org/b/id/2751882-L.jpg,29.45,6
+3390522931612,The Professor's House,Willa Cather,Fiction,A fantastic book by Willa Cather.,https://covers.openlibrary.org/b/id/573461-L.jpg,27.4,39
+7016058773530,The Haunted House,Charles Dickens,Fiction,A fantastic book by Charles Dickens.,https://covers.openlibrary.org/b/id/5664803-L.jpg,17.14,37
+2901674535238,Armadale,Wilkie Collins,Fiction,A fantastic book by Wilkie Collins.,https://covers.openlibrary.org/b/id/780215-L.jpg,13.84,20
+1815878817814,Eugénie Grandet,Honoré de Balzac,Fiction,A fantastic book by Honoré de Balzac.,https://covers.openlibrary.org/b/id/8237025-L.jpg,27.92,26
+8511970243681,Fahrenheit 451,Ray Bradbury,Fiction,A fantastic book by Ray Bradbury.,https://covers.openlibrary.org/b/id/12993656-L.jpg,18.49,8
+7894167422465,"Maggie, a girl of the streets",Stephen Crane,Fiction,A fantastic book by Stephen Crane.,https://covers.openlibrary.org/b/id/1924043-L.jpg,24.98,27
+7398147905860,The most dangerous game,Richard Connell,Fiction,A fantastic book by Richard Connell.,https://covers.openlibrary.org/b/id/8561531-L.jpg,10.22,44
+3936016176262,Finished,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/867088-L.jpg,28.99,48
+6748562779484,Henry V [adaptation],William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/3049999-L.jpg,23.99,31
+9138528302081,Trilby,George du Maurier,Fiction,A fantastic book by George du Maurier.,https://covers.openlibrary.org/b/id/13112944-L.jpg,23.22,7
+7699332702458,Jurgen,James Branch Cabell,Fiction,A fantastic book by James Branch Cabell.,https://covers.openlibrary.org/b/id/5553063-L.jpg,27.2,27
+6471914594434,Fifty Candles,Earl Derr Biggers,Fiction,A fantastic book by Earl Derr Biggers.,https://covers.openlibrary.org/b/id/1956467-L.jpg,21.29,41
+5280543770622,Mrs Dalloway,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/12621768-L.jpg,27.26,23
+6438956801157,Montezuma's daughter,H. Rider Haggard,Fiction,A fantastic book by H. Rider Haggard.,https://covers.openlibrary.org/b/id/5696059-L.jpg,20.33,43
+1404746283570,Rose in Bloom,Louisa May Alcott,Fiction,A fantastic book by Louisa May Alcott.,https://covers.openlibrary.org/b/id/7242794-L.jpg,18.33,24
+5111267900718,The great impersonation,Edward Phillips Oppenheim,Fiction,A fantastic book by Edward Phillips Oppenheim.,https://covers.openlibrary.org/b/id/12648415-L.jpg,12.95,24
+6402586951583,The golden road,Lucy Maud Montgomery,Fiction,A fantastic book by Lucy Maud Montgomery.,https://covers.openlibrary.org/b/id/14641167-L.jpg,18.14,47
+3594539113695,Plays (36),William Shakespeare,Fiction,A fantastic book by William Shakespeare.,https://covers.openlibrary.org/b/id/9023411-L.jpg,29.06,38
+5331643293861,Kenilworth,Sir Walter Scott,Fiction,A fantastic book by Sir Walter Scott.,https://covers.openlibrary.org/b/id/8239394-L.jpg,23.67,18
+3123606411797,Scaramouche,Rafael Sabatini,Fiction,A fantastic book by Rafael Sabatini.,https://covers.openlibrary.org/b/id/250371-L.jpg,16.7,34
+8657635384073,The Waves,Virginia Woolf,Fiction,A fantastic book by Virginia Woolf.,https://covers.openlibrary.org/b/id/119517-L.jpg,14.77,26
+1580875655372,The Hunting of the Snark,Lewis Carroll,Fiction,A fantastic book by Lewis Carroll.,https://covers.openlibrary.org/b/id/8243028-L.jpg,28.66,26
+9879571527944,Nostromo,Joseph Conrad,Fiction,A fantastic book by Joseph Conrad.,https://covers.openlibrary.org/b/id/6545112-L.jpg,26.7,49
+7580696021655,Charlotte Temple,Mrs. Susanna (Haswell) Rowson,Fiction,A fantastic book by Mrs. Susanna (Haswell) Rowson.,https://covers.openlibrary.org/b/id/13523002-L.jpg,16.49,44
+5688158719452,The Angel of Terror,Edgar Wallace,Fiction,A fantastic book by Edgar Wallace.,https://covers.openlibrary.org/b/id/1814681-L.jpg,17.31,12
+5372447948583,Ἀνάβασις,Xenophon,Fiction,A fantastic book by Xenophon.,https://covers.openlibrary.org/b/id/6133592-L.jpg,23.55,47
+9645339035727,The Lord of the Rings,J.R.R. Tolkien,Fiction,A fantastic book by J.R.R. Tolkien.,https://covers.openlibrary.org/b/id/14625765-L.jpg,27.79,17
+7116229774310,À l'ombre des jeunes filles en fleurs,Marcel Proust,Fiction,A fantastic book by Marcel Proust.,https://covers.openlibrary.org/b/id/967786-L.jpg,16.33,26
+2302814340646,The wood beyond the world,William Morris,Fiction,A fantastic book by William Morris.,https://covers.openlibrary.org/b/id/5895767-L.jpg,23.14,49
+8918986577264,Far from the Madding Crowd,Thomas Hardy,Fiction,A fantastic book by Thomas Hardy.,https://covers.openlibrary.org/b/id/902038-L.jpg,25.78,38
+2684328865567,The Tragedy of Pudd'nhead Wilson,Mark Twain,Fiction,A fantastic book by Mark Twain.,https://covers.openlibrary.org/b/id/6633490-L.jpg,15.61,34

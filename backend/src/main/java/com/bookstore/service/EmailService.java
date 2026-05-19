@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.scheduling.annotation.Async;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -17,7 +18,8 @@ public class EmailService {
 
     @Value("${spring.mail.username}")
     private String fromEmail;
-
+    
+    @Async
     public void sendWelcomeEmail(String toEmail, String username) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
@@ -51,6 +53,7 @@ public class EmailService {
         }
     }
 
+    @Async
     public void sendPasswordResetEmail(String toEmail, String resetLink) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 // Triggering re-compilation
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../services/book.service';
@@ -48,7 +48,8 @@ export class BookDetailComponent implements OnInit {
     private cartService: CartService,
     private reviewService: ReviewService,
     private authService: AuthService,
-    public notificationService: NotificationService
+    public notificationService: NotificationService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -67,11 +68,13 @@ export class BookDetailComponent implements OnInit {
       next: (data) => {
         this.book = data;
         this.isLoading = false;
+        this.cdr.detectChanges(); // Force view update
       },
       error: (err) => {
         console.error('Error loading book:', err);
         this.errorMessage = 'Could not find the book you are looking for.';
         this.isLoading = false;
+        this.cdr.detectChanges(); // Force view update
       }
     });
   }
@@ -80,6 +83,7 @@ export class BookDetailComponent implements OnInit {
     this.reviewService.getReviewsByBook(id).subscribe({
       next: (data) => {
         this.realReviews = data;
+        this.cdr.detectChanges(); // Force view update
       }
     });
   }
@@ -152,5 +156,12 @@ export class BookDetailComponent implements OnInit {
 
   getStarArray(rating: number): number[] {
     return Array(5).fill(0).map((x, i) => i < rating ? 1 : 0);
+  }
+
+  handleImageError(event: any) {
+    const fallbackImage = 'https://placehold.co/400x600/e2e8f0/64748b?text=Cover+Not+Found';
+    if (event.target.src !== fallbackImage) {
+      event.target.src = fallbackImage;
+    }
   }
 }

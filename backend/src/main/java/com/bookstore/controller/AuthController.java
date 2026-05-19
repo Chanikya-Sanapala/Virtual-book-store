@@ -49,8 +49,14 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        long start = System.currentTimeMillis();
+        System.out.println(">>> Performance: Signin start for " + loginRequest.getUsername());
+        
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+        System.out.println(">>> Performance: Auth manager took " + (System.currentTimeMillis() - start) + "ms");
+        long tokenStart = System.currentTimeMillis();
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
@@ -60,6 +66,9 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
+        System.out.println(">>> Performance: JWT generation took " + (System.currentTimeMillis() - tokenStart) + "ms");
+        System.out.println(">>> Performance: Total signin took " + (System.currentTimeMillis() - start) + "ms");
+        
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
@@ -69,6 +78,9 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        long start = System.currentTimeMillis();
+        System.out.println(">>> Performance: Signup start for " + signUpRequest.getUsername());
+
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
         }
@@ -86,6 +98,7 @@ public class AuthController {
         roles.add("ROLE_USER");
         user.setRoles(roles);
         userRepository.save(user);
+        System.out.println(">>> Performance: DB Save took " + (System.currentTimeMillis() - start) + "ms");
 
         try {
             emailService.sendWelcomeEmail(user.getEmail(), user.getUsername());

@@ -128,12 +128,15 @@
   height: 300px;
   overflow: hidden;
   cursor: pointer;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  position: relative;
 }
 
 .book-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .book-info {
@@ -221,5 +224,45 @@
   .category-scroll button {
     padding: 0.5rem 1.2rem;
     font-size: 0.85rem;
+  }
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.no-results img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  opacity: 0.7;
+  filter: grayscale(1);
+  transition: all 0.5s ease;
+}
+
+.no-results img:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+
+.no-results p {
+  color: #636e72;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .no-results img {
+    max-width: 150px;
+  }
+  .no-results p {
+    font-size: 1rem;
   }
 }

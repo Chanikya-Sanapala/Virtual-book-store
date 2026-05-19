@@ -33,10 +33,15 @@ public class BookImportService {
             // Print headers for debugging
             System.out.println(">>> BookImportService: Headers found: " + String.join(", ", header));
 
-            // Find column index for ISBN
+            // Find column indices
             int isbnIndex = -1;
             int priceIndex = -1;
             int stockIndex = -1;
+            int titleIndex = -1;
+            int authorIndex = -1;
+            int categoryIndex = -1;
+            int descriptionIndex = -1;
+            int imageIndex = -1;
             
             for (int i = 0; i < header.length; i++) {
                 String h = header[i].toLowerCase().replaceAll("[^a-z0-9]", ""); // Clean header
@@ -48,15 +53,25 @@ public class BookImportService {
                     priceIndex = i;
                 } else if (h.equals("stock") || h.contains("count") || h.contains("quantity")) {
                     stockIndex = i;
+                } else if (h.equals("title") || h.contains("booktitle") || h.equals("originaltitle")) {
+                    titleIndex = i;
+                } else if (h.contains("author")) {
+                    authorIndex = i;
+                } else if (h.contains("category") || h.contains("genre") || h.contains("subject")) {
+                    categoryIndex = i;
+                } else if (h.contains("description") || h.contains("summary") || h.contains("synopsis")) {
+                    descriptionIndex = i;
+                } else if (h.contains("image") || h.contains("cover") || h.contains("thumbnail") || h.contains("picture")) {
+                    imageIndex = i;
                 }
             }
 
-            if (isbnIndex == -1) {
-                System.err.println(">>> BookImportService: No 'isbn' column found!");
-                throw new Exception("CSV file must contain an 'isbn' column. Found columns: " + String.join(", ", header));
+            if (isbnIndex == -1 && titleIndex == -1) {
+                System.err.println(">>> BookImportService: No 'isbn' or 'title' column found!");
+                throw new Exception("CSV file must contain an 'isbn' or 'title' column. Found columns: " + String.join(", ", header));
             }
 
-            System.out.println(">>> BookImportService: Using column " + isbnIndex + " (" + header[isbnIndex] + ") for ISBN");
+            System.out.println(">>> BookImportService: Found indices - ISBN:" + isbnIndex + " Title:" + titleIndex);
 
             String[] line;
             int rowNum = 0;
@@ -86,37 +101,67 @@ public class BookImportService {
                 }
 
                 try {
-                    System.out.println(">>> BookImportService: Row " + rowNum + " | Processing ISBN: " + isbn + " (Raw: " + rawIsbn + ")");
-                    Book book = fetchBookDetailsFromGoogle(isbn);
-                    if (book != null) {
-                        book.setSellerId(sellerId);
-                        book.setIsbn(isbn);
+                    System.out.println(">>> BookImportService: Row " + rowNum + " | Processing book: " + rawIsbn);
+                    
+                    Book book = new Book();
+                    book.setIsbn(isbn);
+                    book.setSellerId(sellerId);
+                    
+                    boolean useGoogleApi = true;
+                    
+                    if (titleIndex != -1 && line.length > titleIndex && !line[titleIndex].trim().isEmpty()) {
+                        book.setTitle(line[titleIndex].trim());
+                        book.setAuthor(authorIndex != -1 && line.length > authorIndex ? line[authorIndex].trim() : "Unknown Author");
+                        book.setCategory(categoryIndex != -1 && line.length > categoryIndex ? line[categoryIndex].trim() : "General");
+                        book.setDescription(descriptionIndex != -1 && line.length > descriptionIndex ? line[descriptionIndex].trim() : "No description available.");
                         
-                        // Set price from CSV if available, else default
-                        if (priceIndex != -1 && line.length > priceIndex) {
-                            try {
-                                book.setPrice(Double.parseDouble(line[priceIndex].replaceAll("[^0-9.]", "")));
-                            } catch (Exception e) { book.setPrice(19.99); }
-                        } else {
-                            book.setPrice(19.99);
+                        String imageUrl = imageIndex != -1 && line.length > imageIndex ? line[imageIndex].trim() : "";
+                        if (imageUrl.isEmpty() || !imageUrl.startsWith("http")) {
+                            imageUrl = "https://placehold.co/300x400/e2e8f0/64748b?text=" + book.getTitle().replace(" ", "+");
                         }
-
-                        // Set stock from CSV if available, else default
-                        if (stockIndex != -1 && line.length > stockIndex) {
-                            try {
-                                book.setStock(Integer.parseInt(line[stockIndex].replaceAll("[^0-9]", "")));
-                            } catch (Exception e) { book.setStock(10); }
-                        } else {
-                            book.setStock(10);
-                        }
+                        book.setImageUrl(imageUrl);
                         
-                        bookRepository.save(book);
-                        count++;
-                        System.out.println(">>> BookImportService: Successfully imported: " + book.getTitle());
-                        Thread.sleep(1000); 
-                    } else {
-                        System.err.println(">>> BookImportService: No details found for ISBN: " + isbn);
+                        useGoogleApi = false; // We have data from CSV, skip Google API
                     }
+
+                    if (useGoogleApi) {
+                        Book fetched = fetchBookDetailsFromGoogle(isbn);
+                        if (fetched != null) {
+                            book.setTitle(fetched.getTitle());
+                            book.setAuthor(fetched.getAuthor());
+                            book.setCategory(fetched.getCategory());
+                            book.setDescription(fetched.getDescription());
+                            book.setImageUrl(fetched.getImageUrl().isEmpty() ? "https://placehold.co/300x400/e2e8f0/64748b?text=No+Cover" : fetched.getImageUrl());
+                            Thread.sleep(500); // Respect rate limits on success
+                        } else {
+                            System.err.println(">>> BookImportService: No details found for ISBN: " + isbn);
+                            Thread.sleep(500); // Sleep even on failure to avoid stampeding the rate limit
+                            continue;
+                        }
+                    }
+
+                    // Set price from CSV if available, else default
+                    if (priceIndex != -1 && line.length > priceIndex) {
+                        try {
+                            book.setPrice(Double.parseDouble(line[priceIndex].replaceAll("[^0-9.]", "")));
+                        } catch (Exception e) { book.setPrice(19.99); }
+                    } else {
+                        book.setPrice(19.99);
+                    }
+
+                    // Set stock from CSV if available, else default
+                    if (stockIndex != -1 && line.length > stockIndex) {
+                        try {
+                            book.setStock(Integer.parseInt(line[stockIndex].replaceAll("[^0-9]", "")));
+                        } catch (Exception e) { book.setStock(10); }
+                    } else {
+                        book.setStock(10);
+                    }
+                    
+                    bookRepository.save(book);
+                    count++;
+                    System.out.println(">>> BookImportService: Successfully imported: " + book.getTitle());
+
                 } catch (Exception e) {
                     System.err.println(">>> BookImportService: Error processing row: " + e.getMessage());
                 }

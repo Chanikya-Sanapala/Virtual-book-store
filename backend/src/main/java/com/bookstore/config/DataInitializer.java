@@ -17,6 +17,10 @@ public class DataInitializer {
     @Bean
     public CommandLineRunner initData(UserRepository userRepository, BookRepository bookRepository, PasswordEncoder passwordEncoder) {
         return args -> {
+            // Clear existing books as requested (Commented out so we don't wipe your Kaggle books on next restart!)
+            // bookRepository.deleteAll();
+            // System.out.println(">>> DataInitializer: All books cleared from database.");
+
             // Create default admin if not exists
             User admin = userRepository.findByUsername("admin").orElse(null);
             if (admin == null) {
@@ -34,6 +38,7 @@ public class DataInitializer {
                 System.out.println("Default Admin created: admin / admin123");
             }
             
+            /* 
             // Re-adding sample books for visualization
             if (bookRepository.count() == 0) {
                 com.bookstore.model.Book b1 = new com.bookstore.model.Book();
@@ -56,6 +61,7 @@ public class DataInitializer {
                 bookRepository.save(b2);
                 System.out.println("Sample books created.");
             }
+            */
         };
     }
 }

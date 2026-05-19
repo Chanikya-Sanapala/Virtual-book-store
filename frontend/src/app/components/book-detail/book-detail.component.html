@@ -18,14 +18,22 @@
     <!-- Left Column: Images -->
     <div class="product-gallery">
       <div class="main-image">
-        <img [src]="book.imageUrl || 'https://via.placeholder.com/400x600?text=No+Cover'" [alt]="book.title">
+        <img [src]="book.imageUrl || 'https://placehold.co/400x600/e2e8f0/64748b?text=No+Cover'" 
+             [alt]="book.title"
+             loading="lazy"
+             (error)="handleImageError($event)">
       </div>
       <div class="thumbnail-list">
         <div class="thumb active">
-          <img [src]="book.imageUrl || 'https://via.placeholder.com/100x150?text=No+Cover'" alt="View 1">
+          <img [src]="book.imageUrl || 'https://placehold.co/100x150/e2e8f0/64748b?text=No+Cover'" 
+               alt="View 1"
+               loading="lazy"
+               (error)="handleImageError($event)">
         </div>
         <div class="thumb" *ngFor="let i of [1,2,3]">
-          <img [src]="book.imageUrl || 'https://via.placeholder.com/100x150?text=Sample+Page'" alt="Sample">
+          <img [src]="book.imageUrl || 'https://placehold.co/100x150/e2e8f0/64748b?text=Sample+Page'" 
+               alt="Sample"
+               (error)="handleImageError($event)">
         </div>
       </div>
     </div>

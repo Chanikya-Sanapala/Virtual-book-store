@@ -9,4 +9,5 @@ public interface BookRepository extends MongoRepository<Book, String> {
     List<Book> findByAuthorContainingIgnoreCase(String author);
     List<Book> findByCategory(String category);
     List<Book> findBySellerId(String sellerId);
+    List<Book> findTop20ByOrderByIdDesc();
 }
