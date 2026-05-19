@@ -37,10 +37,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         client_id: '115274603227-h9on2aqka1ufhnrnqpo5mf9a08ulbiva.apps.googleusercontent.com',
         callback: this.handleCredentialResponse.bind(this)
       });
-      google.accounts.id.renderButton(
-        document.getElementById('google-btn'),
-        { theme: 'outline', size: 'large', text: 'continue_with', width: 386 }
-      );
+      const btnContainer = document.getElementById('google-btn');
+      if (btnContainer) {
+        // Calculate dynamic width based on parent container, fallback to 300, max 400
+        const containerWidth = Math.min(btnContainer.parentElement?.offsetWidth || 300, 400);
+        google.accounts.id.renderButton(
+          btnContainer,
+          { theme: 'outline', size: 'large', text: 'continue_with', width: containerWidth }
+        );
+      }
     }
     
     this.loadVismeScript();
