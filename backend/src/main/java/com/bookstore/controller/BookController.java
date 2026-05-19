@@ -173,4 +173,15 @@ public class BookController {
             return ResponseEntity.internalServerError().body("Error importing books: " + e.getMessage());
         }
     }
+
+    @GetMapping("/import/progress")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<String> getImportProgress(Authentication authentication) {
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetailsImpl) {
+            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+            String progress = bookImportService.getImportProgress(userDetails.getId());
+            return ResponseEntity.ok(progress);
+        }
+        return ResponseEntity.status(401).body("");
+    }
 }

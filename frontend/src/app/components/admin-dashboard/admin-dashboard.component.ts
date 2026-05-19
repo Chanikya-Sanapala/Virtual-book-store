@@ -4,7 +4,7 @@ import { Book } from '../../models/interfaces';
 import { NotificationService } from '../../services/notification.service';
 import { AuthService } from '../../services/auth.service';
 import { CATEGORIES } from '../../constants/categories';
-import { timeout, catchError, of } from 'rxjs';
+import { timeout, catchError, of, Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -27,6 +27,7 @@ export class AdminDashboardComponent implements OnInit {
   
   isImporting = false;
   importStatus = '';
+  private progressSub?: Subscription;
 
   constructor(
     private bookService: BookService, 
@@ -48,6 +49,12 @@ export class AdminDashboardComponent implements OnInit {
       this.bookService.clearCache();
       this.loadBooks();
     });
+  }
+
+  ngOnDestroy() {
+    if (this.progressSub) {
+      this.progressSub.unsubscribe();
+    }
   }
 
   loadCategories() {
@@ -222,18 +229,27 @@ export class AdminDashboardComponent implements OnInit {
       this.isImporting = true;
       this.importStatus = 'Reading file and fetching details...';
       
+      // Start polling for progress
+      this.progressSub = interval(500).subscribe(() => {
+        this.bookService.getImportProgress().subscribe(res => {
+          if (res && this.isImporting) {
+            this.importStatus = res;
+          }
+        });
+      });
+      
       this.bookService.importBooks(file).subscribe({
         next: (response) => {
+          if (this.progressSub) this.progressSub.unsubscribe();
           this.importStatus = response;
-          this.notificationService.show('Import completed successfully!');
+          this.notificationService.show(response, 'success');
           this.isImporting = false;
           // Refresh list
           this.loadBooks();
-          // Reset status after a delay
-          setTimeout(() => this.importStatus = '', 5000);
         },
         error: (err) => {
           console.error(err);
+          if (this.progressSub) this.progressSub.unsubscribe();
           this.importStatus = 'Import failed. Check CSV format.';
           this.notificationService.show('Bulk import failed.', 'error');
           this.isImporting = false;

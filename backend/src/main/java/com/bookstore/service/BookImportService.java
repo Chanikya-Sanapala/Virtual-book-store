@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class BookImportService {
@@ -23,6 +25,13 @@ public class BookImportService {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
+    
+    // Store import progress by sellerId
+    private final Map<String, String> importProgress = new ConcurrentHashMap<>();
+
+    public String getImportProgress(String sellerId) {
+        return importProgress.getOrDefault(sellerId, "");
+    }
 
     public int importBooksFromCsv(MultipartFile file, String sellerId) throws Exception {
         int count = 0;
@@ -75,8 +84,12 @@ public class BookImportService {
 
             String[] line;
             int rowNum = 0;
+            
+            importProgress.put(sellerId, "Starting import...");
+            
             while ((line = reader.readNext()) != null) {
                 rowNum++;
+                importProgress.put(sellerId, "Importing book " + count + "...");
                 if (line.length <= isbnIndex) {
                     System.err.println(">>> BookImportService: Row " + rowNum + " is too short (" + line.length + " columns)");
                     continue;
@@ -160,12 +173,15 @@ public class BookImportService {
                     
                     bookRepository.save(book);
                     count++;
+                    importProgress.put(sellerId, "Imported " + count + " books so far...");
                     System.out.println(">>> BookImportService: Successfully imported: " + book.getTitle());
 
                 } catch (Exception e) {
                     System.err.println(">>> BookImportService: Error processing row: " + e.getMessage());
                 }
             }
+        } finally {
+            importProgress.remove(sellerId);
         }
         return count;
     }

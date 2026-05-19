@@ -125,4 +125,13 @@ export class BookService {
       })
     );
   }
+
+  getImportProgress(): Observable<string> {
+    return this.http.get(BOOK_API + '/import/progress', {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.currentUserValue.token}`
+      }),
+      responseType: 'text'
+    });
+  }
 }
