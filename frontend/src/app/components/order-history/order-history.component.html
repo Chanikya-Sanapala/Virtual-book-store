@@ -57,13 +57,13 @@
               <span class="item-title">{{item.title}}</span>
               <span class="item-meta">Qty: {{item.quantity}}</span>
             </div>
-            <span class="item-price">${{item.price * item.quantity | number:'1.2-2'}}</span>
+            <span class="item-price">₹{{item.price * item.quantity | number:'1.2-2'}}</span>
           </div>
         </div>
 
         <div class="order-footer">
           <span class="total-label">Total Amount</span>
-          <span class="total-price">${{order.totalAmount | number:'1.2-2'}}</span>
+          <span class="total-price">₹{{order.totalAmount | number:'1.2-2'}}</span>
         </div>
       </div>
 

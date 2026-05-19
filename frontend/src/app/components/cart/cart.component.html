@@ -9,7 +9,7 @@
           <p>Quantity: {{item.quantity}}</p>
         </div>
         <div class="item-actions">
-          <span class="price">${{item.price * item.quantity}}</span>
+          <span class="price">₹{{item.price * item.quantity}}</span>
           <button (click)="removeItem(item.bookId)"><i class="fas fa-trash"></i></button>
         </div>
       </div>
@@ -19,7 +19,7 @@
       <h3>Order Summary</h3>
       <div class="summary-row">
         <span>Subtotal</span>
-        <span>${{total}}</span>
+        <span>₹{{total}}</span>
       </div>
       <div class="summary-row">
         <span>Shipping</span>
@@ -28,7 +28,7 @@
       <hr>
       <div class="summary-row total">
         <span>Total</span>
-        <span>${{total}}</span>
+        <span>₹{{total}}</span>
       </div>
       <button class="btn-checkout" (click)="checkout()">Proceed to Checkout</button>
     </div>

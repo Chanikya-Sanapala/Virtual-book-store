@@ -58,7 +58,7 @@
       <hr class="divider">
 
       <div class="price-section">
-        <span class="currency">$</span>
+        <span class="currency">₹</span>
         <span class="amount">{{book.price}}</span>
         <span class="price-type">New</span>
       </div>
@@ -89,7 +89,7 @@
     <!-- Right Column: Actions Card -->
     <div class="product-actions">
       <div class="action-card">
-        <div class="action-price">${{book.price}}</div>
+        <div class="action-price">₹{{book.price}}</div>
         <p class="delivery-status">Delivery <span class="bold">Tomorrow, May 1</span></p>
         
         <div class="stock-status" [class.out]="book.stock <= 0">

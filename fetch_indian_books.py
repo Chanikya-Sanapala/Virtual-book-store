@@ -40,8 +40,8 @@ def fetch_books():
                     # Generate mock ISBN
                     isbn = str(random.randint(1000000000000, 9999999999999))
                     
-                    # Prices mapped to INR equivalent roughly in USD for consistency (e.g. $5 - $25)
-                    price = round(random.uniform(5.99, 25.99), 2)
+                    # Generate realistic INR prices (e.g. ₹150 - ₹1200)
+                    price = round(random.uniform(150.00, 1200.00), 2)
                     stock = random.randint(10, 100)
                     
                     books.append({

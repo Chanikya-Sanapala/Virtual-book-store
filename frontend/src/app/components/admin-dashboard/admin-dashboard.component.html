@@ -49,7 +49,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Price ($)</label>
+            <label>Price (₹)</label>
             <input type="number" name="price" [(ngModel)]="newBook.price" required>
           </div>
           <div class="form-group">
@@ -120,7 +120,7 @@
             <tr *ngFor="let book of books">
               <td class="book-title">{{book.title}}</td>
               <td>{{book.category}}</td>
-              <td>${{book.price}}</td>
+              <td>₹{{book.price}}</td>
               <td>
                 <span class="stock-badge" [class.low]="book.stock < 5">
                   {{book.stock}} <span *ngIf="book.stock < 5" class="low-stock-text">(Only few available)</span>

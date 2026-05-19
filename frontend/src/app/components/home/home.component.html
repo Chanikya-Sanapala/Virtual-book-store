@@ -56,7 +56,7 @@
             <h3>{{book.title}}</h3>
             <p class="author">by {{book.author}}</p>
             <div class="footer">
-              <span class="price">${{book.price}}</span>
+              <span class="price">₹{{book.price}}</span>
               <span class="stock" [class.out]="book.stock <= 0">{{book.stock > 0 ? 'In Stock' : 'Out of Stock'}}</span>
             </div>
           </div>
