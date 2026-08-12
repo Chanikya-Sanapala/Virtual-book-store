@@ -20,21 +20,17 @@ public class DataInitializer {
     @Bean
     public CommandLineRunner initData(UserRepository userRepository, BookRepository bookRepository, PasswordEncoder passwordEncoder, MongoTemplate mongoTemplate) {
         return args -> {
-            try {
-                // Ensure explicit production database indexes
-                mongoTemplate.indexOps(User.class).ensureIndex(new Index().on("email", Sort.Direction.ASC).unique());
-                mongoTemplate.indexOps(User.class).ensureIndex(new Index().on("username", Sort.Direction.ASC).unique());
-                mongoTemplate.indexOps(Book.class).ensureIndex(new Index().on("category", Sort.Direction.ASC));
-                mongoTemplate.indexOps(Book.class).ensureIndex(new Index().on("sellerId", Sort.Direction.ASC));
-                mongoTemplate.indexOps(Book.class).ensureIndex(new Index().on("title", Sort.Direction.ASC));
-                mongoTemplate.indexOps(Order.class).ensureIndex(new Index().on("userId", Sort.Direction.ASC));
-                mongoTemplate.indexOps(Review.class).ensureIndex(new Index().on("bookId", Sort.Direction.ASC));
-                mongoTemplate.indexOps(PasswordResetToken.class).ensureIndex(new Index().on("token", Sort.Direction.ASC));
-                mongoTemplate.indexOps(PasswordResetToken.class).ensureIndex(new Index().on("email", Sort.Direction.ASC));
-                System.out.println(">>> DataInitializer: Explicit MongoDB indexes ensured successfully.");
-            } catch (Exception e) {
-                System.err.println(">>> DataInitializer: Index creation warning: " + e.getMessage());
-            }
+            // Ensure explicit production database indexes safely without stopping startup
+            safeCreateIndex(mongoTemplate, User.class, new Index().on("email", Sort.Direction.ASC).unique());
+            safeCreateIndex(mongoTemplate, User.class, new Index().on("username", Sort.Direction.ASC).unique());
+            safeCreateIndex(mongoTemplate, Book.class, new Index().on("category", Sort.Direction.ASC));
+            safeCreateIndex(mongoTemplate, Book.class, new Index().on("sellerId", Sort.Direction.ASC));
+            safeCreateIndex(mongoTemplate, Book.class, new Index().on("title", Sort.Direction.ASC));
+            safeCreateIndex(mongoTemplate, Order.class, new Index().on("userId", Sort.Direction.ASC));
+            safeCreateIndex(mongoTemplate, Review.class, new Index().on("bookId", Sort.Direction.ASC));
+            safeCreateIndex(mongoTemplate, PasswordResetToken.class, new Index().on("token", Sort.Direction.ASC));
+            safeCreateIndex(mongoTemplate, PasswordResetToken.class, new Index().on("email", Sort.Direction.ASC));
+            System.out.println(">>> DataInitializer: Database index initialization sequence completed.");
             // Clear existing books as requested (Commented out so we don't wipe your Kaggle books on next restart!)
             // bookRepository.deleteAll();
             // System.out.println(">>> DataInitializer: All books cleared from database.");
@@ -81,5 +77,31 @@ public class DataInitializer {
             }
             */
         };
+    }
+
+    private void safeCreateIndex(MongoTemplate mongoTemplate, Class<?> entityClass, Index indexSpec) {
+        String className = entityClass.getSimpleName();
+        String indexKeys = indexSpec.getIndexKeys().toJson();
+        try {
+            var existingIndexes = mongoTemplate.indexOps(entityClass).getIndexInfo();
+            boolean exists = existingIndexes.stream().anyMatch(info -> info.getIndexFields().stream()
+                    .anyMatch(f -> indexSpec.getIndexKeys().containsKey(f.getKey())));
+            
+            if (exists) {
+                System.out.println(">>> DataInitializer: Index on " + className + " (" + indexKeys + ") already exists.");
+                return;
+            }
+
+            mongoTemplate.indexOps(entityClass).ensureIndex(indexSpec);
+            System.out.println(">>> DataInitializer: Index on " + className + " (" + indexKeys + ") created successfully.");
+        } catch (Exception e) {
+            System.err.println("==========================================================================");
+            System.err.println(">>> DataInitializer: ERROR - Failed to create index on " + className);
+            System.err.println("    Collection:   " + className);
+            System.err.println("    Fields:       " + indexKeys);
+            System.err.println("    Reason:       " + e.getMessage());
+            System.err.println("    Remediation:  Resolve duplicate keys or conflicts in database manually.");
+            System.err.println("==========================================================================");
+        }
     }
 }
