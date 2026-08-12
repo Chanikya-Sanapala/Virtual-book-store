@@ -1,19 +1,29 @@
 package com.bookstore.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "books")
 public class Book {
     @Id
     private String id;
+    
+    @Indexed
     private String title;
+    
     private String author;
     private String description;
+    
+    @Indexed
     private String category;
+    
     private double price;
     private int stock;
+    
+    @Indexed
     private String sellerId;
+    
     private String imageUrl;
     private String isbn;
 

@@ -2,6 +2,7 @@ package com.bookstore.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 
@@ -10,6 +11,8 @@ import java.time.LocalDateTime;
 public class Review {
     @Id
     private String id;
+    
+    @Indexed
     private String bookId;
     private String userId;
     private String username;

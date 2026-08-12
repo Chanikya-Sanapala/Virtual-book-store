@@ -5,6 +5,9 @@ import com.bookstore.repository.BookRepository;
 import com.bookstore.security.UserDetailsImpl;
 import com.bookstore.service.BookImportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,7 @@ import org.springframework.security.core.Authentication;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -26,21 +30,28 @@ public class BookController {
     @Autowired
     BookImportService bookImportService;
 
+    @GetMapping("/health")
+    public ResponseEntity<Map<String, String>> healthCheck() {
+        return ResponseEntity.ok(Map.of("status", "UP", "timestamp", String.valueOf(System.currentTimeMillis())));
+    }
+
     @GetMapping
-    public List<Book> getAllBooks(@RequestParam(required = false) String title) {
-        System.out.println(">>> BookController: getAllBooks() called");
+    public Page<Book> getAllBooks(
+            @RequestParam(required = false) String title,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "12") int size) {
+        System.out.println(">>> BookController: getAllBooks() called - page: " + page + ", size: " + size + ", title: " + title);
         try {
-            List<Book> books;
-            if (title != null) {
-                books = bookRepository.findByTitleContainingIgnoreCase(title);
+            int pageSize = Math.min(Math.max(size, 1), 50);
+            Pageable pageable = PageRequest.of(Math.max(page, 0), pageSize);
+            if (title != null && !title.trim().isEmpty()) {
+                return bookRepository.findByTitleContainingIgnoreCase(title.trim(), pageable);
             } else {
-                books = bookRepository.findAll();
+                return bookRepository.findAll(pageable);
             }
-            System.out.println(">>> BookController: found " + books.size() + " books");
-            return books;
         } catch (Exception e) {
             System.err.println(">>> BookController: Error in getAllBooks: " + e.getMessage());
-            return new ArrayList<>();
+            return Page.empty();
         }
     }
 
@@ -52,28 +63,34 @@ public class BookController {
     }
 
     @GetMapping("/category/{category}")
-    public List<Book> getBooksByCategory(@PathVariable String category) {
-        System.out.println(">>> BookController: getBooksByCategory() called for: " + category);
+    public Page<Book> getBooksByCategory(
+            @PathVariable String category,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "12") int size) {
+        System.out.println(">>> BookController: getBooksByCategory() called for: " + category + " - page: " + page + ", size: " + size);
         try {
-            List<Book> books = bookRepository.findByCategory(category);
-            System.out.println(">>> BookController: found " + books.size() + " books for category " + category);
-            return books;
+            int pageSize = Math.min(Math.max(size, 1), 50);
+            Pageable pageable = PageRequest.of(Math.max(page, 0), pageSize);
+            return bookRepository.findByCategory(category, pageable);
         } catch (Exception e) {
             System.err.println(">>> BookController: Error in getBooksByCategory: " + e.getMessage());
-            return new ArrayList<>();
+            return Page.empty();
         }
     }
 
     @GetMapping("/seller/{sellerId}")
-    public List<Book> getBooksBySeller(@PathVariable String sellerId) {
-        System.out.println(">>> BookController: getBooksBySeller() called for: " + sellerId);
+    public Page<Book> getBooksBySeller(
+            @PathVariable String sellerId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "12") int size) {
+        System.out.println(">>> BookController: getBooksBySeller() called for: " + sellerId + " - page: " + page + ", size: " + size);
         try {
-            List<Book> books = bookRepository.findBySellerId(sellerId);
-            System.out.println(">>> BookController: found " + books.size() + " books for seller " + sellerId);
-            return books;
+            int pageSize = Math.min(Math.max(size, 1), 50);
+            Pageable pageable = PageRequest.of(Math.max(page, 0), pageSize);
+            return bookRepository.findBySellerId(sellerId, pageable);
         } catch (Exception e) {
             System.err.println(">>> BookController: Error in getBooksBySeller: " + e.getMessage());
-            return new ArrayList<>();
+            return Page.empty();
         }
     }
 
