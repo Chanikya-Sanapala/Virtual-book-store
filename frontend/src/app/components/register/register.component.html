@@ -1,13 +1,113 @@
 <div class="auth-wrapper">
-  <!-- Left Side: High-End 3D Animation -->
-  <div class="animation-side">
-    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_6wutsrox.json" 
-                   background="transparent" 
-                   speed="1" 
-                   style="width: 100%; max-width: 600px; height: auto;" 
-                   loop 
-                   autoplay>
-    </lottie-player>
+  <!-- Left Side: Book / Reading Visual -->
+  <div class="book-visual-side">
+    <div class="visual-container">
+      <div class="svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" class="book-illustration">
+          <defs>
+            <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00b894" stop-opacity="0.15" />
+              <stop offset="100%" stop-color="#0984e3" stop-opacity="0.05" />
+            </linearGradient>
+            <linearGradient id="bookCover1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00b894" />
+              <stop offset="100%" stop-color="#00a884" />
+            </linearGradient>
+            <linearGradient id="bookCover2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d3436" />
+              <stop offset="100%" stop-color="#636e72" />
+            </linearGradient>
+            <linearGradient id="bookCover3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0984e3" />
+              <stop offset="100%" stop-color="#74b9ff" />
+            </linearGradient>
+            <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="10" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+            <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.08"/>
+            </filter>
+          </defs>
+
+          <!-- Background Aura -->
+          <circle cx="250" cy="200" r="160" fill="url(#bgGrad)" filter="url(#softGlow)" />
+
+          <!-- Stack of Books Base -->
+          <g filter="url(#shadow)">
+            <!-- Book 3 (Bottom) -->
+            <rect x="130" y="280" width="240" height="32" rx="5" fill="url(#bookCover2)" />
+            <rect x="150" y="284" width="215" height="24" rx="2" fill="#f8f9fa" />
+            <line x1="150" y1="292" x2="360" y2="292" stroke="#dfe6e9" stroke-width="1.5" />
+            <line x1="150" y1="300" x2="360" y2="300" stroke="#dfe6e9" stroke-width="1.5" />
+            <rect x="125" y="280" width="20" height="32" rx="3" fill="#2d3436" />
+
+            <!-- Book 2 (Middle) -->
+            <rect x="145" y="244" width="210" height="30" rx="5" fill="url(#bookCover3)" />
+            <rect x="165" y="248" width="185" height="22" rx="2" fill="#ffffff" />
+            <line x1="165" y1="255" x2="345" y2="255" stroke="#dfe6e9" stroke-width="1.5" />
+            <line x1="165" y1="263" x2="345" y2="263" stroke="#dfe6e9" stroke-width="1.5" />
+            <rect x="140" y="244" width="18" height="30" rx="3" fill="#0984e3" />
+
+            <!-- Book 1 (Top Hardcover) -->
+            <rect x="160" y="210" width="180" height="28" rx="5" fill="url(#bookCover1)" />
+            <rect x="178" y="213" width="158" height="22" rx="2" fill="#fcfcfc" />
+            <line x1="178" y1="220" x2="330" y2="220" stroke="#dfe6e9" stroke-width="1.5" />
+            <rect x="155" y="210" width="16" height="28" rx="3" fill="#00a884" />
+          </g>
+
+          <!-- Floating Open Book (Hero Element) -->
+          <g filter="url(#shadow)" transform="translate(0, -15)">
+            <!-- Left Page Spine/Cover -->
+            <path d="M 140,140 Q 200,125 250,145 L 250,195 Q 200,175 140,190 Z" fill="#00b894" />
+            <!-- Right Page Spine/Cover -->
+            <path d="M 360,140 Q 300,125 250,145 L 250,195 Q 300,175 360,190 Z" fill="#00a884" />
+
+            <!-- Left Pages Layer Stack -->
+            <path d="M 145,135 Q 200,120 250,140 L 250,188 Q 200,168 145,183 Z" fill="#ffffff" />
+            <path d="M 148,132 Q 200,117 250,137 L 250,185 Q 200,165 148,180 Z" fill="#f8fdfb" />
+            
+            <!-- Right Pages Layer Stack -->
+            <path d="M 355,135 Q 300,120 250,140 L 250,188 Q 300,168 355,183 Z" fill="#ffffff" />
+            <path d="M 352,132 Q 300,117 250,137 L 250,185 Q 300,165 352,180 Z" fill="#f8fdfb" />
+
+            <!-- Page Lines Left -->
+            <path d="M 165,142 Q 200,134 235,147" stroke="#b2bec3" stroke-width="2" stroke-linecap="round" fill="none" />
+            <path d="M 165,152 Q 200,144 235,157" stroke="#b2bec3" stroke-width="2" stroke-linecap="round" fill="none" />
+            <path d="M 165,162 Q 200,154 220,164" stroke="#b2bec3" stroke-width="2" stroke-linecap="round" fill="none" />
+
+            <!-- Page Lines Right -->
+            <path d="M 335,142 Q 300,134 265,147" stroke="#b2bec3" stroke-width="2" stroke-linecap="round" fill="none" />
+            <path d="M 335,152 Q 300,144 265,157" stroke="#b2bec3" stroke-width="2" stroke-linecap="round" fill="none" />
+            <path d="M 335,162 Q 300,154 280,164" stroke="#b2bec3" stroke-width="2" stroke-linecap="round" fill="none" />
+
+            <!-- Ribbon Bookmark -->
+            <path d="M 250,137 Q 255,160 262,195 L 255,190 L 248,195 Z" fill="#ff7675" />
+          </g>
+
+          <!-- Floating Leaves & Sparkles -->
+          <path d="M 120,100 Q 140,80 135,115 Q 115,120 120,100 Z" fill="#00b894" opacity="0.85" />
+          <path d="M 370,90 Q 390,70 385,105 Q 365,110 370,90 Z" fill="#00b894" opacity="0.75" />
+          <path d="M 210,70 Q 225,55 220,80 Q 205,85 210,70 Z" fill="#55efc4" opacity="0.9" />
+
+          <!-- Sparkle Stars -->
+          <path d="M 150,60 L 153,67 L 160,70 L 153,73 L 150,80 L 147,73 L 140,70 L 147,67 Z" fill="#fdcb6e" opacity="0.9" />
+          <path d="M 340,65 L 342,70 L 347,72 L 342,74 L 340,79 L 338,74 L 333,72 L 338,70 Z" fill="#fdcb6e" opacity="0.8" />
+          <path d="M 280,50 L 281,53 L 284,54 L 281,55 L 280,58 L 279,55 L 276,54 L 279,53 Z" fill="#55efc4" opacity="0.85" />
+        </svg>
+      </div>
+
+      <div class="visual-text">
+        <h2>Your Virtual Library Awaits</h2>
+        <p>Discover thousands of books, manage your personal collection, and connect with a vibrant community of readers.</p>
+        
+        <div class="feature-badges">
+          <span class="badge"><i class="fas fa-book-open"></i> 500+ Titles</span>
+          <span class="badge"><i class="fas fa-cloud"></i> Instant Access</span>
+          <span class="badge"><i class="fas fa-users"></i> Community</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Right Side: Custom Styled Registration Form -->

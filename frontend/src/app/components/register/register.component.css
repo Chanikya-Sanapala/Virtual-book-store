@@ -2,41 +2,83 @@
   height: calc(100dvh - 75px);
   min-height: calc(100dvh - 75px);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 48% 52%;
   background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
   box-sizing: border-box;
 }
 
-.animation-side {
+.book-visual-side {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #f4fbf7 0%, #e8f7f1 100%);
+  border-right: 1px solid #e0f2eb;
+  box-sizing: border-box;
   overflow: hidden;
   height: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
 }
 
-.animation-side lottie-player {
-  max-width: 450px !important;
-  max-height: calc(100dvh - 120px) !important;
-  width: 100% !important;
-  height: auto !important;
-  object-fit: contain;
-}
-
-.character-container {
+.visual-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 440px;
   width: 100%;
-  max-width: 450px;
+}
+
+.svg-wrapper {
+  width: 100%;
+  max-width: 380px;
+  max-height: calc(100dvh - 220px);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.main-character {
+.book-illustration {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+  max-height: 100%;
+}
+
+.visual-text {
+  margin-top: 1rem;
+}
+
+.visual-text h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2d3436;
+  margin-bottom: 0.35rem;
+}
+
+.visual-text p {
+  color: #636e72;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  margin-bottom: 0.85rem;
+}
+
+.feature-badges {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.feature-badges .badge {
+  background: rgba(0, 184, 148, 0.12);
+  color: #00b894;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .form-side {
@@ -189,13 +231,37 @@
     height: auto;
     min-height: calc(100dvh - 70px);
   }
-  .animation-side {
+
+  .book-visual-side {
+    padding: 1.25rem 1rem 0.5rem;
+    border-right: none;
+    border-bottom: 1px solid #e0f2eb;
+    height: auto;
+  }
+  
+  .svg-wrapper {
+    max-width: 200px;
+    max-height: 140px;
+  }
+
+  .visual-text h2 {
+    font-size: 1.15rem;
+  }
+
+  .visual-text p {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .feature-badges {
     display: none;
   }
+
   .form-side {
     padding: 1rem 0.5rem;
     height: auto;
   }
+  
   .signup-card {
     padding: 1.25rem 1rem;
   }
