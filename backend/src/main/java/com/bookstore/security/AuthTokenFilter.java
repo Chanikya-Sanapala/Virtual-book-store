@@ -34,7 +34,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
             // Bypass authentication logic for public endpoints to prevent hangs during auth lookup
             if (path.startsWith("/api/auth/") || 
-               (path.startsWith("/api/books") && "GET".equalsIgnoreCase(method)) ||
+               (path.startsWith("/api/books") && "GET".equalsIgnoreCase(method) && !path.startsWith("/api/books/import")) ||
                (path.startsWith("/api/community") && "GET".equalsIgnoreCase(method))) {
                 filterChain.doFilter(request, response);
                 return;
