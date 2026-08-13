@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BookService } from '../../services/book.service';
-import { Book } from '../../models/interfaces';
+import { Book, ImportProgressInfo } from '../../models/interfaces';
 import { NotificationService } from '../../services/notification.service';
 import { AuthService } from '../../services/auth.service';
 import { CATEGORIES } from '../../constants/categories';
@@ -12,7 +12,7 @@ import { timeout, catchError, of, Subscription, interval } from 'rxjs';
   styleUrls: ['./admin-dashboard.component.css'],
   standalone: false
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit, OnDestroy {
   books: Book[] = [];
   newBook: Book = this.resetBook();
   isEditing = false;
@@ -27,7 +27,11 @@ export class AdminDashboardComponent implements OnInit {
   
   isImporting = false;
   importStatus = '';
+  activeImportProgress: ImportProgressInfo | null = null;
+
   private progressSub?: Subscription;
+  private inventorySub?: Subscription;
+  private lastProcessedCount = 0;
 
   constructor(
     private bookService: BookService, 
@@ -49,11 +53,23 @@ export class AdminDashboardComponent implements OnInit {
       this.bookService.clearCache();
       this.loadBooks();
     });
+
+    // Check for active import on page load/refresh
+    this.checkActiveImport();
   }
 
   ngOnDestroy() {
+    this.stopPolling();
+  }
+
+  private stopPolling() {
     if (this.progressSub) {
       this.progressSub.unsubscribe();
+      this.progressSub = undefined;
+    }
+    if (this.inventorySub) {
+      this.inventorySub.unsubscribe();
+      this.inventorySub = undefined;
     }
   }
 
@@ -94,16 +110,19 @@ export class AdminDashboardComponent implements OnInit {
       catchError(err => {
         console.error('AdminDashboard: Fetch failed', err);
         this.errorMessage = 'Connection timeout. Failed to retrieve books.';
-        return of([]);
+        return of(null);
       })
     ).subscribe({
       next: (data) => {
-        if (!isAdmin && this.userId) {
-          // Filter non-admin user's books
-          this.books = data.filter(b => b.sellerId === this.userId);
-        } else {
-          // Admin sees all books
-          this.books = data;
+        if (data) {
+          const bookList: Book[] = Array.isArray(data) ? data : (data.content || []);
+          if (!isAdmin && this.userId) {
+            // Filter non-admin user's books
+            this.books = bookList.filter(b => b.sellerId === this.userId);
+          } else {
+            // Admin sees all books
+            this.books = bookList;
+          }
         }
         this.isLoading = false;
       },
@@ -223,38 +242,89 @@ export class AdminDashboardComponent implements OnInit {
     };
   }
 
-  onCsvFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.isImporting = true;
-      this.importStatus = 'Reading file and fetching details...';
-      
-      // Start polling for progress
-      this.progressSub = interval(500).subscribe(() => {
-        this.bookService.getImportProgress().subscribe(res => {
-          if (res && this.isImporting) {
-            this.importStatus = res;
+  private checkActiveImport() {
+    this.bookService.getActiveImport().subscribe({
+      next: (activeJob) => {
+        if (activeJob && (activeJob.status === 'STARTING' || activeJob.status === 'IN_PROGRESS')) {
+          this.startPolling(activeJob);
+        }
+      },
+      error: (err) => {
+        console.warn('Could not check active import:', err);
+      }
+    });
+  }
+
+  private startPolling(initialInfo: ImportProgressInfo) {
+    this.stopPolling();
+    this.isImporting = true;
+    this.activeImportProgress = initialInfo;
+    this.importStatus = initialInfo.message || 'Import in progress...';
+    this.lastProcessedCount = initialInfo.processed || 0;
+
+    // 1. Progress polling approximately every 1.5s
+    this.progressSub = interval(1500).subscribe(() => {
+      if (!this.activeImportProgress?.importId) return;
+
+      this.bookService.getImportProgress(this.activeImportProgress.importId).subscribe({
+        next: (progress) => {
+          if (progress) {
+            this.activeImportProgress = progress;
+            this.importStatus = progress.message;
+
+            if (progress.status === 'COMPLETED' || progress.status === 'FAILED' || progress.status === 'CANCELLED') {
+              this.onImportFinished(progress);
+            }
           }
-        });
-      });
-      
-      this.bookService.importBooks(file).subscribe({
-        next: (response) => {
-          if (this.progressSub) this.progressSub.unsubscribe();
-          this.importStatus = response;
-          this.notificationService.show(response, 'success');
-          this.isImporting = false;
-          // Refresh list
-          this.loadBooks();
         },
         error: (err) => {
-          console.error(err);
-          if (this.progressSub) this.progressSub.unsubscribe();
-          this.importStatus = 'Import failed. Check CSV format.';
-          this.notificationService.show('Bulk import failed.', 'error');
-          this.isImporting = false;
+          console.error('Error fetching import progress:', err);
         }
       });
+    });
+
+    // 2. Live Inventory sync approximately every 2.5s while active
+    this.inventorySub = interval(2500).subscribe(() => {
+      if (this.activeImportProgress && this.activeImportProgress.processed > this.lastProcessedCount) {
+        this.lastProcessedCount = this.activeImportProgress.processed;
+        this.bookService.clearCache();
+        this.loadBooks();
+      }
+    });
+  }
+
+  onCsvFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (!file) return;
+
+    this.stopPolling();
+    this.isImporting = true;
+    this.lastProcessedCount = 0;
+
+    this.bookService.startBookImport(file).subscribe({
+      next: (initialInfo) => {
+        this.startPolling(initialInfo);
+      },
+      error: (err) => {
+        console.error(err);
+        this.isImporting = false;
+        const msg = err.error?.message || 'Bulk import failed to start.';
+        this.importStatus = msg;
+        this.notificationService.show(msg, 'error');
+      }
+    });
+  }
+
+  private onImportFinished(progress: ImportProgressInfo) {
+    this.stopPolling();
+    this.isImporting = false;
+    this.bookService.notifyBookRefresh();
+
+    if (progress.status === 'COMPLETED') {
+      const summary = `Import completed! ${progress.processed} rows processed (${progress.added} added, ${progress.updated} updated, ${progress.failed} failed).`;
+      this.notificationService.show(summary, 'success');
+    } else {
+      this.notificationService.show(`Import failed: ${progress.message}`, 'error');
     }
   }
 }

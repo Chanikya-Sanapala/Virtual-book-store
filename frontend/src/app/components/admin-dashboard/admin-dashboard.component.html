@@ -6,17 +6,67 @@
 
   <div class="bulk-actions" [class.processing]="isImporting">
     <div class="import-card">
-      <div class="import-info">
-        <h3><i class="fas fa-file-csv"></i> Bulk Import</h3>
-        <p>Upload a CSV with ISBNs to automatically fetch book details.</p>
+      <div class="import-header">
+        <div class="import-info">
+          <h3><i class="fas fa-file-csv"></i> Bulk Import</h3>
+          <p>Upload a CSV with book records to update inventory and fetch details automatically.</p>
+        </div>
+        <div class="import-controls">
+          <input type="file" #csvInput (change)="onCsvFileSelected($event)" accept=".csv" style="display: none">
+          <button class="btn-import" (click)="csvInput.click()" [disabled]="isImporting">
+            <i class="fas" [class.fa-upload]="!isImporting" [class.fa-spinner]="isImporting" [class.fa-spin]="isImporting"></i>
+            {{isImporting ? 'Processing Import...' : 'Select CSV File'}}
+          </button>
+        </div>
       </div>
-      <div class="import-controls">
-        <input type="file" #csvInput (change)="onCsvFileSelected($event)" accept=".csv" style="display: none">
-        <button class="btn-import" (click)="csvInput.click()" [disabled]="isImporting">
-          <i class="fas" [class.fa-upload]="!isImporting" [class.fa-spinner]="isImporting" [class.fa-spin]="isImporting"></i>
-          {{isImporting ? 'Importing Books...' : 'Select CSV File'}}
-        </button>
-        <span class="import-status" *ngIf="importStatus">{{importStatus}}</span>
+
+      <!-- Import Progress Panel -->
+      <div class="import-progress-panel" *ngIf="activeImportProgress || isImporting">
+        <div class="progress-bar-wrapper">
+          <div class="progress-label">
+            <span class="status-badge" [attr.data-status]="activeImportProgress?.status">
+              {{ activeImportProgress?.status || 'STARTING' }}
+            </span>
+            <span class="progress-text">{{ importStatus }}</span>
+            <span class="percentage-badge">{{ activeImportProgress?.percentage || 0 }}%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" [style.width.%]="activeImportProgress?.percentage || 0"></div>
+          </div>
+        </div>
+
+        <div class="import-stats-grid">
+          <div class="stat-card">
+            <span class="stat-value">{{ activeImportProgress?.total || 0 }}</span>
+            <span class="stat-label">Total Books</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">{{ activeImportProgress?.processed || 0 }} / {{ activeImportProgress?.total || 0 }}</span>
+            <span class="stat-label">Processed</span>
+          </div>
+          <div class="stat-card added">
+            <span class="stat-value">+{{ activeImportProgress?.added || 0 }}</span>
+            <span class="stat-label">Added</span>
+          </div>
+          <div class="stat-card updated">
+            <span class="stat-value">🔄 {{ activeImportProgress?.updated || 0 }}</span>
+            <span class="stat-label">Updated</span>
+          </div>
+          <div class="stat-card failed" *ngIf="(activeImportProgress?.failed || 0) > 0">
+            <span class="stat-value">⚠️ {{ activeImportProgress?.failed || 0 }}</span>
+            <span class="stat-label">Failed</span>
+          </div>
+        </div>
+
+        <div class="live-sync-indicator" *ngIf="isImporting">
+          <span class="pulse-dot"></span>
+          <span>⚡ Live inventory sync active — new books appearing below</span>
+        </div>
+
+        <div class="completion-banner" *ngIf="activeImportProgress?.status === 'COMPLETED'">
+          <i class="fas fa-check-circle"></i>
+          <span>Import completed successfully. {{ activeImportProgress?.processed }} rows processed ({{ activeImportProgress?.added }} added, {{ activeImportProgress?.updated }} updated, {{ activeImportProgress?.failed }} failed).</span>
+        </div>
       </div>
     </div>
   </div>

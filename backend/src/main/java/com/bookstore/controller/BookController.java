@@ -1,5 +1,6 @@
 package com.bookstore.controller;
 
+import com.bookstore.dto.ImportProgressDTO;
 import com.bookstore.model.Book;
 import com.bookstore.repository.BookRepository;
 import com.bookstore.security.UserDetailsImpl;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -95,72 +97,72 @@ public class BookController {
     }
 
     @GetMapping("/categories")
-    public List<String> getAllCategories() {
-        System.out.println(">>> BookController: getAllCategories() called");
-        try {
-            List<String> categories = List.of("Fiction", "Non-Fiction", "Science", "Technology", "Biography", "Self-Help");
-            System.out.println(">>> BookController: returning " + categories.size() + " categories");
-            return categories;
-        } catch (Exception e) {
-            System.err.println(">>> BookController: Error in getAllCategories: " + e.getMessage());
-            return new ArrayList<>();
+    public ResponseEntity<List<String>> getAllCategories() {
+        List<Book> books = bookRepository.findAll();
+        List<String> categories = new ArrayList<>();
+        for (Book b : books) {
+            if (b.getCategory() != null && !b.getCategory().isEmpty() && !categories.contains(b.getCategory())) {
+                categories.add(b.getCategory());
+            }
         }
+        if (categories.isEmpty()) {
+            categories.add("Fiction");
+            categories.add("Non-Fiction");
+            categories.add("Sci-Fi");
+            categories.add("Technology");
+            categories.add("History");
+        }
+        return ResponseEntity.ok(categories);
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public Book createBook(@RequestBody Book book, Authentication authentication) {
-        System.out.println(">>> BookController: createBook() called for title: " + book.getTitle());
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<?> createBook(@RequestBody Book book, Authentication authentication) {
         if (authentication != null && authentication.getPrincipal() instanceof UserDetailsImpl) {
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             book.setSellerId(userDetails.getId());
         }
-        return bookRepository.save(book);
+        Book savedBook = bookRepository.save(book);
+        return ResponseEntity.ok(savedBook);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public ResponseEntity<Book> updateBook(@PathVariable String id, @RequestBody Book bookDetails, Authentication authentication) {
-        System.out.println(">>> BookController: updateBook() called for id: " + id);
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<?> updateBook(@PathVariable String id, @RequestBody Book bookDetails, Authentication authentication) {
         return bookRepository.findById(id).map(book -> {
             if (authentication != null && authentication.getPrincipal() instanceof UserDetailsImpl) {
                 UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-                boolean isAdmin = userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
-                
-                String sellerId = book.getSellerId();
-                if (sellerId != null && !sellerId.equals(userDetails.getId()) && !isAdmin) {
-                    return ResponseEntity.status(org.springframework.http.HttpStatus.FORBIDDEN).<Book>build();
+                boolean isAdmin = userDetails.getAuthorities().stream()
+                        .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+                if (!isAdmin && !book.getSellerId().equals(userDetails.getId())) {
+                    return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
                 }
-            } else {
-                return ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED).<Book>build();
             }
-
             book.setTitle(bookDetails.getTitle());
             book.setAuthor(bookDetails.getAuthor());
             book.setDescription(bookDetails.getDescription());
             book.setCategory(bookDetails.getCategory());
             book.setPrice(bookDetails.getPrice());
             book.setStock(bookDetails.getStock());
-            book.setImageUrl(bookDetails.getImageUrl());
-            return ResponseEntity.ok(bookRepository.save(book));
+            if (bookDetails.getImageUrl() != null) book.setImageUrl(bookDetails.getImageUrl());
+            if (bookDetails.getIsbn() != null) book.setIsbn(bookDetails.getIsbn());
+            
+            Book updatedBook = bookRepository.save(book);
+            return ResponseEntity.ok(updatedBook);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<?> deleteBook(@PathVariable String id, Authentication authentication) {
-        System.out.println(">>> BookController: deleteBook() called for id: " + id);
         return bookRepository.findById(id).map(book -> {
             if (authentication != null && authentication.getPrincipal() instanceof UserDetailsImpl) {
                 UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-                boolean isAdmin = userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
-                
-                String sellerId = book.getSellerId();
-                if (sellerId != null && !sellerId.equals(userDetails.getId()) && !isAdmin) {
-                    return ResponseEntity.status(org.springframework.http.HttpStatus.FORBIDDEN).build();
+                boolean isAdmin = userDetails.getAuthorities().stream()
+                        .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+                if (!isAdmin && !book.getSellerId().equals(userDetails.getId())) {
+                    return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
                 }
-            } else {
-                return ResponseEntity.status(org.springframework.http.HttpStatus.UNAUTHORIZED).build();
             }
             
             bookRepository.delete(book);
@@ -171,7 +173,6 @@ public class BookController {
     @PostMapping("/import")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<?> importBooks(@RequestParam("file") MultipartFile file, Authentication authentication) {
-        System.out.println(">>> BookController: importBooks() called");
         try {
             String sellerId = null;
             if (authentication != null && authentication.getPrincipal() instanceof UserDetailsImpl) {
@@ -180,25 +181,56 @@ public class BookController {
             }
             
             if (sellerId == null) {
-                return ResponseEntity.status(401).body("User not authenticated");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not authenticated");
             }
 
-            int count = bookImportService.importBooksFromCsv(file, sellerId);
-            return ResponseEntity.ok("Successfully imported " + count + " books.");
+            byte[] fileBytes = file.getBytes();
+            ImportProgressDTO initialProgress = bookImportService.startImport(fileBytes, sellerId);
+            
+            bookImportService.processImportAsync(initialProgress.getImportId(), fileBytes, sellerId);
+
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(initialProgress);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
         } catch (Exception e) {
-            System.err.println(">>> BookController: Error in importBooks: " + e.getMessage());
-            return ResponseEntity.internalServerError().body("Error importing books: " + e.getMessage());
+            System.err.println(">>> BookController: Error starting import: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(Map.of("message", "Error starting import: " + e.getMessage()));
         }
     }
 
-    @GetMapping("/import/progress")
+    @GetMapping("/import/progress/{importId}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
-    public ResponseEntity<String> getImportProgress(Authentication authentication) {
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetailsImpl) {
-            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-            String progress = bookImportService.getImportProgress(userDetails.getId());
-            return ResponseEntity.ok(progress);
+    public ResponseEntity<?> getImportProgress(@PathVariable("importId") String importId, Authentication authentication) {
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetailsImpl)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        return ResponseEntity.status(401).body("");
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        boolean isAdmin = userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+
+        try {
+            ImportProgressDTO progress = bookImportService.getImportProgress(importId, userDetails.getId(), isAdmin);
+            if (progress == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(progress);
+        } catch (SecurityException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/import/active")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<?> getActiveImport(Authentication authentication) {
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetailsImpl)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        ImportProgressDTO activeImport = bookImportService.getActiveImportForSeller(userDetails.getId());
+        if (activeImport == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(activeImport);
     }
 }

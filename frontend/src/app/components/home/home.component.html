@@ -68,6 +68,17 @@
         <p>We couldn't find any books matching your search.</p>
       </div>
     </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-bar" *ngIf="!isLoading && !errorMessage && totalPages > 1">
+      <button class="page-btn" [disabled]="currentPage === 0" (click)="goToPage(currentPage - 1)">
+        <i class="fas fa-chevron-left"></i> Previous
+      </button>
+      <span class="page-info">Page {{currentPage + 1}} of {{totalPages}} ({{totalElements}} books)</span>
+      <button class="page-btn" [disabled]="currentPage >= totalPages - 1" (click)="goToPage(currentPage + 1)">
+        Next <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
   </div>
 </div>
 

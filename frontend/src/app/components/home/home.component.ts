@@ -21,8 +21,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   categories: string[] = [];
   isLoading = false;
   errorMessage = '';
+
+  // Pagination state
+  currentPage = 0;
+  pageSize = 12;
+  totalPages = 1;
+  totalElements = 0;
+
   private searchSub: Subscription | undefined;
   private categorySub: Subscription | undefined;
+  private refreshSub: Subscription | undefined;
 
   constructor(
     private bookService: BookService, 
@@ -33,13 +41,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    // 1. Load categories first
+    // 1. Load categories
     this.loadCategories();
     
-    // 2. Load books immediately on startup
-    this.fetchBooks();
+    // 2. Load books page 0 on startup
+    this.fetchBooks(0);
 
-    // 3. Then listen for search changes with a delay
+    // 3. Listen for search changes with debounce
     this.searchSub = this.searchService.searchQuery$.pipe(
       debounceTime(300)
     ).subscribe(query => {
@@ -48,26 +56,25 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (query) {
           this.selectedCategory = ''; // Clear category when searching
         }
-        this.fetchBooks();
+        this.fetchBooks(0);
       }
     });
 
-    // 4. Listen for category changes from Navbar
+    // 4. Listen for category changes from Navbar (skip initial if unchanged)
     this.categorySub = this.categoryService.selectedCategory$.subscribe(category => {
       if (this.selectedCategory !== category) {
         this.selectedCategory = category;
         if (category) {
           this.searchQuery = '';
         }
-        this.fetchBooks();
+        this.fetchBooks(0);
       }
     });
 
     // 5. Listen for global book refreshes (from Admin Dashboard)
-    this.bookService.bookRefresh$.subscribe(() => {
-      // Force refresh by clearing cache first
+    this.refreshSub = this.bookService.bookRefresh$.subscribe(() => {
       this.bookService.clearCache();
-      this.fetchBooks();
+      this.fetchBooks(this.currentPage);
     });
   }
 
@@ -77,6 +84,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     if (this.categorySub) {
       this.categorySub.unsubscribe();
+    }
+    if (this.refreshSub) {
+      this.refreshSub.unsubscribe();
     }
   }
 
@@ -88,7 +98,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.error('Error loading categories:', err);
-        // Fallback to hardcoded categories
         this.categories = CATEGORIES;
         this.categoryService.setCategories(CATEGORIES);
       }
@@ -96,28 +105,32 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadBooks() {
-    this.fetchBooks();
+    this.fetchBooks(this.currentPage);
   }
 
   filterByCategory(category: string) {
     this.categoryService.selectCategory(category);
   }
 
-  private fetchBooks() {
+  goToPage(page: number) {
+    if (page >= 0 && page < this.totalPages && page !== this.currentPage) {
+      this.fetchBooks(page);
+    }
+  }
+
+  private fetchBooks(page: number = 0) {
     const category = this.selectedCategory;
     
-    // Check cache first to avoid "reflecting back" (loading spinner)
+    // Check cache first
     const cached = category 
-      ? this.bookService.getCachedBooksByCategory(category)
-      : this.bookService.getCachedBooks(this.searchQuery);
+      ? this.bookService.getCachedBooksByCategory(category, page, this.pageSize)
+      : this.bookService.getCachedBooks(this.searchQuery, page, this.pageSize);
 
     if (cached) {
       this.books = cached;
       this.isLoading = false;
-      // We still fetch in background to keep it fresh, but don't show spinner
     } else {
       this.isLoading = true;
-      // Don't clear books if we are just refreshing, to avoid flickering
       if (this.books.length === 0) {
         this.books = [];
       }
@@ -126,8 +139,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.errorMessage = '';
     
     const observable = category 
-      ? this.bookService.getBooksByCategory(category)
-      : this.bookService.getBooks(this.searchQuery);
+      ? this.bookService.getBooksByCategory(category, page, this.pageSize)
+      : this.bookService.getBooks(page, this.pageSize, this.searchQuery);
 
     observable.pipe(
       timeout(10000),
@@ -136,17 +149,27 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (!cached) {
           this.errorMessage = 'Connection timeout. The server is taking too long to respond.';
         }
-        return of([]);
+        return of(null);
       }),
       finalize(() => {
         this.isLoading = false;
-        this.cdr.detectChanges(); // Force view update
+        this.cdr.detectChanges();
       })
     ).subscribe({
       next: (data) => {
-        if (this.selectedCategory === category) {
-          this.books = data;
-          this.cdr.detectChanges(); // Force view update
+        if (data && this.selectedCategory === category) {
+          if (Array.isArray(data)) {
+            this.books = data;
+            this.currentPage = page;
+            this.totalPages = 1;
+            this.totalElements = data.length;
+          } else {
+            this.books = data.content || [];
+            this.currentPage = data.number !== undefined ? data.number : page;
+            this.totalPages = data.totalPages || 1;
+            this.totalElements = data.totalElements || this.books.length;
+          }
+          this.cdr.detectChanges();
         }
       }
     });

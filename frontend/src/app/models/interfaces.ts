@@ -52,3 +52,18 @@ export interface Review {
   comment: string;
   createdAt?: Date;
 }
+
+export interface ImportProgressInfo {
+  importId: string;
+  sellerId?: string;
+  total: number;
+  processed: number;
+  added: number;
+  updated: number;
+  failed: number;
+  percentage: number;
+  status: 'STARTING' | 'IN_PROGRESS' | 'COMPLETED' | 'FAILED' | 'CANCELLED';
+  message: string;
+  startedAt?: string;
+  completedAt?: string;
+}

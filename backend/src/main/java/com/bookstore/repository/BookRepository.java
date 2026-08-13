@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
+import java.util.Optional;
 
 public interface BookRepository extends MongoRepository<Book, String> {
     List<Book> findByTitleContainingIgnoreCase(String title);
@@ -19,5 +20,9 @@ public interface BookRepository extends MongoRepository<Book, String> {
     List<Book> findBySellerId(String sellerId);
     Page<Book> findBySellerId(String sellerId, Pageable pageable);
     
+    Optional<Book> findByIsbnAndSellerId(String isbn, String sellerId);
+    Optional<Book> findByTitleIgnoreCaseAndSellerId(String title, String sellerId);
+    List<Book> findAllByTitleIgnoreCaseAndSellerId(String title, String sellerId);
+
     List<Book> findTop20ByOrderByIdDesc();
 }
