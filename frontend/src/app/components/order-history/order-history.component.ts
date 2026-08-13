@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';
-import { timeout, catchError, of } from 'rxjs';
+import { catchError, of, finalize } from 'rxjs';
+import { executeWithColdStartRetry } from '../../utils/cold-start';
 
 @Component({
   selector: 'app-order-history',
@@ -12,6 +13,7 @@ export class OrderHistoryComponent implements OnInit {
   orders: any[] = [];
   isLoading = false;
   errorMessage = '';
+  loadingMessage = 'Retrieving your archives...';
 
   constructor(private orderService: OrderService) { }
 
@@ -22,25 +24,32 @@ export class OrderHistoryComponent implements OnInit {
   loadOrders() {
     this.isLoading = true;
     this.errorMessage = '';
-    this.orderService.getMyOrders().pipe(
-      timeout(10000),
+    this.loadingMessage = 'Retrieving your archives...';
+
+    executeWithColdStartRetry(() => this.orderService.getMyOrders(), {
+      firstTimeoutMs: 15000,
+      retryTimeoutMs: 120000,
+      onWakingUp: () => {
+        this.loadingMessage = 'Server is waking up. Loading history...';
+      }
+    }).pipe(
       catchError(err => {
-        console.error('OrderHistory: Fetch failed', err);
-        this.errorMessage = 'Connection timeout. Failed to retrieve your history.';
+        console.error('OrderHistory: Fetch failed after retry', err);
+        this.errorMessage = 'Unable to load history. Please try again.';
         return of([]);
+      }),
+      finalize(() => {
+        this.isLoading = false;
       })
     ).subscribe({
       next: (data) => {
-        this.orders = data.sort((a, b) => {
-          const dateA = a.orderDate ? new Date(a.orderDate).getTime() : 0;
-          const dateB = b.orderDate ? new Date(b.orderDate).getTime() : 0;
-          return dateB - dateA;
-        });
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Error fetching orders:', err);
-        this.isLoading = false;
+        if (data) {
+          this.orders = data.sort((a: any, b: any) => {
+            const dateA = a.orderDate ? new Date(a.orderDate).getTime() : 0;
+            const dateB = b.orderDate ? new Date(b.orderDate).getTime() : 0;
+            return dateB - dateA;
+          });
+        }
       }
     });
   }

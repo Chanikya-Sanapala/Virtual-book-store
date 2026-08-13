@@ -5,8 +5,9 @@ import { SearchService } from '../../services/search.service';
 import { Book } from '../../models/interfaces';
 import { CATEGORIES } from '../../constants/categories';
 import { CategoryService } from '../../services/category.service';
-import { Subscription, timeout, catchError, of } from 'rxjs';
+import { Subscription, catchError, of } from 'rxjs';
 import { debounceTime, finalize } from 'rxjs/operators';
+import { executeWithColdStartRetry } from '../../utils/cold-start';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   categories: string[] = [];
   isLoading = false;
   errorMessage = '';
+  loadingMessage = 'Curating your library...';
 
   // Pagination state
   currentPage = 0;
@@ -137,17 +139,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     this.errorMessage = '';
+    this.loadingMessage = 'Curating your library...';
     
-    const observable = category 
+    const requestFactory = () => category 
       ? this.bookService.getBooksByCategory(category, page, this.pageSize)
       : this.bookService.getBooks(page, this.pageSize, this.searchQuery);
 
-    observable.pipe(
-      timeout(10000),
+    executeWithColdStartRetry(requestFactory, {
+      firstTimeoutMs: 15000,
+      retryTimeoutMs: 120000,
+      onWakingUp: () => {
+        if (!cached) {
+          this.loadingMessage = 'Server is waking up. Loading books...';
+          this.cdr.detectChanges();
+        }
+      }
+    }).pipe(
       catchError(err => {
         console.error('HomeComponent: Fetch failed', err);
         if (!cached) {
-          this.errorMessage = 'Connection timeout. The server is taking too long to respond.';
+          this.errorMessage = 'Unable to load books. Please try again.';
         }
         return of(null);
       }),

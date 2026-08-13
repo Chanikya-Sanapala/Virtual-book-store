@@ -186,7 +186,7 @@
         
         <div class="loading-overlay" *ngIf="isLoading">
           <div class="spinner"></div>
-          <p>Fetching your listings...</p>
+          <p>{{ loadingMessage }}</p>
         </div>
 
         <div class="no-books" *ngIf="!isLoading && !errorMessage && books.length === 0">

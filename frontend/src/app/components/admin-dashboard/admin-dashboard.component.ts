@@ -5,6 +5,7 @@ import { NotificationService } from '../../services/notification.service';
 import { AuthService } from '../../services/auth.service';
 import { CATEGORIES } from '../../constants/categories';
 import { timeout, catchError, of, Subscription, interval } from 'rxjs';
+import { executeWithColdStartRetry } from '../../utils/cold-start';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -21,6 +22,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   isUploading = false;
   isLoading = false;
   errorMessage = '';
+  loadingMessage = 'Fetching your listings...';
   imagePreview: string | null = null;
   selectedCategory = '';
   categories: string[] = [];
@@ -89,27 +91,31 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   loadBooks() {
     this.isLoading = true;
     this.errorMessage = '';
+    this.loadingMessage = 'Fetching your listings...';
     
     // Check if user is admin
     const isAdmin = this.authService.currentUserValue.roles.includes('ROLE_ADMIN');
     
-    let observable;
-    if (this.selectedCategory) {
-      // For category filtering, get books by category first
-      observable = this.bookService.getBooksByCategory(this.selectedCategory);
-    } else if (!isAdmin && this.userId) {
-      // Non-admin users see only their books
-      observable = this.bookService.getBooksBySeller(this.userId);
-    } else {
-      // Admin users see all books
-      observable = this.bookService.getBooks();
-    }
+    const requestFactory = () => {
+      if (this.selectedCategory) {
+        return this.bookService.getBooksByCategory(this.selectedCategory);
+      } else if (!isAdmin && this.userId) {
+        return this.bookService.getBooksBySeller(this.userId);
+      } else {
+        return this.bookService.getBooks();
+      }
+    };
 
-    observable.pipe(
-      timeout(10000),
+    executeWithColdStartRetry(requestFactory, {
+      firstTimeoutMs: 15000,
+      retryTimeoutMs: 120000,
+      onWakingUp: () => {
+        this.loadingMessage = 'Server is waking up. Loading books...';
+      }
+    }).pipe(
       catchError(err => {
-        console.error('AdminDashboard: Fetch failed', err);
-        this.errorMessage = 'Connection timeout. Failed to retrieve books.';
+        console.error('AdminDashboard: Fetch failed after retry', err);
+        this.errorMessage = 'Unable to load books. Please try again.';
         return of(null);
       })
     ).subscribe({
@@ -117,10 +123,8 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
         if (data) {
           const bookList: Book[] = Array.isArray(data) ? data : (data.content || []);
           if (!isAdmin && this.userId) {
-            // Filter non-admin user's books
             this.books = bookList.filter(b => b.sellerId === this.userId);
           } else {
-            // Admin sees all books
             this.books = bookList;
           }
         }

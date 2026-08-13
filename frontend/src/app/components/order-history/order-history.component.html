@@ -7,7 +7,13 @@
   <div class="orders-grid">
     <div class="loading-state" *ngIf="isLoading">
       <div class="spinner"></div>
-      <p>Retrieving your archives...</p>
+      <p>{{ loadingMessage }}</p>
+    </div>
+
+    <div class="error-state" *ngIf="!isLoading && errorMessage">
+      <i class="fas fa-exclamation-triangle"></i>
+      <p>{{errorMessage}}</p>
+      <button (click)="loadOrders()">Try Again</button>
     </div>
 
     <ng-container *ngIf="!isLoading">
