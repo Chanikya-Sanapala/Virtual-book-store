@@ -56,6 +56,7 @@ export class BookDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         this.loadBook(id);
         this.loadReviews(id);
       }
@@ -69,12 +70,14 @@ export class BookDetailComponent implements OnInit {
         this.book = data;
         this.isLoading = false;
         this.cdr.detectChanges(); // Force view update
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       },
       error: (err) => {
         console.error('Error loading book:', err);
         this.errorMessage = 'Could not find the book you are looking for.';
         this.isLoading = false;
         this.cdr.detectChanges(); // Force view update
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       }
     });
   }
