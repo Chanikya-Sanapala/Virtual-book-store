@@ -90,6 +90,14 @@ public class BookImportServiceE2ETest {
                     .findFirst();
         });
 
+        lenient().when(bookRepository.findFirstByIsbnAndSellerId(anyString(), anyString())).thenAnswer(invocation -> {
+            String isbn = invocation.getArgument(0);
+            String sellerId = invocation.getArgument(1);
+            return bookStore.values().stream()
+                    .filter(b -> sellerId.equals(b.getSellerId()) && isbn.equals(b.getIsbn()))
+                    .findFirst();
+        });
+
         lenient().when(bookRepository.findByTitleIgnoreCaseAndSellerId(anyString(), anyString())).thenAnswer(invocation -> {
             String title = invocation.getArgument(0);
             String sellerId = invocation.getArgument(1);

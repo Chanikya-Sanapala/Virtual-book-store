@@ -21,7 +21,9 @@ public interface BookRepository extends MongoRepository<Book, String> {
     Page<Book> findBySellerId(String sellerId, Pageable pageable);
     
     Optional<Book> findByIsbnAndSellerId(String isbn, String sellerId);
+    Optional<Book> findFirstByIsbnAndSellerId(String isbn, String sellerId);
     Optional<Book> findByTitleIgnoreCaseAndSellerId(String title, String sellerId);
+    Optional<Book> findFirstByTitleIgnoreCaseAndSellerId(String title, String sellerId);
     List<Book> findAllByTitleIgnoreCaseAndSellerId(String title, String sellerId);
 
     List<Book> findTop20ByOrderByIdDesc();

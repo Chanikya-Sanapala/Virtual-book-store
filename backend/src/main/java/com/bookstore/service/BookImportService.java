@@ -350,7 +350,7 @@ public class BookImportService {
 
         if (!isbn.isEmpty()) {
             // Case A — Valid ISBN exists: Match ONLY ISBN + sellerId. Never fall back to title.
-            existingOpt = bookRepository.findByIsbnAndSellerId(isbn, sellerId);
+            existingOpt = bookRepository.findFirstByIsbnAndSellerId(isbn, sellerId);
             isUpdate = existingOpt.isPresent();
         } else if (!title.isEmpty()) {
             // Case B — ISBN missing/blank: Match normalized title + sellerId
