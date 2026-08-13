@@ -1,9 +1,11 @@
 .auth-wrapper {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100dvh - 75px);
+  height: calc(100dvh - 75px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .animation-side {
@@ -11,12 +13,20 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  min-height: 100vh;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.animation-side lottie-player {
+  max-height: 80%;
+  width: 100%;
+  max-width: 500px;
 }
 
 .character-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,57 +42,61 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+  padding: 1.5rem 2rem;
   background: #ffffff;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .signup-card {
   background: #fbfbfc;
-  padding: 3rem 2.5rem;
+  padding: 1.5rem 2rem;
   border-radius: 20px;
   width: 100%;
-  max-width: 480px;
+  max-width: 440px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  box-sizing: border-box;
 }
 
 .card-title {
   font-family: 'Inter', sans-serif;
-  font-size: 2.2rem;
+  font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: 2px;
   color: #1a1a1a;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .card-subtitle {
   color: #666;
-  font-size: 0.95rem;
-  margin-bottom: 2.5rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .visme-styled-group {
   text-align: left;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .visme-styled-group label {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 800;
   color: #1a1a1a;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.35rem;
   letter-spacing: 1px;
 }
 
 .visme-styled-group input {
   width: 100%;
-  padding: 1rem 1.2rem;
+  padding: 0.65rem 0.9rem;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   background: #ffffff;
   transition: all 0.3s;
+  box-sizing: border-box;
 }
 
 .visme-styled-group input:focus {
@@ -96,12 +110,12 @@
   background: #000000;
   color: white;
   border: none;
-  padding: 1.2rem;
+  padding: 0.75rem;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   transition: all 0.3s;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -114,9 +128,9 @@
 }
 
 .divider-visme {
-  margin: 2rem 0;
+  margin: 0.8rem 0;
   color: #999;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   position: relative;
   display: flex;
@@ -134,11 +148,11 @@
 .google-btn-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.8rem;
 }
 
 .auth-footer-visme {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #666;
 }
 
@@ -148,17 +162,40 @@
   text-decoration: underline;
 }
 
+.error-msg {
+  background: #fff5f5;
+  color: #ff7675;
+  padding: 0.6rem;
+  border-radius: 8px;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+}
+
+.success-msg {
+  background: #f0fff4;
+  color: #2e7d32;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 @media (max-width: 992px) {
   .auth-wrapper {
     grid-template-columns: 1fr;
+    height: auto;
+    min-height: calc(100dvh - 70px);
+    overflow-y: auto;
   }
   .animation-side {
     display: none;
   }
   .form-side {
-    padding: 1.5rem;
+    padding: 1rem;
+    height: auto;
   }
   .signup-card {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.25rem;
   }
 }

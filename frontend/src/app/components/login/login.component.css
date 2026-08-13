@@ -1,9 +1,13 @@
 .auth-wrapper {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100dvh - 75px);
+  height: calc(100dvh - 75px);
   display: flex;
   align-items: center;
   justify-content: center;
   background: #f8fbfd;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .auth-card {
@@ -11,42 +15,45 @@
   padding: 1.5rem 2rem;
   border-radius: 25px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.03);
-  width: 90%;
-  max-width: 450px;
+  width: 100%;
+  max-width: 440px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .auth-card h2 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: #2d3436;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .auth-card p {
   color: #636e72;
-  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
 
 .form-group {
   text-align: left;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .form-group label {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: #2d3436;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 0.9rem;
   border: 1.5px solid #f1f2f6;
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: border-color 0.3s;
+  box-sizing: border-box;
 }
 
 .form-group input:focus {
@@ -56,7 +63,7 @@
 
 .forgot-password-link {
   text-align: right;
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
 }
 
 .forgot-password-link a {
@@ -71,12 +78,12 @@
   background: #00b894;
   color: white;
   border: none;
-  padding: 1rem;
+  padding: 0.75rem;
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   transition: transform 0.2s, box-shadow 0.3s;
 }
 
@@ -86,8 +93,9 @@
 }
 
 .auth-footer {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   color: #636e72;
+  font-size: 0.85rem;
 }
 
 .auth-footer a {
@@ -97,9 +105,9 @@
 }
 
 .divider {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   color: #636e72;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -117,7 +125,7 @@
 .google-btn-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
   width: 100%;
 }
 
@@ -128,8 +136,21 @@
 .error-msg {
   background: #fff5f5;
   color: #ff7675;
-  padding: 0.8rem;
+  padding: 0.6rem;
   border-radius: 8px;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .auth-wrapper {
+    height: auto;
+    min-height: calc(100dvh - 70px);
+    overflow-y: auto;
+    padding: 1rem 0.75rem;
+  }
+  
+  .auth-card {
+    padding: 1.25rem 1.25rem;
+  }
 }
