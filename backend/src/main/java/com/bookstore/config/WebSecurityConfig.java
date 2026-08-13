@@ -59,8 +59,8 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/books/import", "/api/books/import/**").authenticated()
                                 .requestMatchers("/api/books", "/api/books/", "/api/books/**").permitAll()
-                                .requestMatchers("/api/books/import").permitAll() // Explicitly permit import
                                 .requestMatchers("/api/files/download/**").permitAll()
                                 .requestMatchers("/api/community", "/api/community/", "/api/community/**").permitAll()
                                 .requestMatchers("/api/ai/**").permitAll()
