@@ -192,6 +192,22 @@
         <div class="no-books" *ngIf="!isLoading && !errorMessage && books.length === 0">
           <p>No books found in your inventory.</p>
         </div>
+
+        <!-- Inventory Pagination -->
+        <div class="inventory-pagination" *ngIf="!isLoading && !errorMessage && totalPages > 1">
+          <div class="pagination-info">
+            Showing {{ currentPage * pageSize + 1 }}–{{ currentPage * pageSize + books.length }} of {{ totalElements }} books
+          </div>
+          <div class="pagination-controls">
+            <button class="page-btn" [disabled]="currentPage === 0" (click)="goToPage(currentPage - 1)">
+              <i class="fas fa-chevron-left"></i> Previous
+            </button>
+            <span class="page-indicator">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <button class="page-btn" [disabled]="currentPage >= totalPages - 1" (click)="goToPage(currentPage + 1)">
+              Next <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

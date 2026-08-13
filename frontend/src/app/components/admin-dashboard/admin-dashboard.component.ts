@@ -26,6 +26,12 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   imagePreview: string | null = null;
   selectedCategory = '';
   categories: string[] = [];
+
+  // Inventory pagination state
+  currentPage = 0;
+  pageSize = 12;
+  totalPages = 1;
+  totalElements = 0;
   
   isImporting = false;
   importStatus = '';
@@ -88,7 +94,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadBooks() {
+  loadBooks(page: number = this.currentPage) {
     this.isLoading = true;
     this.errorMessage = '';
     this.loadingMessage = 'Fetching your listings...';
@@ -98,11 +104,11 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     
     const requestFactory = () => {
       if (this.selectedCategory) {
-        return this.bookService.getBooksByCategory(this.selectedCategory);
+        return this.bookService.getBooksByCategory(this.selectedCategory, page, this.pageSize);
       } else if (!isAdmin && this.userId) {
-        return this.bookService.getBooksBySeller(this.userId);
+        return this.bookService.getBooksBySeller(this.userId, page, this.pageSize);
       } else {
-        return this.bookService.getBooks();
+        return this.bookService.getBooks(page, this.pageSize);
       }
     };
 
@@ -121,11 +127,21 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (data) => {
         if (data) {
-          const bookList: Book[] = Array.isArray(data) ? data : (data.content || []);
-          if (!isAdmin && this.userId) {
-            this.books = bookList.filter(b => b.sellerId === this.userId);
+          if (Array.isArray(data)) {
+            this.books = data;
+            this.totalPages = 1;
+            this.totalElements = data.length;
+            this.currentPage = 0;
           } else {
-            this.books = bookList;
+            const bookList: Book[] = data.content || [];
+            if (!isAdmin && this.userId) {
+              this.books = bookList.filter(b => b.sellerId === this.userId);
+            } else {
+              this.books = bookList;
+            }
+            this.currentPage = data.number !== undefined ? data.number : page;
+            this.totalPages = data.totalPages || 1;
+            this.totalElements = data.totalElements || this.books.length;
           }
         }
         this.isLoading = false;
@@ -137,9 +153,16 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  goToPage(page: number) {
+    if (page >= 0 && page < this.totalPages && page !== this.currentPage) {
+      this.loadBooks(page);
+    }
+  }
+
   filterByCategory(category: string) {
     this.selectedCategory = category;
-    this.loadBooks();
+    this.currentPage = 0;
+    this.loadBooks(0);
   }
 
   onSubmit() {
@@ -219,7 +242,12 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     if (confirm('Are you sure you want to delete this book?')) {
       this.bookService.deleteBook(id).subscribe({
         next: () => {
-          this.loadBooks();
+          // If the current page will be empty after delete and it's not page 0, go to previous page
+          if (this.books.length <= 1 && this.currentPage > 0) {
+            this.loadBooks(this.currentPage - 1);
+          } else {
+            this.loadBooks(this.currentPage);
+          }
           this.notificationService.show('Book deleted.');
         },
         error: () => this.notificationService.show('Delete failed.', 'error')

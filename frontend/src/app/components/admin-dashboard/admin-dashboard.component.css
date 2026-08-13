@@ -610,3 +610,62 @@ td {
   color: #b2bec3;
   font-style: italic;
 }
+
+/* Inventory Pagination */
+.inventory-pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 0 0.5rem;
+  border-top: 1px solid #f1f2f6;
+  margin-top: 1rem;
+}
+
+.pagination-info {
+  font-size: 0.85rem;
+  color: #636e72;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination-controls .page-btn {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.pagination-controls .page-btn:hover:not(:disabled) {
+  background: #00a884;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 184, 148, 0.2);
+}
+
+.pagination-controls .page-btn:disabled {
+  background: #dfe6e9;
+  color: #b2bec3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.page-indicator {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3436;
+  min-width: 120px;
+  text-align: center;
+}
