@@ -91,4 +91,8 @@ npm start
 
 ---
 
+## 🤖 Code Quality
+
+This project uses CodeRabbit for automated pull request reviews.
+
 
