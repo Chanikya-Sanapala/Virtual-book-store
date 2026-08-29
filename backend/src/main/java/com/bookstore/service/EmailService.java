@@ -29,6 +29,9 @@ public class EmailService {
         int atIndex = email.indexOf("@");
         String local = email.substring(0, atIndex);
         String domain = email.substring(atIndex);
+        if (local.isEmpty()) {
+            return "***" + domain;
+        }
         if (local.length() <= 2) {
             return local.charAt(0) + "***" + domain;
         }
