@@ -1,17 +1,20 @@
 package com.bookstore.service;
 
 import jakarta.mail.internet.MimeMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.scheduling.annotation.Async;
-
 import org.springframework.beans.factory.annotation.Value;
 
 @Service
 public class EmailService {
+
+    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     @Autowired
     private JavaMailSender mailSender;
@@ -48,18 +51,25 @@ public class EmailService {
             
             helper.setText(htmlMsg, true); // true indicates HTML
             mailSender.send(message);
+            logger.info("Welcome email successfully sent to {}", toEmail);
         } catch (Exception e) {
-            System.err.println("Failed to send HTML welcome email: " + e.getMessage());
+            logger.error("Failed to send HTML welcome email to {}: {}", toEmail, e.getMessage(), e);
         }
     }
 
     @Async
     public void sendPasswordResetEmail(String toEmail, String resetLink) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(fromEmail);
-        message.setTo(toEmail);
-        message.setSubject("LeafyBooks - Password Reset Request");
-        message.setText("You have requested to reset your password.\n\nPlease click the link below to set a new password:\n" + resetLink + "\n\nIf you did not request this, please ignore this email.\n\nThe LeafyBooks Team");
-        mailSender.send(message);
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom(fromEmail);
+            message.setTo(toEmail);
+            message.setSubject("LeafyBooks - Password Reset Request");
+            message.setText("You have requested to reset your password.\n\nPlease click the link below to set a new password:\n" + resetLink + "\n\nIf you did not request this, please ignore this email.\n\nThe LeafyBooks Team");
+            mailSender.send(message);
+            logger.info("Password reset email successfully sent to {}", toEmail);
+        } catch (Exception e) {
+            logger.error("Failed to send password reset email to {}: {}", toEmail, e.getMessage(), e);
+        }
     }
 }
+
