@@ -21,14 +21,14 @@ public class AiService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${groq.api.key}")
+    @Value("${groq.api.key:}")
     private String apiKey;
 
     private static final String GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
     public String getChatResponse(String userMessage) {
-        if (apiKey == null || apiKey.isEmpty() || apiKey.startsWith("${")) {
-            return "I'm currently resting. Please set my API key in the configuration to wake me up!";
+        if (apiKey == null || apiKey.trim().isEmpty() || apiKey.startsWith("${")) {
+            return "I'm currently resting. Please set GROQ_API_KEY in the server environment variables to wake me up!";
         }
 
         try {
