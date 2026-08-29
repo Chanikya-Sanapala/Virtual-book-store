@@ -91,7 +91,4 @@ npm start
 
 ---
 
-## 🛡️ Default Credentials
-Upon the first startup, the backend automatically creates a default administrator account:
-*   **Email/Username:** `admin`
-*   **Password:** `admin123`
+
