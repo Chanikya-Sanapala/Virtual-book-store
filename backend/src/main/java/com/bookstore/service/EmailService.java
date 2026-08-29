@@ -21,6 +21,19 @@ public class EmailService {
 
     @Value("${spring.mail.username}")
     private String fromEmail;
+
+    private String maskEmail(String email) {
+        if (email == null || !email.contains("@")) {
+            return "***";
+        }
+        int atIndex = email.indexOf("@");
+        String local = email.substring(0, atIndex);
+        String domain = email.substring(atIndex);
+        if (local.length() <= 2) {
+            return local.charAt(0) + "***" + domain;
+        }
+        return local.charAt(0) + "***" + local.charAt(local.length() - 1) + domain;
+    }
     
     @Async
     public void sendWelcomeEmail(String toEmail, String username) {
@@ -51,25 +64,21 @@ public class EmailService {
             
             helper.setText(htmlMsg, true); // true indicates HTML
             mailSender.send(message);
-            logger.info("Welcome email successfully sent to {}", toEmail);
+            logger.info("Welcome email successfully sent to {}", maskEmail(toEmail));
         } catch (Exception e) {
-            logger.error("Failed to send HTML welcome email to {}: {}", toEmail, e.getMessage(), e);
+            logger.error("Failed to send HTML welcome email to {}: {}", maskEmail(toEmail), e.getMessage(), e);
         }
     }
 
-    @Async
     public void sendPasswordResetEmail(String toEmail, String resetLink) {
-        try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(fromEmail);
-            message.setTo(toEmail);
-            message.setSubject("LeafyBooks - Password Reset Request");
-            message.setText("You have requested to reset your password.\n\nPlease click the link below to set a new password:\n" + resetLink + "\n\nIf you did not request this, please ignore this email.\n\nThe LeafyBooks Team");
-            mailSender.send(message);
-            logger.info("Password reset email successfully sent to {}", toEmail);
-        } catch (Exception e) {
-            logger.error("Failed to send password reset email to {}: {}", toEmail, e.getMessage(), e);
-        }
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(fromEmail);
+        message.setTo(toEmail);
+        message.setSubject("LeafyBooks - Password Reset Request");
+        message.setText("You have requested to reset your password.\n\nPlease click the link below to set a new password:\n" + resetLink + "\n\nIf you did not request this, please ignore this email.\n\nThe LeafyBooks Team");
+        mailSender.send(message);
+        logger.info("Password reset email successfully sent to {}", maskEmail(toEmail));
     }
 }
+
 
