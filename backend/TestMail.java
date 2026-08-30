@@ -9,8 +9,8 @@ import javax.mail.internet.MimeMessage;
 
 public class TestMail {
     public static void main(String[] args) {
-        String to = "chandanak1009@gmail.com";
-        String from = "chandanak1009@gmail.com";
+        String to = "sanapalachanikya@gmail.com";
+        String from = "sanapalachanikya@gmail.com";
         String host = "smtp.gmail.com";
         Properties properties = System.getProperties();
         properties.put("mail.smtp.host", host);
@@ -19,7 +19,7 @@ public class TestMail {
         properties.put("mail.smtp.auth", "true");
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("chandanak1009@gmail.com", "zuifllockxhozmeb");
+                return new PasswordAuthentication("sanapalachanikya@gmail.com", System.getenv().getOrDefault("MAIL_PASSWORD", "YOUR_APP_PASSWORD"));
             }
         });
         session.setDebug(true);

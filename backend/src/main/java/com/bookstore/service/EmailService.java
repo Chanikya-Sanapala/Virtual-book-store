@@ -19,7 +19,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Value("${spring.mail.username}")
+    @Value("${spring.mail.username:sanapalachanikya@gmail.com}")
     private String fromEmail;
 
     private String maskEmail(String email) {
