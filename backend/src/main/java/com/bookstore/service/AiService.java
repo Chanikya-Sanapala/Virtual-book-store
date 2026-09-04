@@ -119,8 +119,8 @@ public class AiService {
             if (b.getCategory() != null) {
                 sb.append(" (").append(b.getCategory()).append(")");
             }
-            if (b.getPrice() != null) {
-                sb.append(" - $").append(b.getPrice());
+            if (b.getPrice() > 0) {
+                sb.append(" - $").append(String.format("%.2f", b.getPrice()));
             }
             sb.append("\n");
         }
