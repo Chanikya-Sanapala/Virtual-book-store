@@ -46,39 +46,47 @@ public class AiService {
                     "If a user asks for a recommendation, prioritize these books if they fit. " +
                     "If they don't fit, you can recommend other famous books but mention they might not be in stock.";
 
-            // Prepare Groq request (OpenAI format)
-            Map<String, Object> requestBody = Map.of(
-                "model", "llama-3.1-8b-instant",
-                "messages", List.of(
-                    Map.of("role", "system", "content", systemInstruction),
-                    Map.of("role", "user", "content", userMessage)
-                ),
-                "temperature", 0.7
-            );
-
+            String[] candidateModels = {"llama-3.3-70b-versatile", "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768"};
             String cleanApiKey = apiKey.replaceAll("\\s+", "");
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.set(HttpHeaders.USER_AGENT, "LeafyBooks/1.0 (Java Spring Boot)");
-            headers.set("Authorization", "Bearer " + cleanApiKey);
-            
-            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
 
-            ResponseEntity<Map> response = restTemplate.postForEntity(GROQ_API_URL, entity, Map.class);
+            for (String modelName : candidateModels) {
+                try {
+                    Map<String, Object> requestBody = Map.of(
+                        "model", modelName,
+                        "messages", List.of(
+                            Map.of("role", "system", "content", systemInstruction),
+                            Map.of("role", "user", "content", userMessage)
+                        ),
+                        "temperature", 0.7
+                    );
 
-            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-                List choices = (List) response.getBody().get("choices");
-                if (choices != null && !choices.isEmpty()) {
-                    Map firstChoice = (Map) choices.get(0);
-                    Map message = (Map) firstChoice.get("message");
-                    return (String) message.get("content");
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.setContentType(MediaType.APPLICATION_JSON);
+                    headers.set(HttpHeaders.USER_AGENT, "LeafyBooks/1.0 (Java Spring Boot)");
+                    headers.set("Authorization", "Bearer " + cleanApiKey);
+                    
+                    HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
+
+                    ResponseEntity<Map> response = restTemplate.postForEntity(GROQ_API_URL, entity, Map.class);
+
+                    if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                        List choices = (List) response.getBody().get("choices");
+                        if (choices != null && !choices.isEmpty()) {
+                            Map firstChoice = (Map) choices.get(0);
+                            Map message = (Map) firstChoice.get("message");
+                            return (String) message.get("content");
+                        }
+                    }
+                } catch (org.springframework.web.client.HttpClientErrorException e) {
+                    System.err.println("Groq Model [" + modelName + "] Error [" + e.getStatusCode() + "]: " + e.getResponseBodyAsString());
+                    if (e.getStatusCode() == HttpStatus.UNAUTHORIZED || e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                        return "The AI assistant key is invalid or unauthorized. Please verify GROQ_API_KEY in server environment settings.";
+                    }
+                    // If 404 (model not found), continue loop to try next model in candidateModels
+                    if (e.getStatusCode() != HttpStatus.NOT_FOUND) {
+                        return "Oops! I hit a snag while thinking. Please try again in a moment.";
+                    }
                 }
-            }
-            return "I'm sorry, I'm having trouble thinking right now. Status: " + response.getStatusCode();
-        } catch (org.springframework.web.client.HttpClientErrorException e) {
-            System.err.println("Groq API Error [" + e.getStatusCode() + "]: " + e.getResponseBodyAsString());
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED || e.getStatusCode() == HttpStatus.FORBIDDEN) {
-                return "The AI assistant key is invalid or unauthorized. Please verify GROQ_API_KEY in server environment settings.";
             }
             return "Oops! I hit a snag while thinking. Please try again in a moment.";
         } catch (Exception e) {
