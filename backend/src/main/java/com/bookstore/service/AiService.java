@@ -26,34 +26,35 @@ public class AiService {
 
     private static final String GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
+    private static volatile String activeModel = "llama-3.3-70b-versatile";
+
     public String getChatResponse(String userMessage) {
         if (apiKey == null || apiKey.trim().isEmpty() || apiKey.startsWith("${")) {
             return "I'm currently resting. Please set GROQ_API_KEY in the server environment variables to wake me up!";
         }
 
         try {
-            // Fetch recent books for context
+            // Fetch recent books for context (limit to 10 for fast responses)
             List<Book> books = bookRepository.findTop20ByOrderByIdDesc();
             String bookContext = books.stream()
+                    .limit(10)
                     .map(b -> String.format("- %s by %s (%s)", 
                         b.getTitle(), b.getAuthor(), b.getCategory()))
                     .collect(Collectors.joining("\n"));
 
             String systemInstruction = "You are 'Leafy', a friendly AI assistant for LeafyBooks bookstore. " +
                     "Your goal is to help users find books they will love. " +
-                    "Be conversational, enthusiastic about reading, and helpful. " +
-                    "Here is a list of some books available in our store:\n" + bookContext + "\n\n" +
-                    "If a user asks for a recommendation, prioritize these books if they fit. " +
-                    "If they don't fit, you can recommend other famous books but mention they might not be in stock.";
+                    "Keep answers concise, helpful, and friendly (1-3 paragraphs max). " +
+                    "Here is a sample of books available in our store:\n" + bookContext + "\n\n" +
+                    "If a user asks for a recommendation, prioritize these books if they fit.";
 
             String[] candidateModels = {
-                "meta-llama/llama-3.3-70b-versatile",
+                activeModel,
                 "llama-3.3-70b-versatile",
+                "llama-3.1-8b-instant",
                 "groq/compound-mini",
                 "openai/gpt-oss-20b",
-                "llama-3.1-8b-instant",
-                "gemma2-9b-it",
-                "mixtral-8x7b-32768"
+                "gemma2-9b-it"
             };
             String cleanApiKey = apiKey.replaceAll("\\s+", "");
 
@@ -65,7 +66,8 @@ public class AiService {
                             Map.of("role", "system", "content", systemInstruction),
                             Map.of("role", "user", "content", userMessage)
                         ),
-                        "temperature", 0.7
+                        "temperature", 0.7,
+                        "max_tokens", 350
                     );
 
                     HttpHeaders headers = new HttpHeaders();
@@ -80,6 +82,7 @@ public class AiService {
                     if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
                         List choices = (List) response.getBody().get("choices");
                         if (choices != null && !choices.isEmpty()) {
+                            activeModel = modelName; // Cache the verified working model
                             Map firstChoice = (Map) choices.get(0);
                             Map message = (Map) firstChoice.get("message");
                             return (String) message.get("content");
@@ -90,7 +93,6 @@ public class AiService {
                     if (e.getStatusCode() == HttpStatus.UNAUTHORIZED || e.getStatusCode() == HttpStatus.FORBIDDEN) {
                         return "The AI assistant key is invalid or unauthorized. Please verify GROQ_API_KEY in server environment settings.";
                     }
-                    // Continue to next model if not found or model error
                 }
             }
             return generateSmartLocalResponse(userMessage, books);
