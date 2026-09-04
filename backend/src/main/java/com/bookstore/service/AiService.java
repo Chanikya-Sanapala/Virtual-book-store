@@ -46,7 +46,15 @@ public class AiService {
                     "If a user asks for a recommendation, prioritize these books if they fit. " +
                     "If they don't fit, you can recommend other famous books but mention they might not be in stock.";
 
-            String[] candidateModels = {"llama-3.3-70b-versatile", "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768"};
+            String[] candidateModels = {
+                "meta-llama/llama-3.3-70b-versatile",
+                "llama-3.3-70b-versatile",
+                "groq/compound-mini",
+                "openai/gpt-oss-20b",
+                "llama-3.1-8b-instant",
+                "gemma2-9b-it",
+                "mixtral-8x7b-32768"
+            };
             String cleanApiKey = apiKey.replaceAll("\\s+", "");
 
             for (String modelName : candidateModels) {
@@ -82,16 +90,42 @@ public class AiService {
                     if (e.getStatusCode() == HttpStatus.UNAUTHORIZED || e.getStatusCode() == HttpStatus.FORBIDDEN) {
                         return "The AI assistant key is invalid or unauthorized. Please verify GROQ_API_KEY in server environment settings.";
                     }
-                    // If 404 (model not found), continue loop to try next model in candidateModels
-                    if (e.getStatusCode() != HttpStatus.NOT_FOUND) {
-                        return "Oops! I hit a snag while thinking. Please try again in a moment.";
-                    }
+                    // Continue to next model if not found or model error
                 }
             }
-            return "Oops! I hit a snag while thinking. Please try again in a moment.";
+            return generateSmartLocalResponse(userMessage, books);
         } catch (Exception e) {
             e.printStackTrace();
-            return "Oops! My brain is a bit fuzzy. Please try again soon.";
+            return generateSmartLocalResponse(userMessage, null);
         }
+    }
+
+    private String generateSmartLocalResponse(String userMessage, List<Book> books) {
+        if (books == null || books.isEmpty()) {
+            return "Hi there! Welcome to LeafyBooks. We have a wonderful collection of stories and classics waiting for you. How can I assist your reading journey today?";
+        }
+        String lower = userMessage.toLowerCase();
+        List<Book> matched = books.stream()
+            .filter(b -> (b.getCategory() != null && lower.contains(b.getCategory().toLowerCase())) ||
+                         (b.getTitle() != null && lower.contains(b.getTitle().toLowerCase())) ||
+                         (b.getAuthor() != null && lower.contains(b.getAuthor().toLowerCase())))
+            .collect(Collectors.toList());
+
+        List<Book> display = !matched.isEmpty() ? matched : books.stream().limit(3).collect(Collectors.toList());
+        StringBuilder sb = new StringBuilder();
+        sb.append("Hi! I'm Leafy 🌿 Here are some great recommendations from our bookstore:\n\n");
+        for (Book b : display) {
+            sb.append("• **").append(b.getTitle()).append("** by ").append(b.getAuthor());
+            if (b.getCategory() != null) {
+                sb.append(" (").append(b.getCategory()).append(")");
+            }
+            if (b.getPrice() != null) {
+                sb.append(" - $").append(b.getPrice());
+            }
+            sb.append("\n");
+        }
+        sb.append("\nFeel free to ask about any specific genre or topic!");
+        return sb.toString();
+    }
     }
 }
