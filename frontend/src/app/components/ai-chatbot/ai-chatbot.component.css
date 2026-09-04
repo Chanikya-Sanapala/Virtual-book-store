@@ -160,25 +160,28 @@
 }
 
 .message-bubble {
-  padding: 0.8rem;
-  border-radius: 15px 15px 15px 5px;
+  padding: 0.85rem 1rem;
+  border-radius: 16px 16px 16px 4px;
   background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   border: 1px solid #edf2f7;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .user .message-bubble {
   background: #00b894;
   color: white;
-  border-radius: 15px 15px 5px 15px;
+  border-radius: 16px 16px 4px 16px;
   border: none;
   box-shadow: 0 4px 15px rgba(0, 184, 148, 0.2);
 }
 
 .message-bubble p {
   margin: 0;
-  line-height: 1.4;
-  font-size: 0.9rem;
+  line-height: 1.5;
+  font-size: 0.92rem;
+  white-space: pre-wrap;
 }
 
 .time {
@@ -189,7 +192,7 @@
 }
 
 .user .time {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Typing Indicator */
@@ -217,31 +220,34 @@
 
 /* Input Area */
 .chat-input {
-  padding: 1rem;
+  padding: 0.9rem 1rem;
   background: white;
   border-top: 1px solid #edf2f7;
   display: flex;
-  gap: 0.8rem;
+  gap: 0.6rem;
+  align-items: center;
 }
 
 .chat-input input {
   flex: 1;
+  min-width: 0;
   border: none;
   background: #f1f5f9;
-  padding: 0.8rem 1.2rem;
+  padding: 0.75rem 1.1rem;
   border-radius: 25px;
   outline: none;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   transition: all 0.3s;
 }
 
 .chat-input input:focus {
-  background: #edf2f7;
+  background: #e2e8f0;
 }
 
 .chat-input button {
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
   border-radius: 50%;
   background: #00b894;
   border: none;
@@ -259,16 +265,53 @@
 }
 
 .chat-input button:not(:disabled):hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
   background: #00a884;
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .chatbot-container {
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .bot-gif-trigger {
+    width: 85px;
+  }
+
   .chat-window {
-    width: calc(100vw - 40px);
-    height: calc(100vh - 120px);
-    right: -10px;
-    bottom: 70px;
+    position: fixed;
+    bottom: 75px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    height: calc(100dvh - 95px);
+    max-height: 540px;
+    border-radius: 18px;
+  }
+
+  .chat-messages {
+    padding: 0.8rem;
+    gap: 1rem;
+  }
+
+  .message-wrapper {
+    max-width: 90%;
+  }
+
+  .chat-input {
+    padding: 0.65rem 0.8rem;
+  }
+
+  .chat-input input {
+    font-size: 16px; /* Prevents auto-zoom on mobile */
+    padding: 0.65rem 0.95rem;
+  }
+
+  .chat-input button {
+    width: 38px;
+    height: 38px;
   }
 }
