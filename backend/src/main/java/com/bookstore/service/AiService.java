@@ -56,9 +56,10 @@ public class AiService {
                 "temperature", 0.7
             );
 
+            String cleanApiKey = apiKey.replaceAll("\\s+", "");
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.set("Authorization", "Bearer " + apiKey.trim());
+            headers.set("Authorization", "Bearer " + cleanApiKey);
             
             HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
 
