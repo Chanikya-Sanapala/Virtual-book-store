@@ -127,5 +127,4 @@ public class AiService {
         sb.append("\nFeel free to ask about any specific genre or topic!");
         return sb.toString();
     }
-    }
 }
