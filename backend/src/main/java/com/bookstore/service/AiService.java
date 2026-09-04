@@ -59,6 +59,7 @@ public class AiService {
             String cleanApiKey = apiKey.replaceAll("\\s+", "");
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set(HttpHeaders.USER_AGENT, "LeafyBooks/1.0 (Java Spring Boot)");
             headers.set("Authorization", "Bearer " + cleanApiKey);
             
             HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
@@ -75,7 +76,10 @@ public class AiService {
             }
             return "I'm sorry, I'm having trouble thinking right now. Status: " + response.getStatusCode();
         } catch (org.springframework.web.client.HttpClientErrorException e) {
-            System.err.println("Groq API Error: " + e.getResponseBodyAsString());
+            System.err.println("Groq API Error [" + e.getStatusCode() + "]: " + e.getResponseBodyAsString());
+            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED || e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                return "The AI assistant key is invalid or unauthorized. Please verify GROQ_API_KEY in server environment settings.";
+            }
             return "Oops! I hit a snag while thinking. Please try again in a moment.";
         } catch (Exception e) {
             e.printStackTrace();
