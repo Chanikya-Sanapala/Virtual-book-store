@@ -23,4 +23,4 @@ COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 RUN java -version
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dcom.sun.net.ssl.checkRevocation=true", "-Dcom.sun.security.enableCRLDP=true", "-jar", "app.jar"]
